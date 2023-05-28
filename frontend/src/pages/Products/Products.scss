@@ -1,0 +1,40 @@
+.new-product {
+  margin: 0 auto;
+  width: 40%;
+
+  h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-block: 1.5rem;
+  }
+  form {
+    label {
+      font-size: 1.6rem;
+    }
+    input {
+      padding: 1rem;
+      border-radius: 0.3rem;
+      border: 1px solid black;
+      margin-block: .5rem;
+    }
+    input::placeholder, textarea::placeholder{
+      font-size: 1.4rem;
+    }
+    textarea {
+      resize: none;
+      border-radius: 0.3rem;
+      padding: 1rem;
+    }
+    button {
+      margin-top: 3rem;
+    }
+    .added {
+      font-size: 1.6rem;
+      margin: 0;
+      padding: 0;
+      color: rgb(58, 50, 208);
+      margin-block: -1rem;
+      margin-bottom: -2.5rem;
+    }
+  }
+}

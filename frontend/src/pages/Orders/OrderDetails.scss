@@ -1,0 +1,52 @@
+.order-details {
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 2rem;
+  .order-card {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.7rem;
+    gap: 0.2rem;
+
+    .order-img {
+      display: inline;
+    }
+    img {
+      height: 30vh;
+      margin-top: 2rem;
+    }
+    select {
+      margin-top: 2rem;
+      padding: 0.4rem;
+    }
+    .status {
+      text-transform: capitalize;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      margin-left: 2rem;
+      border-radius: 0.5rem;
+      color: white;
+      background-color: black;
+    }
+    .status-div {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      div {
+        height: 1vh;
+        width: 0.6vw;
+        border-radius: 1rem;
+      }
+    }
+  }
+}
+.orange {
+  background-color: rgb(212, 138, 0);
+}
+.yellow {
+  background-color: rgb(185, 185, 6);
+}
+.green {
+  background-color: rgb(3, 163, 3);
+}

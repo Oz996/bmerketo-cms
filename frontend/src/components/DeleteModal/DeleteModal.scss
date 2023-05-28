@@ -1,0 +1,33 @@
+.modal-delete{
+
+  .btn-delete{
+    background-color: rgb(160, 20, 20);
+  }
+  .modal,
+  .overlay {
+    background-color: rgb(56, 55, 55, 0.5);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  .modal-content {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    padding: 4rem;
+    border-radius: 1rem;
+  
+    div {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 2rem;
+    }
+  }
+}
