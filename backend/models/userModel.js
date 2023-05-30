@@ -1,15 +1,11 @@
 const User = require("../schemas/userSchema");
+const Admin = require("../schemas/adminSchema");
 
 const secretKey = process.env.SECRET_KEY;
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-// Register a new user
-// User can also registered as an admin by sending a isAdmin: true along with email and password.
-
 exports.registerUser = (req, res) => {
-  console.log(req.body);
-
   const { email, password } = req.body;
 
   const hashedPassword = bcrypt.hashSync(password, 10);
@@ -19,7 +15,7 @@ exports.registerUser = (req, res) => {
     .save()
     .then(() => {
       const token = jwt.sign(
-        { email: user.email, userId: user._id, isAdmin: user.isAdmin },
+        { email: user.email, userId: user._id },
         secretKey
       );
       res.status(201).json({ message: "User created", token });
@@ -30,9 +26,7 @@ exports.registerUser = (req, res) => {
     });
 };
 
-// Log in
-
-exports.loginUser = (req, res) => {
+exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   User.findOne({ email: email }).then((data) => {
@@ -44,55 +38,61 @@ exports.loginUser = (req, res) => {
   });
 };
 
-// Log in as admin
-
 exports.loginAdmin = async (req, res) => {
-  const { email, password } = await req.body;
-  try {
-    const admin = await User.findOne({ email: email, isAdmin: true });
+  const { email, password } = req.body;
 
-    if (!admin || !bcrypt.compareSync(password, admin.password)) {
-      return res.status(401).json({ message: "Invalid credentials" });
-    }
+  const user = await User.findOne({ email });
 
-    const token = jwt.sign(
-      { email: admin.email, userId: admin._id },
-      secretKey
-    );
-    res.json({ message: "Welcome admin", token });
-  } catch {
-    console.log(error);
-    res
-      .status(500)
-      .json({ message: "Error logging in as admin", error: error });
+  if (!user) {
+    return res.status(401).json({ message: "Invalid email or password" });
+  }
+
+  // check if the user is admin
+  const isAdmin = await Admin.findOne({ adminId: user.id });
+
+  if (!isAdmin) {
+    return res.status(401).json({
+      message: "You need to be an admin to login",
+    });
+  }
+
+  // check password
+  const correctPassword = bcrypt.compareSync(password, user.password);
+
+  if (!correctPassword) {
+    return res.status(401).json({ message: "Invalid email or password" });
+  } else {
+    const token = jwt.sign({ email: user.email, userId: user._id }, secretKey);
+    res.json({ message: "User logged in", token });
   }
 };
 
-// Create admin from existing user (promote)
-
-exports.createAdmin = async (req, res) => {
-  const { id } = req.params;
-
+exports.addAdmin = async (req, res) => {
   try {
-    const user = await User.findById(id);
+    const { email } = req.body;
 
+    const user = await User.findOne({ email: email });
     if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-    if (user.isAdmin) {
-      return res.status(400).json({ message: "User is already an admin" });
+      return res.status(400).json({
+        message: "User does not exist, create an account on ecommerce website",
+      });
     }
 
-    user.isAdmin = true;
-    await user.save();
+    const admin = await Admin.create({ adminId: user._id });
 
-    res.status(200).json({ message: "User is now admin" });
-  } catch {
-    res.status(500).json({ message: "Failed to create admin" });
+    if (!admin) {
+      return res.status(500).json({ message: "Something went wrong " });
+    }
+
+    res
+      .status(201)
+      .json({ message: "Admin added, you need to login again for it to work" });
+  } catch (err) {
+    if (err.code == 11000) {
+      return res.status(400).json({ message: "This admin already exists" });
+    }
   }
 };
-
-// Get users
 
 exports.getUsers = (req, res) => {
   User.find()

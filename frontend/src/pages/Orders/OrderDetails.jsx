@@ -11,7 +11,7 @@ const OrderDetails = () => {
   const getOrders = async () => {
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch(`http://localhost:7001/orders/${_id}`, {
+      const res = await fetch(`http://localhost:7000/orders/${_id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -33,7 +33,7 @@ const OrderDetails = () => {
 
     try {
       console.log("value:", status)
-      const res = await fetch(`http://localhost:7001/orders/${_id}`, {
+      const res = await fetch(`http://localhost:7000/orders/${_id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

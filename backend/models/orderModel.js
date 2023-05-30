@@ -13,10 +13,7 @@ exports.createOrder = (req, res) => {
 
       const order = new Order({
         user: userId,
-        products: products.map((product) => ({
-          product: product.product,
-          quantity: product.quantity,
-        })),
+        products: products,
       });
 
       return order.save();
@@ -32,7 +29,7 @@ exports.createOrder = (req, res) => {
 
 exports.getAllOrders = (req, res) => {
   Order.find()
-    .populate("user")
+    .populate("user", ["email"])
     .populate("products.product")
     .then((orders) => {
       res.status(200).json(orders);

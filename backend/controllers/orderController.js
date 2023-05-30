@@ -6,7 +6,7 @@ router.get("/user", authMiddleware, orderModel.getAllOrdersForUser);
 
 router.post("/", authMiddleware, orderModel.createOrder);
 
-router.get("/list", authMiddleware, orderModel.getAllOrders);
+router.get("/", authMiddleware, orderModel.getAllOrders);
 
 router.get("/:id", authMiddleware, orderModel.getOrderById);
 

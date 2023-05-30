@@ -1,15 +1,15 @@
-const router = require('express').Router()
-const userModel = require('../models/userModel')
-const authMiddleware= require('../middleware/authMiddleware')
+const router = require("express").Router();
+const userModel = require("../models/userModel");
+const authMiddleware = require("../middleware/authMiddleware");
 
-router.post('/register', userModel.registerUser)
+router.post("/register", userModel.registerUser);
 
-router.post('/login', userModel.loginUser)
+router.post("/login", userModel.loginUser);
 
-router.post('/admin', userModel.loginAdmin)
+router.post("/login/admin", userModel.loginAdmin);
 
-router.post('/:id', authMiddleware, userModel.createAdmin)
+router.post("/newadmin", userModel.addAdmin);
 
-router.get('/', authMiddleware, userModel.getUsers)
+router.get("/users", authMiddleware, userModel.getUsers);
 
-module.exports = router
+module.exports = router;

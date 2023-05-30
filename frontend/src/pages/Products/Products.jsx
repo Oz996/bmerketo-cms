@@ -23,7 +23,7 @@ const Product = () => {
     e.preventDefault();
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch(`http://localhost:7001/api/products`, {
+      const res = await fetch(`http://localhost:7000/api/products`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -15,7 +15,7 @@ const Login = () => {
   const loginAdmin = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("http://localhost:7001/users/admin", {
+    const res = await fetch("http://localhost:7000/login/admin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

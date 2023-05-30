@@ -43,7 +43,7 @@ const Details = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:7001/api/products/${productId}`,
+        `http://localhost:7000/api/products/${productId}`,
         {
           method: "PUT",
           headers: {
@@ -65,7 +65,7 @@ const Details = () => {
   const fetchProducts = async () => {
     try {
       const res = await fetch(
-        `http://localhost:7001/api/products/${productId}`
+        `http://localhost:7000/api/products/${productId}`
       );
       const data = await res.json();
       setProduct(data);

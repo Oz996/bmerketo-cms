@@ -4,8 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon server",
-    "client": "npm run dev --prefix frontend"
+    "dev": "nodemon server"
   },
   "keywords": [],
   "author": "",
