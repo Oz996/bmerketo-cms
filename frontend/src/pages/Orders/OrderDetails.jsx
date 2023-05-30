@@ -43,7 +43,6 @@ const OrderDetails = () => {
       });
       const data = await res.json();
       if (res.ok) {
-        setOrder(data);
         console.log(res);
         console.log(data);
       } else {
@@ -56,6 +55,7 @@ const OrderDetails = () => {
 
   const handleStatusChange = (e) => {
     setStatus(e.target.value);
+    console.log(status)
   };
 
   return (

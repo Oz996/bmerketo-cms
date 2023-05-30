@@ -3,7 +3,7 @@ const User = require("../schemas/userSchema");
 
 exports.createOrder = (req, res) => {
   const { products } = req.body;
-  const userId = req.user.dataId;
+  const userId = req.user.userId;
 
   User.findById(userId)
     .then((user) => {
