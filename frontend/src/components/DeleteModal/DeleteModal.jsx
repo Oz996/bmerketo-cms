@@ -14,7 +14,7 @@ const DeleteModal = ({ product }) => {
 
     try {
       const res = await fetch(
-        `http://localhost:7001/api/products/${productId}`,
+        `http://localhost:7000/api/products/${productId}`,
         {
           method: "DELETE",
           headers: {
