@@ -19,7 +19,7 @@ const Product = () => {
 
   const { products } = useContext(ProductContext);
 
-  const handleUpdate = async (e) => {
+  const addProduct = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
     try {
@@ -31,7 +31,6 @@ const Product = () => {
         },
         body: JSON.stringify(formData),
       });
-      console.log(formData);
       if (res.ok) {
         setIsAdded(true);
         setTimeout(() => {
@@ -57,7 +56,7 @@ const Product = () => {
       {/* Add product form */}
       <div className="new-product">
         <h1>Add new Product</h1>
-        <form onSubmit={handleUpdate}>
+        <form onSubmit={addProduct}>
           <input
             type="text"
             name="name"

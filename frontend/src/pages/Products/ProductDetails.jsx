@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
-import './ProductDetails..scss'
+import "./ProductDetails..scss";
 
 const Details = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -9,16 +9,6 @@ const Details = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState([]);
 
-  if (!product) {
-    return (
-      <>
-        <h2 className="removed">Product has been removed</h2>
-        <Link to="/products">
-          <p className="removed-link">Back</p>
-        </Link>
-      </>
-    );
-  }
   useEffect(() => {
     setFormData({ ...product });
   }, [product]);
@@ -78,6 +68,18 @@ const Details = () => {
     fetchProducts();
   }, []);
 
+  // If you return to the page of a deleted product it will display a text and a link back to the product page
+  if (!product) {
+    return (
+      <>
+        <h2 className="removed">Product has been removed</h2>
+        <Link to="/products">
+          <p className="removed-link">Back</p>
+        </Link>
+      </>
+    );
+  }
+
   return (
     <>
       <img className="product-img" src={product.image} alt={product.name} />
@@ -121,7 +123,9 @@ const Details = () => {
                 onChange={handleChange}
               ></textarea>
               <div className="product-buttons">
-                <button onClick={handleSaveClick} className="btn-save">Save</button>
+                <button onClick={handleSaveClick} className="btn-save">
+                  Save
+                </button>
                 <button onClick={handleCancelClick}>Cancel</button>
               </div>
             </>

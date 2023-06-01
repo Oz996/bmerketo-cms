@@ -32,7 +32,6 @@ const OrderDetails = () => {
     const token = localStorage.getItem("token");
 
     try {
-      console.log("value:", status)
       const res = await fetch(`http://localhost:7000/orders/${_id}`, {
         method: "PATCH",
         headers: {
@@ -43,8 +42,6 @@ const OrderDetails = () => {
       });
       const data = await res.json();
       if (res.ok) {
-        console.log(res);
-        console.log(data);
       } else {
         console.error(data);
       }
@@ -55,7 +52,6 @@ const OrderDetails = () => {
 
   const handleStatusChange = (e) => {
     setStatus(e.target.value);
-    console.log(status)
   };
 
   return (

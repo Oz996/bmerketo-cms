@@ -30,6 +30,7 @@ const DeleteModal = ({ product }) => {
     }
   };
 
+  // Function that toggles modal display
   const toggleModal = () => {
     setModal(!modal);
   };

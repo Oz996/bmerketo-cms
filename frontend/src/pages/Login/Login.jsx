@@ -30,7 +30,6 @@ const Login = () => {
       navigate('/overview')
     } else {
       const errorData = await res.json();
-      console.log(errorData.message);
     }
   };
 
