@@ -36,6 +36,7 @@ const Product = () => {
         setTimeout(() => {
           setIsAdded(false);
         }, 3000);
+        setFormData(initState)
       }
     } catch (error) {
       console.error(error);
@@ -61,30 +62,35 @@ const Product = () => {
             type="text"
             name="name"
             placeholder="Name..."
+            value={formData.name}
             onChange={handleChange}
           />
           <input
             type="text"
             name="category"
             placeholder="Category..."
+            value={formData.category}
             onChange={handleChange}
           />
           <input
             type="text"
             name="image"
             placeholder="ImageURL..."
+            value={formData.image}
             onChange={handleChange}
           />
           <input
             type="text"
             name="price"
             placeholder="Price..."
+            value={formData.price}
             onChange={handleChange}
           />
           <textarea
             name="description"
             rows="7"
             placeholder="Description..."
+            value={formData.description}
             onChange={handleChange}
           ></textarea>
           {isAdded && <p className="added"> Product has been added</p>}
