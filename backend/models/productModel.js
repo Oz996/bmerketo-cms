@@ -46,7 +46,7 @@ exports.addProduct = (req, res) => {
 // Find a product by ID and update
 
 exports.updateProduct = (req, res) => {
-  const { name, price, image, image2, image3, image4, category } = req.body;
+  const { name, price, image, image2, image3, image4, category, description } = req.body;
 
   Product.findByIdAndUpdate(req.params.id).then((data) => {
     if (!data) {
@@ -56,7 +56,7 @@ exports.updateProduct = (req, res) => {
 
     Product.updateOne(
       { _id: req.params.id },
-      { $set: { name, price, image, category, image2, image3, image4 } }
+      { $set: { name, price, image, category, image2, image3, image4, description } }
     )
       .then(() => {
         res.status(200).json({ message: "Product updated" });

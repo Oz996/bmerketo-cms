@@ -87,35 +87,35 @@ const Details = () => {
         <div className="edit-product">
           {isEditing ? (
             <>
-              <label htmlFor="name">Name:</label>
+              <label>Name:</label>
               <input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
               />
-              <label htmlFor="price">Price:</label>
+              <label>Price:</label>
               <input
                 type="text"
                 name="price"
                 value={formData.price}
                 onChange={handleChange}
               />
-              <label htmlFor="category">Category:</label>
+              <label>Category:</label>
               <input
                 type="text"
                 name="category"
                 value={formData.category}
                 onChange={handleChange}
               />
-              <label htmlFor="image">ImageURL:</label>
+              <label>ImageURL:</label>
               <input
                 type="text"
                 name="image"
                 value={formData.image}
                 onChange={handleChange}
               />
-              <label htmlFor="description">Description:</label>
+              <label>Description:</label>
               <textarea
                 name="description"
                 rows="15"
