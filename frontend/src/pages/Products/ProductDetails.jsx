@@ -123,10 +123,10 @@ const Details = () => {
                 onChange={handleChange}
               ></textarea>
               <div className="product-buttons">
-                <button onClick={handleSaveClick} className="btn-save">
+                <button className="btn btn-primary" onClick={handleSaveClick}>
                   Save
                 </button>
-                <button onClick={handleCancelClick}>Cancel</button>
+                <button className="btn btn-danger" onClick={handleCancelClick}>Cancel</button>
               </div>
             </>
           ) : (
@@ -147,7 +147,7 @@ const Details = () => {
                 {product.description}
               </p>
               <div className="product-buttons">
-                <button onClick={handleEditClick}>Edit</button>
+                <button className="btn btn-primary" onClick={handleEditClick}>Edit</button>
                 <DeleteModal product={product} />
               </div>
             </>

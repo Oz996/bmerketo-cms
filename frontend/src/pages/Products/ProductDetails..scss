@@ -14,18 +14,13 @@
   p {
     font-size: 1.6rem;
   }
-  button {
-    border: none;
-    background-color: black;
-    color: white;
-    padding: 0.8rem 1.5rem;
-    cursor: pointer;
-  }
   input, textarea {
-    padding: 1rem;
+    font-size: 1.5rem;
+    padding: 1.4rem;
     border-radius: .3rem;
     border: 1px solid black;
     resize: none;
+    font-family: 'Poppins', sans-serif;
   }
   label{
     font-size: 1.8rem;

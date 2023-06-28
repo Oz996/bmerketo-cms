@@ -51,7 +51,10 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button>Login</button>
+        <button className="btn btn-primary">Login</button>
+        <p>Example login:</p>
+        <span>bmerketo-admin@mail.com</span>
+        <span>test123</span>
       </form>
     </section>
   );

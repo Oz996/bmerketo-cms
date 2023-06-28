@@ -37,7 +37,7 @@ const DeleteModal = ({ product }) => {
 
   return (
     <div className="modal-delete">
-      <button onClick={toggleModal} className="btn-delete">
+      <button onClick={toggleModal} className="btn btn-danger">
         Delete
       </button>
 
@@ -47,10 +47,10 @@ const DeleteModal = ({ product }) => {
           <div className="modal-content">
             <h2>Are you sure you want to remove this product?</h2>
             <div>
-              <button onClick={handleDeleteClick} className="btn-delete">
-                Yes
+              <button className="btn btn-danger" onClick={handleDeleteClick}>
+                Remove
               </button>
-              <button onClick={toggleModal}>Cancel</button>
+              <button className="btn btn-dark" onClick={toggleModal}>Cancel</button>
             </div>
           </div>
         </div>

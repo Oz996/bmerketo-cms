@@ -1,9 +1,7 @@
 import React, { useState, useContext } from "react";
 import "./Products.scss";
-import "./ProductList.scss";
 import { ProductContext } from "../../contexts/ProductContext";
-import { Link } from "react-router-dom";
-import { AiOutlineArrowRight } from "react-icons/ai";
+import ProductCard from "../../components/ProductCard/ProductCard";
 
 const initState = {
   name: "",
@@ -36,7 +34,7 @@ const Product = () => {
         setTimeout(() => {
           setIsAdded(false);
         }, 3000);
-        setFormData(initState)
+        setFormData(initState);
       }
     } catch (error) {
       console.error(error);
@@ -88,32 +86,22 @@ const Product = () => {
           />
           <textarea
             name="description"
-            rows="7"
+            rows="10"
             placeholder="Description..."
             value={formData.description}
             onChange={handleChange}
           ></textarea>
           {isAdded && <p className="added"> Product has been added</p>}
-          <button>Add </button>
+          <button className="btn btn-dark">Add </button>
         </form>
       </div>
       <hr style={{ marginTop: "5rem" }} />
 
       {/* Listing the products  */}
       <div className="product-list">
-        {products?.map((product) => (
-          <div key={product._id} className="product">
-            <div className="product-info">
-              <img src={product.image} alt={product.name} />
-              <p>{product.name}</p>
-              <Link to={`/products/${product._id}`}>
-                <p className="order-edit-text">
-                  <b>Edit</b> <AiOutlineArrowRight className="hover" />
-                </p>
-              </Link>
-            </div>
-          </div>
-        ))}
+      {products?.map((product) => (
+        <ProductCard product={product} key={product._id} />
+      ))}
       </div>
     </section>
   );

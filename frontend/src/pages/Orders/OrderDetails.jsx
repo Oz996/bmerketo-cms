@@ -87,9 +87,9 @@ const OrderDetails = () => {
               <option value="in transit">In Transit</option>
               <option value="delivered">Delivered</option>
             </select>
-            <button onClick={handleUpdateStatus}>Update</button>
+            <button className="btn btn-primary" onClick={handleUpdateStatus}>Update</button>
           </div>
-          {order.products?.map((product) => (
+          {order?.products.map((product) => (
             <div key={product._id}>
               <div>
                 <img src={product.product.image} alt={product.product.name} />
