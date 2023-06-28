@@ -15,7 +15,7 @@ const Login = () => {
   const loginAdmin = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("http://localhost:7000/login/admin", {
+    const res = await fetch("https://cms-api-ty0d.onrender.com/login/admin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

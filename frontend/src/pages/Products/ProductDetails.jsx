@@ -33,7 +33,7 @@ const Details = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:7000/api/products/${productId}`,
+        `https://cms-api-ty0d.onrender.com/api/products/${productId}`,
         {
           method: "PUT",
           headers: {
@@ -55,7 +55,7 @@ const Details = () => {
   const fetchProducts = async () => {
     try {
       const res = await fetch(
-        `http://localhost:7000/api/products/${productId}`
+        `https://cms-api-ty0d.onrender.com/api/products/${productId}`
       );
       const data = await res.json();
       setProduct(data);

@@ -21,7 +21,7 @@ const Product = () => {
     e.preventDefault();
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch(`http://localhost:7000/api/products`, {
+      const res = await fetch(`https://cms-api-ty0d.onrender.com/api/products`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
