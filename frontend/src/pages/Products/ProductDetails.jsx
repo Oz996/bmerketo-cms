@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
 import "./ProductDetails..scss";
 
@@ -8,6 +8,7 @@ const Details = () => {
   const [formData, setFormData] = useState(null);
   const { productId } = useParams();
   const [product, setProduct] = useState([]);
+  const navigate = useNavigate()
 
   useEffect(() => {
     setFormData({ ...product });
@@ -26,7 +27,7 @@ const Details = () => {
     setIsEditing(true);
   };
 
-  const handleSaveClick = async () => {
+  const editProduct = async () => {
     setIsEditing(false);
 
     const token = localStorage.getItem("token");
@@ -47,6 +48,11 @@ const Details = () => {
       console.error(error);
     }
   };
+
+  const handleSaveClick = () => {
+    editProduct()
+    navigate("/products")
+  }
 
   const handleCancelClick = () => {
     setIsEditing(false);

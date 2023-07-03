@@ -1,6 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./Products.scss";
-import { ProductContext } from "../../contexts/ProductContext";
 import ProductCard from "../../components/ProductCard/ProductCard";
 
 const initState = {
@@ -14,8 +13,20 @@ const initState = {
 const Product = () => {
   const [formData, setFormData] = useState(initState);
   const [isAdded, setIsAdded] = useState(false);
+  const [products, setProducts] = useState([])
 
-  const { products } = useContext(ProductContext);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch("https://cms-api-ty0d.onrender.com/api/products")
+        const data = await res.json()
+        setProducts(data)
+      } catch(error) {
+        console.error(error)
+      }
+    }
+    fetchProducts()
+  },[products])
 
   const addProduct = async (e) => {
     e.preventDefault();
