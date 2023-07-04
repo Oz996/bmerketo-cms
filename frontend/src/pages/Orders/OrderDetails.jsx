@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import './OrderDetails.scss'
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const OrderDetails = () => {
   const [order, setOrder] = useState(null);
@@ -42,6 +43,7 @@ const OrderDetails = () => {
       });
       const data = await res.json();
       if (res.ok) {
+        toast.info("Status has been changed")
       } else {
         console.error(data);
       }

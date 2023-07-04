@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./DeleteModal.scss";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const DeleteModal = ({ product }) => {
   const [modal, setModal] = useState(false);
@@ -23,6 +24,7 @@ const DeleteModal = ({ product }) => {
           },
         }
       );
+      toast.info("Product has been removed")
       toggleModal();
       navigate('/products')
     } catch (error) {

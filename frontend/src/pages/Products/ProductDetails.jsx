@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
 import "./ProductDetails..scss";
+import { toast } from "react-toastify";
 
 const Details = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -43,7 +44,10 @@ const Details = () => {
           },
           body: JSON.stringify(formData),
         }
-      );
+        );
+       if (res.ok){
+        toast.info("Product has been updated")
+       }
     } catch (error) {
       console.error(error);
     }

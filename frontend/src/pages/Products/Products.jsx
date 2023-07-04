@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import "./Products.scss";
 import ProductCard from "../../components/ProductCard/ProductCard";
+import { toast } from "react-toastify";
 
 const initState = {
   name: "",
@@ -12,7 +13,6 @@ const initState = {
 
 const Product = () => {
   const [formData, setFormData] = useState(initState);
-  const [isAdded, setIsAdded] = useState(false);
   const [products, setProducts] = useState([])
 
   useEffect(() => {
@@ -29,6 +29,10 @@ const Product = () => {
   },[products])
 
   const addProduct = async (e) => {
+    const {name, image, category, price, description,} = formData
+    if (name == "" || image == "" ||category == "" || price == "" || description =="") {
+      toast.error("Fill out all fields")
+    }
     e.preventDefault();
     const token = localStorage.getItem("token");
     try {
@@ -40,15 +44,14 @@ const Product = () => {
         },
         body: JSON.stringify(formData),
       });
-      if (res.ok) {
-        setIsAdded(true);
-        setTimeout(() => {
-          setIsAdded(false);
-        }, 3000);
+      console.log(res)
+      if (res.status === 201) {
+        toast.info("Product has been added")
         setFormData(initState);
       }
     } catch (error) {
       console.error(error);
+      toast.error("error")
     }
   };
 
@@ -102,7 +105,6 @@ const Product = () => {
             value={formData.description}
             onChange={handleChange}
           ></textarea>
-          {isAdded && <p className="added"> Product has been added</p>}
           <button className="btn btn-dark">Add </button>
         </form>
       </div>

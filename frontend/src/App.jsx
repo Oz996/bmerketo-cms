@@ -9,6 +9,8 @@ import Details from "./pages/Products/ProductDetails";
 import Orders from "./pages/Orders/Orders";
 import OrderDetails from "./pages/Orders/OrderDetails";
 import PrivateRoutes from "./utils/PrivateRoutes";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   return (
@@ -25,6 +27,7 @@ const App = () => {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <ToastContainer theme="colored"/>
     </div>
   );
 };
