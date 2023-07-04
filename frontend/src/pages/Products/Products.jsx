@@ -13,45 +13,58 @@ const initState = {
 
 const Product = () => {
   const [formData, setFormData] = useState(initState);
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([]);
+  const [rerenderFetch, setRerenderFetch] = useState(false)
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch("https://cms-api-ty0d.onrender.com/api/products")
-        const data = await res.json()
-        setProducts(data)
-      } catch(error) {
-        console.error(error)
+        const res = await fetch(
+          "https://cms-api-ty0d.onrender.com/api/products"
+        );
+        const data = await res.json();
+        setProducts(data);
+      } catch (error) {
+        console.error(error);
       }
-    }
-    fetchProducts()
-  },[products])
+    };
+    fetchProducts();
+  }, [rerenderFetch]);
 
   const addProduct = async (e) => {
-    const {name, image, category, price, description,} = formData
-    if (name == "" || image == "" ||category == "" || price == "" || description =="") {
-      toast.error("Fill out all fields")
+    const { name, image, category, price, description } = formData;
+    if (
+      name == "" ||
+      image == "" ||
+      category == "" ||
+      price == "" ||
+      description == ""
+    ) {
+      toast.error("Fill out all fields");
     }
     e.preventDefault();
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch(`https://cms-api-ty0d.onrender.com/api/products`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(formData),
-      });
-      console.log(res)
+      const res = await fetch(
+        `https://cms-api-ty0d.onrender.com/api/products`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+      console.log(res);
       if (res.status === 201) {
-        toast.info("Product has been added")
+        toast.info("Product has been added");
+        setRerenderFetch(true)
         setFormData(initState);
       }
     } catch (error) {
       console.error(error);
-      toast.error("error")
+      toast.error("error");
     }
   };
 
@@ -112,9 +125,9 @@ const Product = () => {
 
       {/* Listing the products  */}
       <div className="product-list">
-      {products?.map((product) => (
-        <ProductCard product={product} key={product._id} />
-      ))}
+        {products?.map((product) => (
+          <ProductCard product={product} key={product._id} />
+        ))}
       </div>
     </section>
   );
