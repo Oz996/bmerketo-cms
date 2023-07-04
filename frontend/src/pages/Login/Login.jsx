@@ -1,20 +1,21 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import './Login.scss'
+import "./Login.scss";
+import Loader from "../../utils/Loader/Loader";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const {handleLogin} = useAuth()
-  
-  const navigate = useNavigate()
-  
+  const { handleLogin } = useAuth();
+
+  const navigate = useNavigate();
 
   const loginAdmin = async (e) => {
     e.preventDefault();
-
+    setIsLoading(true);
     const res = await fetch("https://cms-api-ty0d.onrender.com/login/admin", {
       method: "POST",
       headers: {
@@ -26,10 +27,12 @@ const Login = () => {
     if (res.ok) {
       const data = await res.json();
       const token = data.token;
-      handleLogin(token)
-      navigate('/overview')
+      handleLogin(token);
+      navigate("/overview");
+      setIsLoading(false);
     } else {
       const errorData = await res.json();
+      setIsLoading(false);
     }
   };
 
@@ -51,7 +54,14 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button className="btn btn-primary">Login</button>
+        {isLoading ? (
+          <button disabled style={{opacity: ".5", pointerEvents: "none"}} className="btn btn-primary">
+            <Loader />
+          </button>
+        ) : (
+          <button className="btn btn-primary">Login</button>
+        )}
+
         <p>Example login:</p>
         <span>bmerketo-admin@mail.com</span>
         <span>test123</span>
