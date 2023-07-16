@@ -42,3 +42,12 @@
     }
   }
 }
+
+@media (max-width: 900px){
+  .new-product{
+    form{
+      min-width: 30rem;
+      margin-left: -5rem;
+    }
+  }
+}

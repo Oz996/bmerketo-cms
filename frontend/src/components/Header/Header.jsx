@@ -17,7 +17,6 @@ const Header = () => {
   if (isAuthenticated === null) {
     return (
       <span className="loader">
-        {" "}
         <Loader />
       </span>
     );
@@ -37,15 +36,12 @@ const Header = () => {
           {isAuthenticated ? (
             <>
               <NavLink to="/overview">
-                {" "}
                 <li> Overview </li>
               </NavLink>
               <NavLink to="/products">
-                {" "}
                 <li> Products </li>
               </NavLink>
               <NavLink to="/orders">
-                {" "}
                 <li> Orders </li>
               </NavLink>
               <li onClick={handleLogoutClick}> Log Out</li>
