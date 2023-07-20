@@ -9,7 +9,7 @@ const Details = () => {
   const [formData, setFormData] = useState(null);
   const { productId } = useParams();
   const [product, setProduct] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     setFormData({ ...product });
@@ -44,19 +44,19 @@ const Details = () => {
           },
           body: JSON.stringify(formData),
         }
-        );
-       if (res.ok){
-        toast.info("Product has been updated")
-       }
+      );
+      if (res.ok) {
+        toast.info("Product has been updated");
+      }
     } catch (error) {
       console.error(error);
     }
   };
 
   const handleSaveClick = () => {
-    editProduct()
-    navigate("/products")
-  }
+    editProduct();
+    navigate("/products");
+  };
 
   const handleCancelClick = () => {
     setIsEditing(false);
@@ -92,7 +92,9 @@ const Details = () => {
 
   return (
     <>
-      <img className="product-img" src={product.image} alt={product.name} />
+      <figure className="img-figure">
+        <img className="product-img" src={product.image} alt={product.name} />
+      </figure>
       <section className="product-details">
         <div className="edit-product">
           {isEditing ? (
@@ -136,7 +138,9 @@ const Details = () => {
                 <button className="btn btn-primary" onClick={handleSaveClick}>
                   Save
                 </button>
-                <button className="btn btn-danger" onClick={handleCancelClick}>Cancel</button>
+                <button className="btn btn-danger" onClick={handleCancelClick}>
+                  Cancel
+                </button>
               </div>
             </>
           ) : (
@@ -157,7 +161,9 @@ const Details = () => {
                 {product.description}
               </p>
               <div className="product-buttons">
-                <button className="btn btn-primary" onClick={handleEditClick}>Edit</button>
+                <button className="btn btn-primary" onClick={handleEditClick}>
+                  Edit
+                </button>
                 <DeleteModal product={product} />
               </div>
             </>

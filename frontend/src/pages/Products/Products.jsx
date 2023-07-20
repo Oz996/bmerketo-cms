@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Products.scss";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import { toast } from "react-toastify";

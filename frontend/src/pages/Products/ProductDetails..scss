@@ -14,15 +14,16 @@
   p {
     font-size: 1.6rem;
   }
-  input, textarea {
+  input,
+  textarea {
     font-size: 1.5rem;
     padding: 1.4rem;
-    border-radius: .3rem;
+    border-radius: 0.3rem;
     border: 1px solid black;
     resize: none;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
   }
-  label{
+  label {
     font-size: 1.8rem;
     font-weight: bold;
   }
@@ -53,11 +54,30 @@ a {
   position: relative;
   left: 40%;
 }
-.product-buttons{
+.product-buttons {
   display: flex;
   gap: 5rem;
   margin-block: 2rem;
-  .btn-save{
+  .btn-save {
     background-color: rgb(2, 2, 159);
+  }
+}
+@media (max-width: 900px) {
+  .img-figure {
+    width: 20vw;
+    img {
+      object-fit: fill;
+    }
+  }
+  .product-details {
+    justify-content: flex-start;
+
+    .edit-product {
+      width: 100vw;
+      padding: 10px;
+    }
+    .product-buttons {
+      justify-content: space-between;
+    }
   }
 }
