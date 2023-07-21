@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Products.scss";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import { toast } from "react-toastify";
+import LoaderDark from "../../utils/Loader/LoaderDark";
 
 const initState = {
   name: "",
@@ -14,17 +15,21 @@ const initState = {
 const Product = () => {
   const [formData, setFormData] = useState(initState);
   const [products, setProducts] = useState([]);
-  const [rerenderFetch, setRerenderFetch] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
+  const [rerenderFetch, setRerenderFetch] = useState(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
+      setIsLoading(true);
       try {
         const res = await fetch(
           "https://cms-api-ty0d.onrender.com/api/products"
         );
         const data = await res.json();
         setProducts(data);
+        setIsLoading(false);
       } catch (error) {
+        setIsLoading(false);
         console.error(error);
       }
     };
@@ -59,7 +64,7 @@ const Product = () => {
       console.log(res);
       if (res.status === 201) {
         toast.info("Product has been added");
-        setRerenderFetch(true)
+        setRerenderFetch(true);
         setFormData(initState);
       }
     } catch (error) {
@@ -125,6 +130,7 @@ const Product = () => {
 
       {/* Listing the products  */}
       <div className="product-list">
+        {isLoading && <LoaderDark />}
         {products?.map((product) => (
           <ProductCard product={product} key={product._id} />
         ))}

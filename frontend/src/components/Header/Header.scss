@@ -41,3 +41,10 @@ a{
     transform: translateX(1.5px);
   }
 }
+@media (max-width: 900px){
+  header{
+    ul {
+      align-items: center;
+    }
+  }
+}

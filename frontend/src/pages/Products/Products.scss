@@ -42,6 +42,12 @@
     }
   }
 }
+.product-loader{
+  margin-top: 1rem;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
 
 @media (max-width: 900px){
   .new-product{

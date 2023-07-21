@@ -1,5 +1,5 @@
 import "./Header.scss";
-import Logo from "../../images/logo.svg";
+import Logo from "../../images/Logo.svg";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Loader from "../../utils/Loader/Loader";
