@@ -27,7 +27,7 @@ const App = () => {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <ToastContainer theme="colored"/>
+      <ToastContainer theme="colored" />
     </div>
   );
 };

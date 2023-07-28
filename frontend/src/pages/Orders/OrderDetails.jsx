@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import './OrderDetails.scss'
+import "./OrderDetails.scss";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -12,11 +12,14 @@ const OrderDetails = () => {
   const getOrders = async () => {
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch(`https://cms-api-ty0d.onrender.com/orders/${_id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await fetch(
+        `https://cms-api-ty0d.onrender.com/orders/${_id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       const data = await res.json();
       setOrder(data);
       setStatus(data.status);
@@ -33,17 +36,20 @@ const OrderDetails = () => {
     const token = localStorage.getItem("token");
 
     try {
-      const res = await fetch(`https://cms-api-ty0d.onrender.com/orders/${_id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ status }),
-      });
+      const res = await fetch(
+        `https://cms-api-ty0d.onrender.com/orders/${_id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ status }),
+        }
+      );
       const data = await res.json();
       if (res.ok) {
-        toast.info("Status has been changed")
+        toast.info("Status has been changed");
       } else {
         console.error(data);
       }
@@ -61,15 +67,12 @@ const OrderDetails = () => {
       {order && (
         <div className="order-card" key={order._id}>
           <p>
-            {" "}
             <b>Order ID:</b> {order._id}
           </p>
           <p>
-            {" "}
             <b>User ID:</b> {order.user._id}
           </p>
           <p>
-            {" "}
             <b>Email:</b> {order.user.email}
           </p>
           <div className="status-div">
@@ -89,16 +92,18 @@ const OrderDetails = () => {
               <option value="in transit">In Transit</option>
               <option value="delivered">Delivered</option>
             </select>
-            <button className="btn btn-primary" onClick={handleUpdateStatus}>Update</button>
+            <button className="btn btn-primary" onClick={handleUpdateStatus}>
+              Update
+            </button>
           </div>
-          {order?.products.map((product) => (
-            <div key={product._id}>
-              <div>
+          <div className="product-orders">
+            {order?.products.map((product) => (
+              <div key={product._id}>
                 <img src={product.product.image} alt={product.product.name} />
                 <p>{product.product.name}</p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       )}
     </div>

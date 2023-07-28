@@ -18,9 +18,9 @@
       font-size: 1.6rem;
       font-weight: 600;
     }
-    span{
-        font-size: 1.6rem;
-        line-height: 1.9rem;
+    span {
+      font-size: 1.6rem;
+      line-height: 1.9rem;
     }
     input {
       font-size: 1.5rem;
@@ -28,11 +28,12 @@
       border-radius: 0.3rem;
       border: 1px solid black;
     }
-    button{
+    button {
       width: 100%;
     }
   }
 }
-@media (max-width: 900px){
-  
+@media (max-width: 900px) {
+  .login-container {
+  }
 }

@@ -1,9 +1,7 @@
-import './Loader.css'
+import "./Loader.css";
 
 const Loader = () => {
-  return (
-    <p className='loader'></p>
-  )
-}
+  return <p className="loader"></p>;
+};
 
-export default Loader
+export default Loader;

@@ -2,6 +2,10 @@
   width: 60%;
   margin: 0 auto;
   margin-top: 2rem;
+  .product-orders{
+    display: flex;
+    flex-wrap: wrap;
+  }
   .order-card {
     display: flex;
     flex-direction: column;

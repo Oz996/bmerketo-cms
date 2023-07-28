@@ -55,7 +55,11 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         {isLoading ? (
-          <button disabled style={{opacity: ".5", pointerEvents: "none"}} className="btn btn-primary">
+          <button
+            disabled
+            style={{ opacity: ".5", pointerEvents: "none" }}
+            className="btn btn-primary"
+          >
             <Loader />
           </button>
         ) : (

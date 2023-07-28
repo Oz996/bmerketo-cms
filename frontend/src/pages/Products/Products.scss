@@ -20,9 +20,10 @@
       padding: 1.4rem;
       border-radius: 0.3rem;
       border: 1px solid black;
-      margin-block: .5rem;
+      margin-block: 0.5rem;
     }
-    input::placeholder, textarea::placeholder{
+    input::placeholder,
+    textarea::placeholder {
       font-size: 1.4rem;
     }
     textarea {
@@ -30,7 +31,7 @@
       border-radius: 0.3rem;
       padding: 1rem;
       font-size: 1.5rem;
-      font-family: 'Poppins', sans-serif;
+      font-family: "Poppins", sans-serif;
     }
     .added {
       font-size: 1.6rem;
@@ -42,16 +43,16 @@
     }
   }
 }
-.product-loader{
+.product-loader {
   margin-top: 1rem;
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
 }
 
-@media (max-width: 900px){
-  .new-product{
-    form{
+@media (max-width: 900px) {
+  .new-product {
+    form {
       min-width: 30rem;
       margin-left: -5rem;
     }
