@@ -6,13 +6,14 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 const AdminNavigation = () => {
   return (
     <section className="overview">
-      <Link to="/products">
-        Products <AiOutlineArrowRight />
-      </Link>
-      <Link to="/orders">
-        Orders <AiOutlineArrowRight />
-      </Link>
-      <Link to="/"></Link>
+      <div>
+        <Link to="/products">
+          Products <AiOutlineArrowRight />
+        </Link>
+        <Link to="/orders">
+          Orders <AiOutlineArrowRight />
+        </Link>
+      </div>
     </section>
   );
 };

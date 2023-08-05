@@ -17,6 +17,10 @@
     }
     a {
       text-decoration: none;
+      transition: transform 0.3s ease;
+      &:hover {
+        transform: translateX(1.5px);
+      }
     }
     .order {
       border: 1px solid rgb(229, 229, 229);

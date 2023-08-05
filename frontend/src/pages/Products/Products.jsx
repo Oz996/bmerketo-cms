@@ -77,7 +77,7 @@ const Product = () => {
     setFormData((data) => {
       return {
         ...data,
-        [e.target.name]: e.target.value,
+        [e.target.id]: e.target.value,
       };
     });
   };
@@ -88,41 +88,51 @@ const Product = () => {
       <div className="new-product">
         <h1>Add new Product</h1>
         <form onSubmit={addProduct}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Name..."
-            value={formData.name}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            name="category"
-            placeholder="Category..."
-            value={formData.category}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            name="image"
-            placeholder="ImageURL..."
-            value={formData.image}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            name="price"
-            placeholder="Price..."
-            value={formData.price}
-            onChange={handleChange}
-          />
-          <textarea
-            name="description"
-            rows="10"
-            placeholder="Description..."
-            value={formData.description}
-            onChange={handleChange}
-          ></textarea>
+          <label htmlFor="name">
+            <input
+              type="text"
+              id="name"
+              placeholder="Name..."
+              value={formData.name}
+              onChange={handleChange}
+            />
+          </label>
+          <label htmlFor="category">
+            <input
+              type="text"
+              id="category"
+              placeholder="Category..."
+              value={formData.category}
+              onChange={handleChange}
+            />
+          </label>
+          <label htmlFor="image">
+            <input
+              type="text"
+              id="image"
+              placeholder="ImageURL..."
+              value={formData.image}
+              onChange={handleChange}
+            />
+          </label>
+          <label htmlFor="price">
+            <input
+              type="text"
+              id="price"
+              placeholder="Price..."
+              value={formData.price}
+              onChange={handleChange}
+            />
+          </label>
+          <label htmlFor="description">
+            <textarea
+              id="description"
+              rows="10"
+              placeholder="Description..."
+              value={formData.description}
+              onChange={handleChange}
+            ></textarea>
+          </label>
           <button className="btn btn-dark">Add </button>
         </form>
       </div>

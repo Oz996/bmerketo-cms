@@ -8,6 +8,9 @@ html {
   font-size: 62.5%;
   font-family: "Poppins", sans-serif;
 }
+.Toastify__toast-body {
+  font-size: 1.4rem;
+}
 
 // globals
 
@@ -20,12 +23,15 @@ html {
   padding: 1rem;
   border: none;
   color: white;
-  transition: 0.3s;
+  transition: background-color 0.3s;
 }
 .btn-danger {
   background-color: rgb(160, 20, 20);
   &:hover {
     background-color: rgb(170, 20, 20);
+  }
+  &:active {
+    opacity: 0.6;
   }
 }
 .btn-dark {
@@ -33,10 +39,16 @@ html {
   &:hover {
     background-color: rgb(27, 27, 27);
   }
+  &:active {
+    opacity: 0.9;
+  }
 }
 .btn-primary {
   background-color: rgb(2, 2, 159);
   &:hover {
     background-color: rgb(2, 2, 170);
+  }
+  &:active {
+    opacity: 0.6;
   }
 }

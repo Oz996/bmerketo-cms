@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./DeleteModal.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const DeleteModal = ({ product }) => {
   const [modal, setModal] = useState(false);
+  const modalRef = useRef();
 
   const { productId } = useParams();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    document.addEventListener("mousedown", (e) => {
+      if (modalRef.current && !modalRef.current.contains(e.target))
+        setModal(false);
+    });
+  }, [modalRef, setModal]);
 
   const handleDeleteClick = async () => {
     const token = localStorage.getItem("token");
@@ -24,9 +32,9 @@ const DeleteModal = ({ product }) => {
           },
         }
       );
-      toast.info("Product has been removed")
+      toast.info("Product has been removed");
       toggleModal();
-      navigate('/products')
+      navigate("/products");
     } catch (error) {
       console.error(error);
     }
@@ -46,13 +54,15 @@ const DeleteModal = ({ product }) => {
       {modal && (
         <div className="modal">
           <div className="overlay"></div>
-          <div className="modal-content">
+          <div className="modal-content" ref={modalRef}>
             <h2>Are you sure you want to remove this product?</h2>
             <div>
               <button className="btn btn-danger" onClick={handleDeleteClick}>
                 Remove
               </button>
-              <button className="btn btn-dark" onClick={toggleModal}>Cancel</button>
+              <button className="btn btn-dark" onClick={toggleModal}>
+                Cancel
+              </button>
             </div>
           </div>
         </div>
