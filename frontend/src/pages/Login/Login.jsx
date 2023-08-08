@@ -57,7 +57,7 @@ const Login = () => {
         {isLoading ? (
           <button
             disabled
-            style={{ opacity: ".5", pointerEvents: "none" }}
+            style={{ opacity: ".5", pointerEvents: "not-allowed" }}
             className="btn btn-primary"
           >
             <Loader />

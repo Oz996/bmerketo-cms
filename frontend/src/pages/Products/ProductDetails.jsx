@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { BsLockFill } from "react-icons/bs";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
 import "./ProductDetails..scss";
 import { toast } from "react-toastify";
@@ -171,10 +172,34 @@ const Details = () => {
                 {product.description}
               </p>
               <div className="product-buttons">
-                <button className="btn btn-primary" onClick={handleEditClick}>
-                  Edit
-                </button>
-                <DeleteModal product={product} />
+                {product.locked ? (
+                  <>
+                    <button
+                      className="btn btn-primary"
+                      disabled
+                      title="Cannot edit base products for showcase reasons"
+                    >
+                      <BsLockFill /> Edit
+                    </button>
+                    <button
+                      className="btn btn-danger"
+                      disabled
+                      title="Cannot delete base products for showcase reasons"
+                    >
+                      <BsLockFill /> Delete
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      className="btn btn-primary"
+                      onClick={handleEditClick}
+                    >
+                      Edit
+                    </button>
+                    <DeleteModal product={product} />
+                  </>
+                )}
               </div>
             </>
           )}

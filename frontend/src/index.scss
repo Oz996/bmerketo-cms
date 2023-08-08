@@ -19,6 +19,11 @@ a {
 
 // globals
 
+.btn:disabled{
+  opacity: .4;
+  cursor: not-allowed;
+}
+
 .btn {
   cursor: pointer;
   border-radius: 0.5rem;
