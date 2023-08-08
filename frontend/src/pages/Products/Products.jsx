@@ -86,7 +86,7 @@ const Product = () => {
     <section className="product-container">
       {/* Add product form */}
       <div className="new-product">
-        <h1>Add new Product</h1>
+        <h1>Add New Product</h1>
         <form onSubmit={addProduct}>
           <label htmlFor="name">
             <input

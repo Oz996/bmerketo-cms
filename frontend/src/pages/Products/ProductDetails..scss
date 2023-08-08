@@ -25,7 +25,10 @@
   }
   label {
     font-size: 1.8rem;
-    font-weight: bold;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 }
 .removed {

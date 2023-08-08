@@ -24,35 +24,37 @@ const Header = () => {
 
   return (
     <header>
-      <div className="logo">
-        <Link to="/">
-          <img src={Logo} alt="logo" />
-          <h3>CMS</h3>
-        </Link>
+      <div className="header-container">
+        <div className="logo">
+          <Link to="/">
+            <img src={Logo} alt="logo" />
+            <h3>CMS</h3>
+          </Link>
+        </div>
+        <nav>
+          <ul>
+            {/* Display navbar with content if admin is logged in */}
+            {isAuthenticated ? (
+              <>
+                <NavLink to="/overview">
+                  <li> Overview </li>
+                </NavLink>
+                <NavLink to="/products">
+                  <li> Products </li>
+                </NavLink>
+                <NavLink to="/orders">
+                  <li> Orders </li>
+                </NavLink>
+                <li onClick={handleLogoutClick}> Log Out</li>
+              </>
+            ) : (
+              <Link to="/">
+                <li>Login</li>
+              </Link>
+            )}
+          </ul>
+        </nav>
       </div>
-      <nav>
-        <ul>
-          {/* Display navbar with content if admin is logged in */}
-          {isAuthenticated ? (
-            <>
-              <NavLink to="/overview">
-                <li> Overview </li>
-              </NavLink>
-              <NavLink to="/products">
-                <li> Products </li>
-              </NavLink>
-              <NavLink to="/orders">
-                <li> Orders </li>
-              </NavLink>
-              <li onClick={handleLogoutClick}> Log Out</li>
-            </>
-          ) : (
-            <Link to="/">
-              <li>Login</li>
-            </Link>
-          )}
-        </ul>
-      </nav>
     </header>
   );
 };
