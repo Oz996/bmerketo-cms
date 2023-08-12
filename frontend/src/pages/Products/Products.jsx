@@ -45,7 +45,7 @@ const Product = () => {
       price == "" ||
       description == ""
     ) {
-      toast.error("Fill out all fields");
+      toast.error("Fill out all the fields");
     }
     e.preventDefault();
     const token = localStorage.getItem("token");
@@ -88,51 +88,59 @@ const Product = () => {
       <div className="new-product">
         <h1>Add New Product</h1>
         <form onSubmit={addProduct}>
-          <label htmlFor="name">
-            <input
-              type="text"
-              id="name"
-              placeholder="Name..."
-              value={formData.name}
-              onChange={handleChange}
-            />
-          </label>
-          <label htmlFor="category">
-            <input
-              type="text"
-              id="category"
-              placeholder="Category..."
-              value={formData.category}
-              onChange={handleChange}
-            />
-          </label>
-          <label htmlFor="image">
-            <input
-              type="text"
-              id="image"
-              placeholder="ImageURL..."
-              value={formData.image}
-              onChange={handleChange}
-            />
-          </label>
-          <label htmlFor="price">
-            <input
-              type="text"
-              id="price"
-              placeholder="Price..."
-              value={formData.price}
-              onChange={handleChange}
-            />
-          </label>
-          <label htmlFor="description">
-            <textarea
-              id="description"
-              rows="10"
-              placeholder="Description..."
-              value={formData.description}
-              onChange={handleChange}
-            ></textarea>
-          </label>
+          <div className="form-div">
+            <div className="form-group">
+              <label htmlFor="name">
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="Name..."
+                  value={formData.name}
+                  onChange={handleChange}
+                />
+              </label>
+              <label htmlFor="category">
+                <input
+                  type="text"
+                  id="category"
+                  placeholder="Category..."
+                  value={formData.category}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+            <div className="form-group">
+              <label htmlFor="image">
+                <input
+                  type="text"
+                  id="image"
+                  placeholder="ImageURL..."
+                  value={formData.image}
+                  onChange={handleChange}
+                />
+              </label>
+              <label htmlFor="price">
+                <input
+                  type="text"
+                  id="price"
+                  placeholder="Price..."
+                  value={formData.price}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+          </div>
+          <div className="form-bottom">
+            <label htmlFor="description">
+              <textarea
+                id="description"
+                rows="7"
+                placeholder="Description..."
+                value={formData.description}
+                onChange={handleChange}
+              ></textarea>
+            </label>
+          </div>
           <button className="btn btn-dark">Add </button>
         </form>
       </div>

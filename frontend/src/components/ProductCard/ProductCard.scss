@@ -34,3 +34,15 @@
 .product-container {
   margin-block: 4rem;
 }
+
+@media (max-width: 1134px) {
+  .product-list {
+    text-align: center;
+    justify-content: center;
+  }
+}
+@media (max-width: 712px) {
+  .product-list {
+    
+  }
+}

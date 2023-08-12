@@ -65,7 +65,7 @@ a {
     background-color: rgb(2, 2, 159);
   }
 }
-@media (max-width: 900px) {
+@media (max-width: 1134px) {
   .img-figure {
     width: 20vw;
     img {
@@ -76,11 +76,12 @@ a {
     justify-content: flex-start;
 
     .edit-product {
-      width: 100vw;
+      width: 90%;
+      margin: 0 auto;
       padding: 10px;
     }
     .product-buttons {
-      justify-content: space-between;
+      
     }
   }
 }

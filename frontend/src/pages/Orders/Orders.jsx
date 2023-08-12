@@ -49,17 +49,17 @@ const Orders = () => {
         )}
         {orders.map((order) => (
           <Link to={`/orders/${order._id}`} key={order._id}>
-            <div className="order" key={order._id}>
+            <div
+              className={`order ${
+                (order.status === "pending" && "orange") ||
+                (order.status === "in transit" && "yellow") ||
+                (order.status === "delivered" && "green")
+              }`}
+              key={order._id}
+            >
               <h3>{order.user.email}</h3>
               <div className="status-div">
                 <p>{`Status: ${order.status}`}</p>
-                <div
-                  className={
-                    (order.status === "pending" && "orange") ||
-                    (order.status === "in transit" && "yellow") ||
-                    (order.status === "delivered" && "green")
-                  }
-                ></div>
               </div>
               <p>{`Products: ${order.products.length}`}</p>
             </div>
