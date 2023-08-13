@@ -99,52 +99,60 @@ const Details = () => {
       <section className="product-details">
         <div className="edit-product">
           {isEditing ? (
-            <>
-              <label>
-                Name:
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                />
-              </label>
-              <label>
-                Price:
-                <input
-                  type="text"
-                  name="price"
-                  value={formData.price}
-                  onChange={handleChange}
-                />
-              </label>
-              <label>
-                Category:
-                <input
-                  type="text"
-                  name="category"
-                  value={formData.category}
-                  onChange={handleChange}
-                />
-              </label>
-              <label>
-                ImageURL:
-                <input
-                  type="text"
-                  name="image"
-                  value={formData.image}
-                  onChange={handleChange}
-                />
-              </label>
-              <label>
-                Description:
-                <textarea
-                  name="description"
-                  rows="15"
-                  value={formData.description}
-                  onChange={handleChange}
-                ></textarea>
-              </label>
+            <form>
+              <div className="form-div">
+                <div className="form-group">
+                  <label>
+                    Name:
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                    />
+                  </label>
+                  <label>
+                    Price:
+                    <input
+                      type="text"
+                      name="price"
+                      value={formData.price}
+                      onChange={handleChange}
+                    />
+                  </label>
+                </div>
+                <div className="form-group">
+                  <label>
+                    Category:
+                    <input
+                      type="text"
+                      name="category"
+                      value={formData.category}
+                      onChange={handleChange}
+                    />
+                  </label>
+                  <label>
+                    ImageURL:
+                    <input
+                      type="text"
+                      name="image"
+                      value={formData.image}
+                      onChange={handleChange}
+                    />
+                  </label>
+                </div>
+              </div>
+              <div className="form-bottom">
+                <label>
+                  Description:
+                  <textarea
+                    name="description"
+                    rows="15"
+                    value={formData.description}
+                    onChange={handleChange}
+                  ></textarea>
+                </label>
+              </div>
               <div className="product-buttons">
                 <button className="btn btn-primary" onClick={handleSaveClick}>
                   Save
@@ -153,7 +161,7 @@ const Details = () => {
                   Cancel
                 </button>
               </div>
-            </>
+            </form>
           ) : (
             <>
               <p>
