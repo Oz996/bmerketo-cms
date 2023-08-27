@@ -70,6 +70,7 @@ const Details = () => {
       );
       const data = await res.json();
       setProduct(data);
+      console.log(data)
     } catch (error) {
       console.error(error);
     }

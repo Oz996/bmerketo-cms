@@ -11,7 +11,7 @@ const Header = () => {
   const { handleLogout } = useAuth();
   const isAuthenticated = !!localStorage.getItem("token");
   const navigate = useNavigate();
-  const navRef = useRef()
+  const navRef = useRef<HTMLUListElement>(null);
 
   const handleLogoutClick = () => {
     handleLogout();
@@ -19,8 +19,8 @@ const Header = () => {
   };
 
   const closeNavMenuOnClick = () => {
-    setHamburgerMenu(false)
-  }
+    setHamburgerMenu(false);
+  };
   console.log(isAuthenticated);
   if (isAuthenticated === null) {
     return (
@@ -31,11 +31,18 @@ const Header = () => {
   }
 
   useEffect(() => {
-    document.addEventListener("mousedown", (e) => {
-      if (navRef.current && !navRef.current.contains(e.target))
-        setHamburgerMenu(false)
-    })
-  },[navRef])
+    const handleClickOutside = (e: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setHamburgerMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <header>
@@ -52,7 +59,7 @@ const Header = () => {
           </Link>
         </div>
         <nav>
-          <ul className={hamburgerMenu && "show"} ref={navRef}>
+          <ul className={hamburgerMenu ? "show" : ""} ref={navRef}>
             {/* Display navbar with content if admin is logged in */}
             {isAuthenticated ? (
               <>
@@ -65,7 +72,15 @@ const Header = () => {
                 <NavLink to="/orders">
                   <li onClick={closeNavMenuOnClick}> Orders </li>
                 </NavLink>
-                <li onClick={() => {handleLogoutClick(); closeNavMenuOnClick()}}> Log Out</li>
+                <li
+                  onClick={() => {
+                    handleLogoutClick();
+                    closeNavMenuOnClick();
+                  }}
+                >
+                  {" "}
+                  Log Out
+                </li>
               </>
             ) : (
               <Link to="/">

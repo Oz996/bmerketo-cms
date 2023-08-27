@@ -1,28 +1,34 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./DeleteModal.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const DeleteModal = ({ product }) => {
+const DeleteModal = () => {
   const [modal, setModal] = useState(false);
-  const modalRef = useRef();
+  const modalRef = useRef<HTMLDivElement>(null);
 
   const { productId } = useParams();
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    document.addEventListener("mousedown", (e) => {
-      if (modalRef.current && !modalRef.current.contains(e.target))
+    const handleClickOutside = (e: MouseEvent) => {
+      if (modalRef.current && !modalRef.current.contains(e.target as Node))
         setModal(false);
-    });
-  }, [modalRef, setModal]);
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleDeleteClick = async () => {
     const token = localStorage.getItem("token");
 
     try {
-      const res = await fetch(
+      await fetch(
         `https://cms-api-ty0d.onrender.com/api/products/${productId}`,
         {
           method: "DELETE",

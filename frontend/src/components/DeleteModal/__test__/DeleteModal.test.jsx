@@ -2,7 +2,6 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import DeleteModal from "../DeleteModal";
 import { MemoryRouter } from "react-router-dom";
 import { expect } from "vitest";
-import { toBeInTheDocument } from "@testing-library/jest-dom/matchers";
 
 const MockDeleteModal = () => {
   return (

@@ -1,8 +1,9 @@
 import "./ProductCard.scss";
 import { Link } from "react-router-dom";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import { Product } from "../../types/Product";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product }: { product: Product }) => {
   if (!product) {
     return <p>Product removed from database</p>;
   }
