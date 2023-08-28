@@ -9,4 +9,5 @@ export interface Product {
   image3: string;
   image4: string;
   locked?: boolean;
+  product: Product
 }

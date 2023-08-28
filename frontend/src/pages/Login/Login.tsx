@@ -13,7 +13,7 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const loginAdmin = async (e) => {
+  const loginAdmin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     const res = await fetch("https://cms-api-ty0d.onrender.com/login/admin", {
@@ -31,7 +31,7 @@ const Login = () => {
       navigate("/overview");
       setIsLoading(false);
     } else {
-      const errorData = await res.json();
+      await res.json();
       setIsLoading(false);
     }
   };

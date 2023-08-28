@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import "./OrderDetails.scss";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Order } from "../../types/Order";
 
 const OrderDetails = () => {
-  const [order, setOrder] = useState(null);
+  const [order, setOrder] = useState<Order | null>(null);
   const [status, setStatus] = useState("");
 
   const { _id } = useParams();
@@ -22,6 +23,7 @@ const OrderDetails = () => {
       );
       const data = await res.json();
       setOrder(data);
+      console.log(data);
       setStatus(data.status);
     } catch (error) {
       console.error(error);
@@ -58,7 +60,7 @@ const OrderDetails = () => {
     }
   };
 
-  const handleStatusChange = (e) => {
+  const handleStatusChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setStatus(e.target.value);
   };
 
@@ -79,9 +81,9 @@ const OrderDetails = () => {
             <p className="status">{order.status}</p>
             <div
               className={
-                (order.status === "pending" && "orange") ||
-                (order.status === "in transit" && "yellow") ||
-                (order.status === "delivered" && "green")
+                (order.status === "pending" ? "orange" : "") ||
+                (order.status === "in transit" ? "yellow" : "") ||
+                (order.status === "delivered" ? "green" : "")
               }
             ></div>
           </div>
@@ -97,7 +99,7 @@ const OrderDetails = () => {
             </button>
           </div>
           <div className="product-orders">
-            {order?.products.map((product) => (
+            {order?.products?.map((product) => (
               <div key={product._id}>
                 <img src={product.product.image} alt={product.product.name} />
                 <p>{product.product.name}</p>

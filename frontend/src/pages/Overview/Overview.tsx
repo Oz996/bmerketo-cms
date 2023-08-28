@@ -1,4 +1,3 @@
-import React from "react";
 import "./Overview.scss";
 import { Link } from "react-router-dom";
 import { AiOutlineArrowRight } from "react-icons/ai";

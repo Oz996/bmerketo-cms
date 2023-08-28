@@ -1,8 +1,8 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState, ReactElement } from "react";
 
-export const ProductContext = createContext();
+export const ProductContext = createContext(null);
 
-const ProductContextProvider = ({ children }) => {
+const ProductContextProvider = ({ children }: { children: ReactElement }) => {
   const [products, setProducts] = useState([]);
 
   const fetchProducts = async () => {

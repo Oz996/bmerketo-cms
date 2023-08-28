@@ -22,13 +22,6 @@ const Header = () => {
     setHamburgerMenu(false);
   };
   console.log(isAuthenticated);
-  if (isAuthenticated === null) {
-    return (
-      <span className="loader">
-        <Loader />
-      </span>
-    );
-  }
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -43,6 +36,14 @@ const Header = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  if (isAuthenticated === null) {
+    return (
+      <span className="loader">
+        <Loader />
+      </span>
+    );
+  }
 
   return (
     <header>

@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./Orders.scss";
 import { Link } from "react-router-dom";
 import LoaderDark from "../../utils/Loader/LoaderDark";
+import { Order } from "../../types/Order";
 
 const Orders = () => {
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState<Order[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const getOrders = async () => {
@@ -16,15 +17,16 @@ const Orders = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      const data = await res.json();
+      const data: Order[] = await res.json();
+
+      const orderStatusOrder: Record<string, number> = {
+        pending: 1,
+        "in transit": 2,
+        delivered: 3,
+      };
 
       // Sort the orders and display them based on order status (pending first and delivered last)
       const sortedOrders = data.sort((a, b) => {
-        const orderStatusOrder = {
-          pending: 1,
-          "in transit": 2,
-          delivered: 3,
-        };
         return orderStatusOrder[a.status] - orderStatusOrder[b.status];
       });
       setOrders(sortedOrders);
@@ -47,24 +49,28 @@ const Orders = () => {
             <LoaderDark />
           </div>
         )}
-        {orders.map((order) => (
-          <Link to={`/orders/${order._id}`} key={order._id}>
-            <div
-              className={`order ${
-                (order.status === "pending" && "orange") ||
-                (order.status === "in transit" && "yellow") ||
-                (order.status === "delivered" && "green")
-              }`}
-              key={order._id}
-            >
-              <h3>{order.user.email}</h3>
-              <div className="status-div">
-                <p>{`Status: ${order.status}`}</p>
+        {orders ? (
+          orders.map((order) => (
+            <Link to={`/orders/${order._id}`} key={order._id}>
+              <div
+                className={`order ${
+                  (order.status === "pending" && "orange") ||
+                  (order.status === "in transit" && "yellow") ||
+                  (order.status === "delivered" && "green")
+                }`}
+                key={order._id}
+              >
+                <h3>{order.user.email}</h3>
+                <div className="status-div">
+                  <p>{`Status: ${order.status}`}</p>
+                </div>
+                <p>{`Products: ${order.products.length}`}</p>
               </div>
-              <p>{`Products: ${order.products.length}`}</p>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))
+        ) : (
+          <p>No orders available.</p>
+        )}
       </div>
     </section>
   );

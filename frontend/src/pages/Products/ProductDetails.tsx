@@ -1,22 +1,37 @@
-import React, { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { BsLockFill } from "react-icons/bs";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
 import "./ProductDetails..scss";
 import { toast } from "react-toastify";
+import { Product } from "../../types/Product";
+import { FormData } from "../../types/FormData";
 
 const Details = () => {
   const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState(null);
+  const [formData, setFormData] = useState<FormData>({
+    name: "",
+    price: "",
+    category: "",
+    description: "",
+    image: "",
+  });
   const { productId } = useParams();
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState<Product | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    setFormData({ ...product });
+    if (product) {
+      setFormData({
+        name: product.name,
+        price: product.price,
+        category: product.category,
+        description: product.description,
+        image: product.image,
+      });
+    }
   }, [product]);
-
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((data) => {
       return {
         ...data,
@@ -70,7 +85,7 @@ const Details = () => {
       );
       const data = await res.json();
       setProduct(data);
-      console.log(data)
+      console.log(data);
     } catch (error) {
       console.error(error);
     }
@@ -148,7 +163,7 @@ const Details = () => {
                   Description:
                   <textarea
                     name="description"
-                    rows="15"
+                    rows={15}
                     value={formData.description}
                     onChange={handleChange}
                   ></textarea>
@@ -206,7 +221,7 @@ const Details = () => {
                     >
                       Edit
                     </button>
-                    <DeleteModal product={product} />
+                    <DeleteModal/>
                   </>
                 )}
               </div>

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./Products.scss";
-import ProductCard from "../../components/ProductCard/ProductCard";
+import ProductCard from "../../components/ProductCard/ProductCard.tsx";
 import { toast } from "react-toastify";
 import LoaderDark from "../../utils/Loader/LoaderDark.tsx";
+import { Product } from "../../types/Product.ts";
 
 const initState = {
   name: "",
@@ -12,9 +13,9 @@ const initState = {
   description: "",
 };
 
-const Product = () => {
+const Products = () => {
   const [formData, setFormData] = useState(initState);
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [rerenderFetch, setRerenderFetch] = useState(false);
 
@@ -36,7 +37,7 @@ const Product = () => {
     fetchProducts();
   }, [rerenderFetch]);
 
-  const addProduct = async (e) => {
+  const addProduct = async (e: React.FormEvent) => {
     const { name, image, category, price, description } = formData;
     if (
       name == "" ||
@@ -73,7 +74,7 @@ const Product = () => {
     }
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData((data) => {
       return {
         ...data,
@@ -134,7 +135,7 @@ const Product = () => {
             <label htmlFor="description">
               <textarea
                 id="description"
-                rows="7"
+                rows={7}
                 placeholder="Description..."
                 value={formData.description}
                 onChange={handleChange}
@@ -156,4 +157,4 @@ const Product = () => {
     </section>
   );
 };
-export default Product;
+export default Products;
