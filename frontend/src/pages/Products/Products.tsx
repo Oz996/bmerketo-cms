@@ -5,7 +5,8 @@ import { toast } from "react-toastify";
 import LoaderDark from "../../utils/Loader/LoaderDark.tsx";
 import { Product } from "../../types/Product.ts";
 
-const initState = {
+const initState: Product = {
+  _id: crypto.randomUUID(),
   name: "",
   category: "",
   price: "",
@@ -142,7 +143,7 @@ const Products = () => {
               ></textarea>
             </label>
           </div>
-          <button className="btn btn-dark">Add </button>
+          <button className="btn btn-primary">Add </button>
         </form>
       </div>
       <hr style={{ marginTop: "5rem" }} />

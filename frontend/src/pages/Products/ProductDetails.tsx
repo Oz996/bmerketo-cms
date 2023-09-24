@@ -10,6 +10,7 @@ import { FormData } from "../../types/FormData";
 const Details = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState<FormData>({
+    _id: "",
     name: "",
     price: "",
     category: "",
@@ -23,6 +24,7 @@ const Details = () => {
   useEffect(() => {
     if (product) {
       setFormData({
+        _id: product._id,
         name: product.name,
         price: product.price,
         category: product.category,
@@ -31,7 +33,9 @@ const Details = () => {
       });
     }
   }, [product]);
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData((data) => {
       return {
         ...data,
@@ -221,7 +225,7 @@ const Details = () => {
                     >
                       Edit
                     </button>
-                    <DeleteModal/>
+                    <DeleteModal />
                   </>
                 )}
               </div>

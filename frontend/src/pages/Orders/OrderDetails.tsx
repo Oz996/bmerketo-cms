@@ -100,9 +100,12 @@ const OrderDetails = () => {
           </div>
           <div className="product-orders">
             {order?.products?.map((product) => (
-              <div key={product._id}>
-                <img src={product.product.image} alt={product.product.name} />
-                <p>{product.product.name}</p>
+              <div key={product?._id}>
+                <img
+                  src={product?.product?.image}
+                  alt={product?.product?.name}
+                />
+                <p>{product?.product?.name}</p>
               </div>
             ))}
           </div>

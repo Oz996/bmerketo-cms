@@ -49,28 +49,26 @@ const Orders = () => {
             <LoaderDark />
           </div>
         )}
-        {orders ? (
-          orders.map((order) => (
-            <Link to={`/orders/${order._id}`} key={order._id}>
-              <div
-                className={`order ${
-                  (order.status === "pending" && "orange") ||
-                  (order.status === "in transit" && "yellow") ||
-                  (order.status === "delivered" && "green")
-                }`}
-                key={order._id}
-              >
-                <h3>{order.user.email}</h3>
-                <div className="status-div">
-                  <p>{`Status: ${order.status}`}</p>
+        {orders
+          ? orders.map((order) => (
+              <Link to={`/orders/${order._id}`} key={order._id}>
+                <div
+                  className={`order ${
+                    (order.status === "pending" && "orange") ||
+                    (order.status === "in transit" && "yellow") ||
+                    (order.status === "delivered" && "green")
+                  }`}
+                  key={order._id}
+                >
+                  <h3>{order.user.email}</h3>
+                  <div className="status-div">
+                    <p>{`Status: ${order.status}`}</p>
+                  </div>
+                  <p>{`Products: ${order.products.length}`}</p>
                 </div>
-                <p>{`Products: ${order.products.length}`}</p>
-              </div>
-            </Link>
-          ))
-        ) : (
-          <p>No orders available.</p>
-        )}
+              </Link>
+            ))
+          : null}
       </div>
     </section>
   );

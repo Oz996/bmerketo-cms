@@ -66,7 +66,7 @@ const DeleteModal = () => {
               <button className="btn btn-danger" onClick={handleDeleteClick}>
                 Remove
               </button>
-              <button className="btn btn-dark" onClick={toggleModal}>
+              <button className="btn btn-primary" onClick={toggleModal}>
                 Cancel
               </button>
             </div>

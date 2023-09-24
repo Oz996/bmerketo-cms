@@ -66,9 +66,9 @@ const Login = () => {
           <button className="btn btn-primary">Login</button>
         )}
 
-        <p>Example login:</p>
-        <span>bmerketo-admin@mail.com</span>
-        <span>test123</span>
+        <p><b>Example login:</b></p>
+        <p>bmerketo-admin@mail.com</p>
+        <p>test123</p>
       </form>
     </section>
   );
