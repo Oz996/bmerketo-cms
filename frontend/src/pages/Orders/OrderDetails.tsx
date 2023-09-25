@@ -8,6 +8,8 @@ const OrderDetails = () => {
   const [order, setOrder] = useState<Order | null>(null);
   const [status, setStatus] = useState("");
 
+  console.log(order)
+
   const { _id } = useParams();
 
   const getOrders = async () => {

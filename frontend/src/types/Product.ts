@@ -5,9 +5,6 @@ export interface Product {
   category: string;
   description: string;
   image: string;
-  image2: string;
-  image3: string;
-  image4: string;
   locked?: boolean;
-  product: Product
+  product?: Product
 }

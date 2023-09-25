@@ -77,7 +77,6 @@ const Header = () => {
                     closeNavMenuOnClick();
                   }}
                 >
-                  {" "}
                   Log Out
                 </li>
               </>

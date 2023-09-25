@@ -24,6 +24,11 @@ const DeleteModal = () => {
     };
   }, []);
 
+  // Function that toggles modal display
+  const toggleModal = () => {
+    setModal(!modal);
+  };
+
   const handleDeleteClick = async () => {
     const token = localStorage.getItem("token");
 
@@ -44,11 +49,6 @@ const DeleteModal = () => {
     } catch (error) {
       console.error(error);
     }
-  };
-
-  // Function that toggles modal display
-  const toggleModal = () => {
-    setModal(!modal);
   };
 
   return (
