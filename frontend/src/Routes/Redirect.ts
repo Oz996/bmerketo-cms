@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
 import { useEffect } from "react";
+import { useAuth } from "../hooks/useAuth";
 
 const Redirect = () => {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ const Redirect = () => {
     } else {
       navigate("/login");
     }
-  }, []);
+  }, [isAuthenticated]);
 
   return null;
 };

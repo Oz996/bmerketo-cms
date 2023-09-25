@@ -1,27 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 
-// Hook that handles login/logout of an admin by storing or removing login token
-// isAutheticated state can be used to display or hide elements depending on if logged in or not
+export const useAuth = () => {
+  const context = useContext(AuthContext);
 
-const useAuth = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+  if (!context) throw new Error("Failed to use AuthContext");
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsAuthenticated(!!token || false);
-  }, []);
-
-  const handleLogin = (token: string) => {
-    localStorage.setItem("token", token);
-    setIsAuthenticated(true);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setIsAuthenticated(false);
-  };
-
-  return { isAuthenticated, handleLogin, handleLogout };
+  return context;
 };
-
-export default useAuth;

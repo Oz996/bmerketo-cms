@@ -2,7 +2,11 @@ import { createContext, useEffect, useState, ReactElement } from "react";
 
 export const ProductContext = createContext(null);
 
-const ProductContextProvider = ({ children }: { children: ReactElement }) => {
+export const ProductContextProvider = ({
+  children,
+}: {
+  children: ReactElement;
+}) => {
   const [products, setProducts] = useState(null);
 
   const fetchProducts = async () => {
@@ -19,15 +23,9 @@ const ProductContextProvider = ({ children }: { children: ReactElement }) => {
     fetchProducts();
   }, []);
 
-  const value = {
-    products,
-    setProducts,
-    fetchProducts,
-  };
-
   return (
-    <ProductContext.Provider value={value}>{children}</ProductContext.Provider>
+    <ProductContext.Provider value={{ products, setProducts, fetchProducts }}>
+      {children}
+    </ProductContext.Provider>
   );
 };
-
-export default ProductContextProvider;

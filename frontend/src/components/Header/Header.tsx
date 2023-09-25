@@ -1,15 +1,14 @@
 import "./Header.scss";
 import Logo from "/Logo.svg";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
 import Loader from "../../utils/Loader/Loader";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useEffect, useRef, useState } from "react";
+import { useAuth } from "../../hooks/useAuth";
 
 const Header = () => {
   const [hamburgerMenu, setHamburgerMenu] = useState(false);
-  const { handleLogout } = useAuth();
-  const isAuthenticated = !!localStorage.getItem("token");
+  const { handleLogout, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const navRef = useRef<HTMLUListElement>(null);
 
