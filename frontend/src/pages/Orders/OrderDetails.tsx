@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./OrderDetails.scss";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -23,7 +23,6 @@ const OrderDetails = () => {
       );
       const data = await res.json();
       setOrder(data);
-      console.log(data);
       setStatus(data.status);
     } catch (error) {
       console.error(error);
@@ -47,21 +46,19 @@ const OrderDetails = () => {
             Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({ status }),
+          
         }
       );
       const data = await res.json();
       if (res.ok) {
         toast.info("Status has been changed");
+        setOrder(data)
       } else {
         console.error(data);
       }
     } catch (error) {
       console.error(error);
     }
-  };
-
-  const handleStatusChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setStatus(e.target.value);
   };
 
   return (
@@ -89,12 +86,16 @@ const OrderDetails = () => {
           </div>
 
           <div className="order-status">
-            <select value={status} onChange={handleStatusChange}>
+            <select value={status} onChange={(e) => setStatus(e.target.value)}>
               <option value="pending">Pending</option>
               <option value="in transit">In Transit</option>
               <option value="delivered">Delivered</option>
             </select>
-            <button className="btn btn-primary" onClick={handleUpdateStatus}>
+            <button
+              disabled={order.status === status}
+              className="btn btn-primary"
+              onClick={handleUpdateStatus}
+            >
               Update
             </button>
           </div>

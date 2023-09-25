@@ -1,17 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import { useEffect } from "react";
 
-const Redirect = () =>  {
+const Redirect = () => {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
 
-  if (isAuthenticated) {
-    navigate("/overview")
-  } else {
-    navigate("/login")
-  }
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/overview");
+    } else {
+      navigate("/login");
+    }
+  }, []);
 
-  return null
+  return null;
 };
 
 export default Redirect;

@@ -63,7 +63,6 @@ const Products = () => {
           body: JSON.stringify(formData),
         }
       );
-      console.log(res);
       if (res.status === 201) {
         toast.info("Product has been added");
         setRerenderFetch(true);

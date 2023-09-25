@@ -66,7 +66,9 @@ const Login = () => {
           <button className="btn btn-primary">Login</button>
         )}
 
-        <p><b>Example login:</b></p>
+        <p>
+          <b>Example login:</b>
+        </p>
         <p>bmerketo-admin@mail.com</p>
         <p>test123</p>
       </form>

@@ -21,7 +21,6 @@ const Header = () => {
   const closeNavMenuOnClick = () => {
     setHamburgerMenu(false);
   };
-  console.log(isAuthenticated);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
