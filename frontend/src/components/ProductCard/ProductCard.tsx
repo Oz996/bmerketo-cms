@@ -1,7 +1,7 @@
 import "./ProductCard.scss";
 import { Link } from "react-router-dom";
 import { AiOutlineArrowRight } from "react-icons/ai";
-import { Product } from "../../types/Product";
+import { Product } from "../../types/types";
 
 const ProductCard = ({ product }: { product: Product }) => {
   if (!product) {

@@ -1,37 +1,52 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.scss";
 import Loader from "../../utils/Loader/Loader";
 import { useAuth } from "../../hooks/useAuth";
+import {toast} from 'react-toastify'
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const { handleLogin } = useAuth();
+  const { handleLogin, isAuthenticated } = useAuth();
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/overview");
+    } else {
+      navigate("/");
+    }
+  }, [isAuthenticated]);
+
   const loginAdmin = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
-    const res = await fetch("https://cms-api-ty0d.onrender.com/login/admin", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
 
-    if (res.ok) {
-      const data = await res.json();
-      const token = data.token;
-      handleLogin(token);
-      navigate("/overview");
-      setIsLoading(false);
-    } else {
-      await res.json();
+    if (!email && !password) return toast.error("Fill out all the fields")
+
+    try {
+      setIsLoading(true);
+      const res = await fetch("https://cms-api-ty0d.onrender.com/login/admin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        const token = data.token;
+        handleLogin(token);
+        navigate("/overview");
+      } else {
+        toast.error("Unable to login")
+      }
+    } catch (error) {
+      console.error(error);
+    } finally{
       setIsLoading(false);
     }
   };

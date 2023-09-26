@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./Products.scss";
 import ProductCard from "../../components/ProductCard/ProductCard.tsx";
 import { toast } from "react-toastify";
 import LoaderDark from "../../utils/Loader/LoaderDark.tsx";
-import { Product } from "../../types/Product.ts";
+import { Product } from "../../types/types";
+import { useProduct } from "../../hooks/useProduct.tsx";
+import Loader from "../../utils/Loader/Loader.tsx";
 
 const initState: Product = {
   _id: crypto.randomUUID(),
@@ -16,29 +18,14 @@ const initState: Product = {
 
 const Products = () => {
   const [formData, setFormData] = useState(initState);
-  const [products, setProducts] = useState<Product[] | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [rerenderFetch, setRerenderFetch] = useState(false);
+  const [formLoading, setFormLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      setIsLoading(true);
-      try {
-        const res = await fetch(
-          "https://cms-api-ty0d.onrender.com/api/products"
-        );
-        const data = await res.json();
-        setProducts(data);
-        setIsLoading(false);
-      } catch (error) {
-        setIsLoading(false);
-        console.error(error);
-      }
-    };
-    fetchProducts();
-  }, [rerenderFetch]);
+  const { products, setProducts, isLoading } = useProduct();
+
+  const API = "https://cms-api-ty0d.onrender.com/api/products";
 
   const addProduct = async (e: React.FormEvent) => {
+    e.preventDefault();
     const { name, image, category, price, description } = formData;
     if (
       name == "" ||
@@ -47,34 +34,37 @@ const Products = () => {
       price == "" ||
       description == ""
     ) {
-      toast.error("Fill out all the fields");
+      return toast.error("Fill out all the fields");
     }
-    e.preventDefault();
     const token = localStorage.getItem("token");
     try {
-      const res = await fetch(
-        `https://cms-api-ty0d.onrender.com/api/products`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      setFormLoading(true);
+      const res = await fetch(API, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(formData),
+      });
       if (res.status === 201) {
         toast.info("Product has been added");
-        setRerenderFetch(true);
+        const newRres = await fetch(API);
+        const newData = await newRres.json();
+        setProducts(newData);
         setFormData(initState);
       }
     } catch (error) {
       console.error(error);
       toast.error("error");
+    } finally {
+      setFormLoading(false);
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData((data) => {
       return {
         ...data,
@@ -142,7 +132,10 @@ const Products = () => {
               ></textarea>
             </label>
           </div>
-          <button className="btn btn-primary">Add </button>
+          <button className="btn btn-primary"
+          disabled={formLoading}>
+            {formLoading ? <Loader  /> : "Add"}
+          </button>
         </form>
       </div>
       <hr style={{ marginTop: "5rem" }} />

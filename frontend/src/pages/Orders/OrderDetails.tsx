@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./OrderDetails.scss";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Order } from "../../types/Order";
+import { Order } from "../../types/types";
 
 const OrderDetails = () => {
   const [order, setOrder] = useState<Order | null>(null);

@@ -10,15 +10,13 @@ import OrderDetails from "./pages/Orders/OrderDetails";
 import PrivateRoutes from "./Routes/PrivateRoutes";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import Redirect from "./Routes/Redirect";
 
 const App = () => {
   return (
     <div>
       <Header />
       <Routes>
-        <Route path="/" element={<Redirect />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route element={<PrivateRoutes />}>
           <Route path="/overview" element={<Overview />} />
           <Route path="/products" element={<Products />} />

@@ -2,12 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import "./DeleteModal.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useProduct } from "../../hooks/useProduct";
 
 const DeleteModal = () => {
   const [modal, setModal] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
   const { productId } = useParams();
+  const { setProducts } = useProduct();
 
   const navigate = useNavigate();
 
@@ -45,6 +47,11 @@ const DeleteModal = () => {
       );
       toast.info("Product has been removed");
       toggleModal();
+      const newRes = await fetch(
+        "https://cms-api-ty0d.onrender.com/api/products"
+      );
+      const newData = await newRes.json();
+      setProducts(newData);
       navigate("/products");
     } catch (error) {
       console.error(error);

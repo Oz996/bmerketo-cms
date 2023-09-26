@@ -4,8 +4,9 @@ import { BsLockFill } from "react-icons/bs";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
 import "./ProductDetails..scss";
 import { toast } from "react-toastify";
-import { Product } from "../../types/Product";
-import { FormData } from "../../types/FormData";
+import { Product } from "../../types/types";
+import { FormData } from "../../types/types";
+import { useProduct } from "../../hooks/useProduct";
 
 const Details = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -20,6 +21,8 @@ const Details = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState<Product | null>(null);
   const navigate = useNavigate();
+
+  const { setProducts } = useProduct();
 
   useEffect(() => {
     if (product) {
@@ -44,8 +47,16 @@ const Details = () => {
     });
   };
 
-  const handleEditClick = () => {
-    setIsEditing(true);
+  const fetchProducts = async () => {
+    try {
+      const res = await fetch(
+        `https://cms-api-ty0d.onrender.com/api/products/${productId}`
+      );
+      const data = await res.json();
+      setProduct(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const editProduct = async () => {
@@ -66,11 +77,20 @@ const Details = () => {
         }
       );
       if (res.ok) {
+        const newRes = await fetch(
+          "https://cms-api-ty0d.onrender.com/api/products"
+        );
+        const newData = await newRes.json();
+        setProducts(newData);
         toast.info("Product has been updated");
       }
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleEditClick = () => {
+    setIsEditing(true);
   };
 
   const handleSaveClick = () => {
@@ -80,18 +100,6 @@ const Details = () => {
 
   const handleCancelClick = () => {
     setIsEditing(false);
-  };
-
-  const fetchProducts = async () => {
-    try {
-      const res = await fetch(
-        `https://cms-api-ty0d.onrender.com/api/products/${productId}`
-      );
-      const data = await res.json();
-      setProduct(data);
-    } catch (error) {
-      console.error(error);
-    }
   };
 
   useEffect(() => {

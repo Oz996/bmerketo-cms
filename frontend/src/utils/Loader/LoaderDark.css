@@ -6,6 +6,7 @@
   border-radius: 50%;
   position: relative;
   left: 50%;
+  margin-top: 1rem;
   text-indent: -9999em;
   animation: mulShdSpin 1.3s infinite linear;
   transform: translateZ(0);
