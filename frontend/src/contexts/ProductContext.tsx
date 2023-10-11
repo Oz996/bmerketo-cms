@@ -1,7 +1,13 @@
 import { createContext, useEffect, useState, ReactElement } from "react";
 import { Product } from "../types/types";
 
-export const ProductContext = createContext(null);
+interface ProdcutContextType {
+  products: Product[] | null;
+  setProducts: React.Dispatch<React.SetStateAction<Product[] | null>>;
+  isLoading: boolean;
+}
+
+export const ProductContext = createContext<ProdcutContextType | null>(null);
 
 export const ProductContextProvider = ({
   children,

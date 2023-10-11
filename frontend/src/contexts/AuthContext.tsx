@@ -1,6 +1,12 @@
 import { createContext, useState, useEffect, ReactElement } from "react";
 
-export const AuthContext = createContext(null);
+interface AuthContextType {
+  isAuthenticated: boolean;
+  handleLogin: (value: string) => void;
+  handleLogout: () => void;
+}
+
+export const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthContextProvider = ({
   children,

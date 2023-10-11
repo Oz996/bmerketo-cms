@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./Orders.scss";
 import { Link } from "react-router-dom";
 import LoaderDark from "../../utils/Loader/LoaderDark";
-import { Order } from "../../types/Order";
+import { Order } from "../../types/types";
 
 const Orders = () => {
   const [orders, setOrders] = useState<Order[] | null>(null);
