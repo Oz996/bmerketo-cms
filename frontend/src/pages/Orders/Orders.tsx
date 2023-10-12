@@ -3,13 +3,14 @@ import "./Orders.scss";
 import { Link } from "react-router-dom";
 import LoaderDark from "../../utils/Loader/LoaderDark";
 import { Order } from "../../types/types";
+import { useAuth } from "../../hooks/useAuth";
 
 const Orders = () => {
   const [orders, setOrders] = useState<Order[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const { token } = useAuth()
 
   const getOrders = async () => {
-    const token = localStorage.getItem("token");
     setIsLoading(true);
     try {
       const res = await fetch("https://cms-api-ty0d.onrender.com/orders", {

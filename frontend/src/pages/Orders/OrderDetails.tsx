@@ -3,17 +3,17 @@ import "./OrderDetails.scss";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Order } from "../../types/types";
+import { useAuth } from "../../hooks/useAuth";
 
 const OrderDetails = () => {
   const [order, setOrder] = useState<Order | null>(null);
   const [status, setStatus] = useState("");
 
   console.log(order)
-
+  const { token } = useAuth()
   const { _id } = useParams();
 
   const getOrders = async () => {
-    const token = localStorage.getItem("token");
     try {
       const res = await fetch(
         `https://cms-api-ty0d.onrender.com/orders/${_id}`,
@@ -36,7 +36,6 @@ const OrderDetails = () => {
   }, []);
 
   const handleUpdateStatus = async () => {
-    const token = localStorage.getItem("token");
 
     try {
       const res = await fetch(

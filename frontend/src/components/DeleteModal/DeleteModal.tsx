@@ -3,12 +3,14 @@ import "./DeleteModal.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useProduct } from "../../hooks/useProduct";
+import { useAuth } from "../../hooks/useAuth";
 
 const DeleteModal = () => {
   const [modal, setModal] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
   const { productId } = useParams();
+  const { token } = useAuth()
   const { setProducts } = useProduct();
 
   const navigate = useNavigate();
@@ -32,8 +34,6 @@ const DeleteModal = () => {
   };
 
   const handleDeleteClick = async () => {
-    const token = localStorage.getItem("token");
-
     try {
       await fetch(
         `https://cms-api-ty0d.onrender.com/api/products/${productId}`,

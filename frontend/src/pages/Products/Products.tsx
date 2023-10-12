@@ -6,6 +6,7 @@ import LoaderDark from "../../utils/Loader/LoaderDark.tsx";
 import { Product } from "../../types/types";
 import { useProduct } from "../../hooks/useProduct.tsx";
 import Loader from "../../utils/Loader/Loader.tsx";
+import { useAuth } from "../../hooks/useAuth.tsx";
 
 const initState: Product = {
   _id: crypto.randomUUID(),
@@ -21,6 +22,7 @@ const Products = () => {
   const [formLoading, setFormLoading] = useState(false);
 
   const { products, setProducts, isLoading } = useProduct();
+  const { token } = useAuth()
 
   const API = "https://cms-api-ty0d.onrender.com/api/products";
 
@@ -36,7 +38,6 @@ const Products = () => {
     ) {
       return toast.error("Fill out all the fields");
     }
-    const token = localStorage.getItem("token");
     try {
       setFormLoading(true);
       const res = await fetch(API, {

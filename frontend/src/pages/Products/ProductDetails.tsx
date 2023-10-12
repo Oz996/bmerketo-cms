@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { Product } from "../../types/types";
 import { FormData } from "../../types/types";
 import { useProduct } from "../../hooks/useProduct";
+import { useAuth } from "../../hooks/useAuth";
 
 const Details = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -21,7 +22,7 @@ const Details = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState<Product | null>(null);
   const navigate = useNavigate();
-
+  const { token } = useAuth()
   const { setProducts } = useProduct();
 
   useEffect(() => {
@@ -61,9 +62,6 @@ const Details = () => {
 
   const editProduct = async () => {
     setIsEditing(false);
-
-    const token = localStorage.getItem("token");
-
     try {
       const res = await fetch(
         `https://cms-api-ty0d.onrender.com/api/products/${productId}`,
