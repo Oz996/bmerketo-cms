@@ -43,6 +43,9 @@ const Profile = () => {
         </div>
         <div>
           <h2>Your orders:</h2>
+          {orders?.length === 0 && (
+            <p className="no-order">No orders to display</p>
+          )}
           <ul>
             {orders.map((order) => (
               <li key={order?._id}>
