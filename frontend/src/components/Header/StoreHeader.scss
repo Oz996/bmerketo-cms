@@ -1,0 +1,74 @@
+@use "../../sass/" as *;
+
+.store-header {
+  padding: 4rem;
+  border-bottom: 1px solid rgb(233, 233, 233);
+  margin-bottom: 1rem;
+  a {
+    color: $paragragh;
+  }
+  .header-flex {
+    display: flex;
+    justify-content: space-between;
+    @include tablet{
+      width: 100%;
+    }
+    // @include tablet{
+    //   display: flex;
+    //   flex-direction: column;
+    // }
+  }
+  span {
+    width: 5rem;
+    text-align: center;
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  .store-header-end {
+    position: relative;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    color: $paragragh;
+    a,
+    p {
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
+    :nth-child(1) {
+      cursor: pointer;
+    }
+    .cart-icon {
+      position: relative;
+    }
+    div {
+      position: absolute;
+      right: -7%;
+      top: 10%;
+      font-size: 1.5rem;
+      border-radius: 10rem;
+    }
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    ul {
+      display: flex;
+      gap: 2rem;
+      text-transform: uppercase;
+      font-size: 1.7rem;
+      font-weight: lighter;
+      a {
+        transition: 0.3s;
+        @include hover-color;
+      }
+    }
+  }
+}
+.red {
+  color: $store-hover-red;
+}

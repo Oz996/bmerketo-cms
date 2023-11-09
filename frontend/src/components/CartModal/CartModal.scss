@@ -1,0 +1,112 @@
+@use "../../sass/" as *;
+
+.cart-modal {
+  position: fixed;
+  right: 2%;
+  z-index: 2;
+  background-color: white;
+  min-height: 20rem;
+  min-width: 55rem;
+  max-width: 55rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border: 1px solid rgb(226, 226, 226);
+  padding: 3rem;
+  @include mobile{
+    width: 100%;
+    min-width: none;
+    max-width: none;
+  }
+
+  .content {
+    .empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      p {
+        font-size: 2rem;
+      }
+    }
+    .cart {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      h2 {
+        font-weight: 600;
+        font-size: 1.7rem;
+      }
+      p {
+        text-decoration: underline;
+        cursor: pointer;
+        transition: 0.3s;
+        @include hover-color;
+      }
+    }
+    .checkout-button {
+      padding-top: 1rem;
+      button {
+        width: 100%;
+        font-size: 1.7rem;
+        padding: 0.8rem;
+        border: none;
+        background-color: black;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+        &:hover {
+          @include hover-bg;
+        }
+      }
+    }
+    p {
+      font-size: 1.7rem;
+      font-weight: 300;
+    }
+    .details {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      .text {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        :nth-child(2) {
+          font-size: 1.6rem;
+        }
+      }
+    }
+    .buttons {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+      gap: 1rem;
+      :nth-child(4) {
+        cursor: pointer;
+        transition: 0.3s;
+        &:hover {
+          color: $store-hover-red;
+        }
+      }
+      p {
+        width: 2rem;
+        text-align: center;
+      }
+      button {
+        @include cart-button;
+      }
+    }
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      li {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        border-bottom: 1px solid rgb(225, 225, 225);
+        padding-bottom: 1rem;
+      }
+    }
+    img {
+      width: 10rem;
+    }
+  }
+}

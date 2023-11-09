@@ -1,4 +1,4 @@
-@use "./colors" as *;
+@use "./sass/index" as *;
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap");
 * {
   margin: 0;
@@ -19,11 +19,47 @@ a {
 
 // globals
 
-.btn:disabled{
-  opacity: .4;
+.product-card-list {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 5rem;
+  @include tablet {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @include mobile {
+    grid-template-columns: repeat(1, 1fr);
+    margin: 0 auto;
+    width: 30rem;
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+.btn:disabled {
+  opacity: 0.4;
   cursor: not-allowed;
 }
 
+.container {
+  width: 110rem;
+  margin: 0 auto;
+}
+.store-container {
+  width: 120rem;
+  margin: 0 auto;
+  @include tablet {
+    width: 90%;
+  }
+}
+.images-arrow-active {
+  color: blue;
+}
+.images-arrow {
+  cursor: pointer;
+}
 .btn {
   cursor: pointer;
   border-radius: 0.5rem;

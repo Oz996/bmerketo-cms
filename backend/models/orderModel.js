@@ -10,10 +10,13 @@ exports.createOrder = (req, res) => {
       if (!user) {
         throw new Error("User not found");
       }
+      if (!products) {
+        throw new Error("No products");
+      }
 
       const order = new Order({
         user: userId,
-        products: products,
+        products,
       });
 
       return order.save();

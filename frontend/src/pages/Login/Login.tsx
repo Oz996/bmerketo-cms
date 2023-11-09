@@ -1,35 +1,28 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.scss";
 import Loader from "../../utils/Loader/Loader";
 import { useAuth } from "../../hooks/useAuth";
-import {toast} from 'react-toastify'
+import { toast } from "react-toastify";
+import { AiOutlineArrowRight } from "react-icons/ai";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const { handleLogin, isAuthenticated } = useAuth();
+  const { handleLogin } = useAuth();
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/overview");
-    } else {
-      navigate("/");
-    }
-  }, [isAuthenticated]);
 
   const loginAdmin = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!email && !password) return toast.error("Fill out all the fields")
+    if (!email && !password) return toast.error("Fill out all the fields");
 
     try {
       setIsLoading(true);
-      const res = await fetch("https://cms-api-ty0d.onrender.com/login/admin", {
+      const res = await fetch("http://localhost:7000/login/admin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,51 +35,66 @@ const Login = () => {
         handleLogin(token);
         navigate("/overview");
       } else {
-        toast.error("Unable to login")
+        toast.error("Unable to login");
       }
     } catch (error) {
       console.error(error);
-    } finally{
+    } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <section className="login-container">
-      <form onSubmit={loginAdmin}>
-        <h2>Administrator login</h2>
-        <input
-          type="email"
-          placeholder="Email"
-          name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          name="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {isLoading ? (
-          <button
-            disabled
-            style={{ opacity: ".5", pointerEvents: "not-allowed" }}
-            className="btn btn-primary"
-          >
-            <Loader />
-          </button>
-        ) : (
-          <button className="btn btn-primary">Login</button>
-        )}
+    <section className="login-section">
+      <div className="login-container">
+        <div className="admin-div">
+          <form onSubmit={loginAdmin}>
+            <h2>Administrator login</h2>
+            <p className="admin-text">
+              Add, delete or edit products and orders as an admin
+            </p>
+            <input
+              type="email"
+              placeholder="Email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            {isLoading ? (
+              <button
+                disabled
+                style={{ opacity: ".5", pointerEvents: "not-allowed" }}
+                className="btn btn-primary"
+              >
+                <Loader />
+              </button>
+            ) : (
+              <button className="btn btn-primary">Login</button>
+            )}
 
-        <p>
-          <b>Example login:</b>
-        </p>
-        <p>bmerketo-admin@mail.com</p>
-        <p>test123</p>
-      </form>
+            <p>
+              <b>Example login:</b>
+            </p>
+            <p>bmerketo-admin@mail.com</p>
+            <p>test123</p>
+          </form>
+        </div>
+        {/* <div className="line"/> */}
+        <div className="store-div">
+          <h2>Bmerketo Store</h2>
+          <p>Want to browse our products? </p>
+          <Link to="/home">
+            <b>Browse</b> <AiOutlineArrowRight />
+          </Link>
+        </div>
+      </div>
     </section>
   );
 };

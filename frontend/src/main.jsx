@@ -5,14 +5,17 @@ import "./index.scss";
 import { AuthContextProvider } from "../../frontend/src/contexts/AuthContext";
 import { ProductContextProvider } from "../../frontend/src/contexts/ProductContext";
 import { BrowserRouter } from "react-router-dom";
+import { CartContextProvider } from "./contexts/CartContext/CartContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ProductContextProvider>
       <AuthContextProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <CartContextProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </CartContextProvider>
       </AuthContextProvider>
     </ProductContextProvider>
   </React.StrictMode>

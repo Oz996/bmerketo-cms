@@ -3,11 +3,13 @@ import Logo from "/Logo.svg";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import Loader from "../../utils/Loader/Loader";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { CgClose } from "react-icons/cg";
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 
 const Header = () => {
   const [hamburgerMenu, setHamburgerMenu] = useState(false);
+  console.log(hamburgerMenu);
   const { handleLogout, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const navRef = useRef<HTMLUListElement>(null);
@@ -44,15 +46,23 @@ const Header = () => {
   }
 
   return (
-    <header>
+    <header className="header">
       <div className="header-container">
-        <RxHamburgerMenu
-          size={35}
-          className="hamburger"
-          onClick={() => setHamburgerMenu((prev) => !prev)}
-        />
+        {!hamburgerMenu ? (
+          <RxHamburgerMenu
+            size={35}
+            className="hamburger"
+            onClick={() => setHamburgerMenu(true)}
+          />
+        ) : (
+          <CgClose
+            size={35}
+            onClick={() => setHamburgerMenu(false)}
+            className="hamburger"
+          />
+        )}
         <div className="logo">
-          <Link to="/">
+          <Link to="/overview">
             <img src={Logo} alt="logo" />
             <h3>CMS</h3>
           </Link>

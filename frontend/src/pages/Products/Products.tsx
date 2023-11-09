@@ -3,10 +3,21 @@ import "./Products.scss";
 import ProductCard from "../../components/ProductCard/ProductCard.tsx";
 import { toast } from "react-toastify";
 import LoaderDark from "../../utils/Loader/LoaderDark.tsx";
-import { Product } from "../../types/types";
-import { useProduct } from "../../hooks/useProduct.tsx";
+import { useProduct } from "../../hooks/useProduct.ts";
 import Loader from "../../utils/Loader/Loader.tsx";
-import { useAuth } from "../../hooks/useAuth.tsx";
+import { useAuth } from "../../hooks/useAuth.ts";
+
+interface Product {
+  _id: string;
+  name: string;
+  category: string;
+  price: string;
+  image: string;
+  image2: string;
+  image3: string;
+  image4: string;
+  description: string;
+}
 
 const initState: Product = {
   _id: crypto.randomUUID(),
@@ -14,6 +25,9 @@ const initState: Product = {
   category: "",
   price: "",
   image: "",
+  image2: "",
+  image3: "",
+  image4: "",
   description: "",
 };
 
@@ -22,21 +36,16 @@ const Products = () => {
   const [formLoading, setFormLoading] = useState(false);
 
   const { products, setProducts, isLoading } = useProduct();
-  const { token } = useAuth()
+  const { token } = useAuth();
 
-  const API = "https://cms-api-ty0d.onrender.com/api/products";
+  const API = "http://localhost:7000/api/products";
+  // const API = "https://cms-api-ty0d.onrender.com/api/products";
 
   const addProduct = async (e: React.FormEvent) => {
     e.preventDefault();
     const { name, image, category, price, description } = formData;
-    if (
-      name == "" ||
-      image == "" ||
-      category == "" ||
-      price == "" ||
-      description == ""
-    ) {
-      return toast.error("Fill out all the fields");
+    if (!name || !image || !category || !price || !description) {
+      return toast.error("Fill out the required fields");
     }
     try {
       setFormLoading(true);
@@ -122,6 +131,35 @@ const Products = () => {
               </label>
             </div>
           </div>
+          <div className="form-group">
+            <label htmlFor="image2">
+              <input
+                type="text"
+                id="image2"
+                placeholder="ImageURL2..."
+                value={formData.image2}
+                onChange={handleChange}
+              />
+            </label>
+            <label htmlFor="image3">
+              <input
+                type="text"
+                id="image3"
+                placeholder="ImageURL3..."
+                value={formData.image3}
+                onChange={handleChange}
+              />
+            </label>
+            <label htmlFor="image4">
+              <input
+                type="text"
+                id="image4"
+                placeholder="ImageURL4..."
+                value={formData.image4}
+                onChange={handleChange}
+              />
+            </label>
+          </div>
           <div className="form-bottom">
             <label htmlFor="description">
               <textarea
@@ -133,9 +171,8 @@ const Products = () => {
               ></textarea>
             </label>
           </div>
-          <button className="btn btn-primary"
-          disabled={formLoading}>
-            {formLoading ? <Loader  /> : "Add"}
+          <button className="btn btn-primary" disabled={formLoading}>
+            {formLoading ? <Loader /> : "Add"}
           </button>
         </form>
       </div>

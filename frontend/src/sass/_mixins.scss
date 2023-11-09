@@ -1,0 +1,50 @@
+@use "./colors" as *;
+
+@mixin paragraph {
+  color: $paragragh;
+  font-size: 1.6rem;
+  font-weight: lighter;
+}
+
+@mixin hover-color {
+  &:hover {
+    color: $store-hover-red;
+  }
+}
+
+@mixin hover-bg {
+  &:hover {
+    background-color: $store-hover-red;
+  }
+  &:active {
+    background-color: rgb(156, 7, 7);
+  }
+}
+
+@mixin cart-button{
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  font-size: 2rem;
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    background-color: rgb(226, 226, 226);
+  }
+  &:active {
+    color: $store-hover-red;
+  }
+}
+
+// responsiveness
+
+@mixin tablet {
+  @media screen and (max-width: 1120px) {
+    @content;
+  }
+}
+@mixin mobile {
+  @media screen and (max-width: 800px) {
+    @content;
+  }
+}

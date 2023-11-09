@@ -9,8 +9,8 @@ const DeleteModal = () => {
   const [modal, setModal] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const { productId } = useParams();
-  const { token } = useAuth()
+  const { _id } = useParams();
+  const { token } = useAuth();
   const { setProducts } = useProduct();
 
   const navigate = useNavigate();
@@ -35,21 +35,16 @@ const DeleteModal = () => {
 
   const handleDeleteClick = async () => {
     try {
-      await fetch(
-        `https://cms-api-ty0d.onrender.com/api/products/${productId}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      await fetch(`http://localhost:7000/api/products/${_id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
       toast.info("Product has been removed");
       toggleModal();
-      const newRes = await fetch(
-        "https://cms-api-ty0d.onrender.com/api/products"
-      );
+      const newRes = await fetch("http://localhost:7000/api/products/");
       const newData = await newRes.json();
       setProducts(newData);
       navigate("/products");

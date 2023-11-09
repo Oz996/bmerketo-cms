@@ -1,4 +1,5 @@
 const Product = require("../schemas/productSchema");
+const Review = require("../schemas/reviewSchema");
 
 // Get all products
 
@@ -12,6 +13,8 @@ exports.getAllProducts = (req, res) => {
 
 exports.getProductById = (req, res) => {
   Product.findById(req.params.id)
+    .populate("related")
+    .populate("review")
     .then((data) => res.status(200).json(data))
     .catch(() =>
       res.status(500).json({ message: "Could not retrieve products" })
@@ -43,10 +46,42 @@ exports.addProduct = (req, res) => {
     .catch(() => res.status(500).json({ message: "Could not add product" }));
 };
 
+exports.addReview = async (req, res) => {
+  try {
+    const { rating, name, email, review } = req.body;
+    const productId = req.params.id;
+
+    const product = await Product.findById(productId);
+    console.log(productId);
+    console.log(product);
+
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    const newReview = new Review({
+      rating,
+      name,
+      email,
+      review,
+    });
+
+    await newReview.save();
+
+    product.review.push(newReview);
+    await product.save();
+
+    res.status(201).json(newReview);
+  } catch (error) {
+    res.status(500).json({ message: "Could not add the review" });
+  }
+};
+
 // Find a product by ID and update
 
 exports.updateProduct = (req, res) => {
-  const { name, price, image, image2, image3, image4, category, description } = req.body;
+  const { name, price, image, image2, image3, image4, category, description } =
+    req.body;
 
   Product.findByIdAndUpdate(req.params.id).then((data) => {
     if (!data) {
@@ -56,7 +91,18 @@ exports.updateProduct = (req, res) => {
 
     Product.updateOne(
       { _id: req.params.id },
-      { $set: { name, price, image, category, image2, image3, image4, description } }
+      {
+        $set: {
+          name,
+          price,
+          image,
+          category,
+          image2,
+          image3,
+          image4,
+          description,
+        },
+      }
     )
       .then(() => {
         res.status(200).json({ message: "Product updated" });

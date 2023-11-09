@@ -1,0 +1,53 @@
+@use "../../sass/" as *;
+
+.product-card-list {
+  a {
+    background-color: red;
+  }
+}
+.product-card {
+  display: flex;
+  flex-direction: column;
+  img {
+    width: 25rem;
+  }
+  .icon {
+    z-index: 1;
+    transition: 0.3s;
+    &:hover {
+      color: $store-hover-red;
+    }
+  }
+  p {
+    font-size: 1.6rem;
+  }
+  :nth-child(4) {
+    @include paragraph;
+  }
+  .first-image {
+    z-index: 1;
+    transition: 0.3s;
+    &:hover {
+      opacity: 0;
+    }
+  }
+  .second-image {
+    position: absolute;
+  }
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    :nth-child(2) {
+      margin-right: 4rem;
+    }
+    div {
+      display: flex;
+      gap: 2.5rem;
+
+      .on-sale {
+        text-decoration: line-through;
+      }
+    }
+  }
+}

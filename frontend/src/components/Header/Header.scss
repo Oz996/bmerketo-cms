@@ -1,6 +1,6 @@
-@use "../../colors" as *;
+@use "../../sass/" as *;
 
-header {
+.header {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -17,7 +17,6 @@ header {
     }
   }
   ul {
-    list-style: none;
     display: flex;
     gap: 2rem;
   }
@@ -53,7 +52,7 @@ header {
   }
 }
 @media (max-width: 1134px) {
-  header {
+  .header {
     .header-container {
       display: flex;
       flex-direction: column;
@@ -68,7 +67,7 @@ header {
   }
 }
 @media (max-width: 712px) {
-  header {
+  .header {
     .header-container {
       flex-direction: row;
       justify-content: start;
@@ -105,5 +104,5 @@ header {
   }
 }
 .show {
-  display: flex;
+  display: flex !important;
 }

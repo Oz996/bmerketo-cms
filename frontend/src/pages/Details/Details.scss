@@ -1,0 +1,285 @@
+@use "../../sass/" as *;
+
+.details-main {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: space-between;
+  margin-top: 10rem;
+  @include tablet {
+    grid-template-columns: repeat(1, 1fr);
+    margin-top: 3rem;
+    gap: 3rem;
+  }
+  @include mobile {
+  }
+
+  .details-images {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 43rem;
+    @include tablet {
+      width: 35rem;
+      margin: 0 auto;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 0.4rem;
+      @include tablet {
+      }
+    }
+    div {
+      display: flex;
+      gap: 1rem;
+      img {
+        flex: 1;
+        width: 0;
+        height: auto;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .details-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    h1 {
+      font-weight: 500;
+      font-size: 2.5rem;
+    }
+    .details-category {
+      @include paragraph;
+    }
+    .details-p {
+      @include paragraph;
+    }
+    .details-price {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+    hr {
+      border: 1px solid rgb(228, 228, 228);
+    }
+    .buttons {
+      border: 1px solid rgb(228, 228, 228);
+      display: flex;
+      align-items: center;
+      button {
+        height: 100%;
+        padding-inline: 2.2rem;
+        font-size: 1.7rem;
+        border: 1px solid rgb(228, 228, 228);
+        background-color: white;
+        cursor: pointer;
+        transition: 0.3s;
+        &:hover {
+          background-color: rgb(226, 226, 226);
+        }
+        &:active {
+          background-color: $paragragh;
+        }
+      }
+      p {
+        text-align: center;
+        width: 5rem;
+        font-size: 1.3rem;
+      }
+    }
+    .details-options {
+      display: flex;
+      gap: 2rem;
+      height: 5rem;
+      .add-to-cart {
+        button {
+          display: flex;
+          align-items: center;
+          font-size: 1.5rem;
+          font-weight: bold;
+          gap: 1rem;
+          border: none;
+          background-color: black;
+          color: white;
+          height: 100%;
+          padding-inline: 3rem;
+          cursor: pointer;
+          transition: 0.3s;
+          @include hover-bg;
+        }
+      }
+    }
+  }
+}
+.details-info {
+  margin-top: 10rem;
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  p {
+    @include paragraph;
+  }
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    li {
+      @include paragraph;
+    }
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+    margin-bottom: 10rem;
+    position: relative;
+
+    button {
+      background-color: black;
+      color: white;
+      border: none;
+      height: 5rem;
+      font-size: 1.6rem;
+      cursor: pointer;
+      transition: 0.3s;
+      @include hover-bg;
+    }
+    p {
+      color: black;
+      z-index: 1;
+      font-weight: 400;
+      text-align: center;
+      padding-bottom: 0.5rem;
+    }
+    label {
+      @include paragraph;
+      font-weight: 500;
+    }
+    input,
+    textarea {
+      background-color: rgb(246, 246, 246);
+      padding: 1.5rem 2rem;
+      margin-bottom: 3rem;
+      border: none;
+      transition: 0.3s;
+      font-size: 1.5rem;
+      resize: none;
+      &:focus {
+        outline: 1px solid red;
+      }
+    }
+  }
+  .star {
+    color: orange;
+    cursor: pointer;
+  }
+  .details-review {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    @include tablet {
+      grid-template-columns: repeat(1, 1fr);
+    }
+    .rating-div {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+    .review-div {
+      display: flex;
+      justify-content: center;
+      height: 67rem;
+      h2 {
+        text-align: center;
+      }
+
+      .reviews {
+        padding-inline: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        overflow-y: scroll;
+        max-height: 100%;
+        .review-name {
+          font-size: 1.7rem;
+          font-weight: 500;
+        }
+        display: flex;
+        flex-direction: column;
+        .review {
+          div {
+            display: flex;
+            justify-content: space-between;
+          }
+        }
+      }
+    }
+  }
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 6px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  .details-list {
+    display: flex;
+    justify-content: center;
+  }
+  .details-description {
+    display: flex;
+    justify-content: space-between;
+    @include tablet {
+      flex-direction: column;
+    }
+    img {
+      width: 40rem;
+      @include tablet {
+        width: 30rem;
+      }
+    }
+  }
+  .details-tabs {
+    display: flex;
+    height: 5rem;
+
+    margin-bottom: 3rem;
+    button {
+      flex: 1;
+      height: 100%;
+      border: 1px solid rgb(199, 199, 199);
+      background-color: white;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: 0.3s;
+      &:hover {
+        color: $store-hover-red;
+      }
+    }
+  }
+}
+
+.details-related {
+  hr {
+    border: 1px solid rgb(228, 228, 228);
+    margin-block: 5rem;
+  }
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+}
+.error-border {
+  outline: 1px solid red;
+  background-color: rgb(252, 212, 212) !important;
+}
+.short {
+  height: 5rem !important;
+}

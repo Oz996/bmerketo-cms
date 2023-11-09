@@ -1,0 +1,101 @@
+@use "../../sass/" as *;
+
+.home {
+  width: 90%;
+  margin: 0 auto;
+  .carousel-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    @include tablet{
+      flex-direction: column;
+    }
+
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      font-weight: lighter;
+    }
+    p {
+      font-size: 4rem;
+    }
+    button {
+      text-transform: uppercase;
+      color: white;
+      background-color: black;
+      padding: 2rem;
+      padding-inline: 5rem;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+      @include hover-bg;
+    }
+    img {
+      width: 60rem;
+      height: 60rem;
+      @include mobile{
+        width: 55rem;
+        height: 55rem;
+      }
+    }
+  }
+  .collection {
+    padding-top: 15rem;
+
+    h1 {
+      text-align: center;
+      font-size: 4.5rem;
+    }
+
+    .browse-button-div {
+      display: flex;
+      justify-content: center;
+      button {
+        text-transform: uppercase;
+        background-color: white;
+        padding: 2rem;
+        padding-inline: 5rem;
+        border: 1px solid rgb(230, 230, 230);
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 5rem;
+        &:hover {
+          background-color: black;
+          color: white;
+          :nth-child(1) {
+            color: white;
+          }
+        }
+      }
+    }
+    ul {
+      display: flex;
+      justify-content: center;
+      margin-top: 3rem;
+      gap: 2rem;
+      font-size: 1.7rem;
+      font-weight: lighter;
+      @include tablet{
+        padding-bottom: 5rem;
+      }
+    }
+    a {
+      transition: 0.3s;
+      &:hover {
+        color: $store-hover-red;
+      }
+    }
+  }
+}
+.deals{
+  h2{
+    font-size: 3rem;
+    font-weight: 600;
+  }
+}

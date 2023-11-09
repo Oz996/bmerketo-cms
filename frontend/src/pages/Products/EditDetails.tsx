@@ -1,15 +1,15 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { BsLockFill } from "react-icons/bs";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
-import "./ProductDetails..scss";
+import "./EditDetails.scss";
 import { toast } from "react-toastify";
 import { Product } from "../../types/types";
 import { FormData } from "../../types/types";
 import { useProduct } from "../../hooks/useProduct";
 import { useAuth } from "../../hooks/useAuth";
 
-const Details = () => {
+const ProductDetails = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     _id: "",
@@ -18,11 +18,14 @@ const Details = () => {
     category: "",
     description: "",
     image: "",
+    image2: "",
+    image3: "",
+    image4: "",
   });
-  const { productId } = useParams();
+  const { _id } = useParams();
   const [product, setProduct] = useState<Product | null>(null);
   const navigate = useNavigate();
-  const { token } = useAuth()
+  const { token } = useAuth();
   const { setProducts } = useProduct();
 
   useEffect(() => {
@@ -34,6 +37,9 @@ const Details = () => {
         category: product.category,
         description: product.description,
         image: product.image,
+        image2: product.image2!,
+        image3: product.image3!,
+        image4: product.image4!,
       });
     }
   }, [product]);
@@ -50,10 +56,9 @@ const Details = () => {
 
   const fetchProducts = async () => {
     try {
-      const res = await fetch(
-        `https://cms-api-ty0d.onrender.com/api/products/${productId}`
-      );
+      const res = await fetch(`http://localhost:7000/api/products/${_id}`);
       const data = await res.json();
+      console.log(data)
       setProduct(data);
     } catch (error) {
       console.error(error);
@@ -63,17 +68,14 @@ const Details = () => {
   const editProduct = async () => {
     setIsEditing(false);
     try {
-      const res = await fetch(
-        `https://cms-api-ty0d.onrender.com/api/products/${productId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const res = await fetch(`http://localhost:7000/api/products/${_id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(formData),
+      });
       if (res.ok) {
         const newRes = await fetch(
           "https://cms-api-ty0d.onrender.com/api/products"
@@ -104,22 +106,10 @@ const Details = () => {
     fetchProducts();
   }, []);
 
-  // If you return to the page of a deleted product it will display a text and a link back to the product page
-  if (!product) {
-    return (
-      <>
-        <h2 className="removed">Product has been removed</h2>
-        <Link to="/products">
-          <p className="removed-link">Back</p>
-        </Link>
-      </>
-    );
-  }
-
   return (
     <>
       <figure className="img-figure">
-        <img className="product-img" src={product.image} alt={product.name} />
+        <img className="product-img" src={product?.image} alt={product?.name} />
       </figure>
       <section className="product-details">
         <div className="edit-product">
@@ -167,6 +157,33 @@ const Details = () => {
                   </label>
                 </div>
               </div>
+              <label>
+                ImageURL2:
+                <input
+                  type="text"
+                  name="image"
+                  value={formData.image2}
+                  onChange={handleChange}
+                />
+              </label>
+              <label>
+                ImageURL3:
+                <input
+                  type="text"
+                  name="image"
+                  value={formData.image3}
+                  onChange={handleChange}
+                />
+              </label>
+              <label>
+                ImageURL4:
+                <input
+                  type="text"
+                  name="image"
+                  value={formData.image4}
+                  onChange={handleChange}
+                />
+              </label>
               <div className="form-bottom">
                 <label>
                   Description:
@@ -190,22 +207,26 @@ const Details = () => {
           ) : (
             <>
               <p>
-                <b>Name: </b>
-                {product.name}
+                <b>Id: </b>
+                {product?._id}
               </p>
               <p>
-                <b>Price: </b> {product.price}
+                <b>Name: </b>
+                {product?.name}
+              </p>
+              <p>
+                <b>Price: </b> {product?.price}
               </p>
               <p>
                 <b>Category: </b>
-                {product.category}
+                {product?.category}
               </p>
               <p>
                 <b>Description: </b>
-                {product.description}
+                {product?.description}
               </p>
               <div className="product-buttons">
-                {product.locked ? (
+                {product?.locked ? (
                   <>
                     <button
                       className="btn btn-primary"
@@ -242,4 +263,4 @@ const Details = () => {
   );
 };
 
-export default Details;
+export default ProductDetails;

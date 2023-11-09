@@ -8,6 +8,8 @@ router.get("/:id", productModel.getProductById);
 
 router.post("/", authMiddleware, productModel.addProduct);
 
+router.post("/:id",  productModel.addReview);
+
 router.put("/:id", authMiddleware, productModel.updateProduct);
 
 router.delete("/:id", authMiddleware, productModel.deleteProduct);
