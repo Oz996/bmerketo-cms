@@ -11,7 +11,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const { handleLogin } = useAuth();
+  const { handleAdminLogin } = useAuth();
 
   const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ const Login = () => {
 
     try {
       setIsLoading(true);
-      const res = await fetch("http://localhost:7000/login/admin", {
+      const res = await fetch("https://cms-api-ty0d.onrender.com/login/admin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -32,7 +32,7 @@ const Login = () => {
       if (res.ok) {
         const data = await res.json();
         const token = data.token;
-        handleLogin(token);
+        handleAdminLogin(token);
         navigate("/overview");
       } else {
         toast.error("Unable to login");

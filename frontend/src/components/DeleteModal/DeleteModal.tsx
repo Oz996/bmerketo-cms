@@ -35,7 +35,7 @@ const DeleteModal = () => {
 
   const handleDeleteClick = async () => {
     try {
-      await fetch(`http://localhost:7000/api/products/${_id}`, {
+      await fetch(`https://cms-api-ty0d.onrender.com/api/products/${_id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -44,7 +44,7 @@ const DeleteModal = () => {
       });
       toast.info("Product has been removed");
       toggleModal();
-      const newRes = await fetch("http://localhost:7000/api/products/");
+      const newRes = await fetch("https://cms-api-ty0d.onrender.com/api/products/");
       const newData = await newRes.json();
       setProducts(newData);
       navigate("/products");

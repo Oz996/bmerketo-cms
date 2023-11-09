@@ -11,7 +11,7 @@ const Profile = () => {
   console.log(orders);
 
   const getOrders = async () => {
-    const res = await fetch("http://localhost:7000/orders/", {
+    const res = await fetch("https://cms-api-ty0d.onrender.com/orders/", {
       headers: {
         Authorization: `Bearer ${token}`,
       },

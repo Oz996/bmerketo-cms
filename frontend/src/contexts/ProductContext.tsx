@@ -20,8 +20,8 @@ export const ProductContextProvider = ({
   const fetchProducts = async () => {
     try {
       setIsLoading(true);
-      // const res = await fetch(`https://cms-api-ty0d.onrender.com/api/products`);
-      const res = await fetch(`http://localhost:7000/api/products`);
+      const res = await fetch(`https://cms-api-ty0d.onrender.com/api/products`);
+      // const res = await fetch(`http://localhost:7000/api/products`);
       const data = await res.json();
       console.log(data)
       setProducts(data);

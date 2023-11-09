@@ -15,7 +15,7 @@ const OrderDetails = () => {
 
   const getOrders = async () => {
     try {
-      const res = await fetch(`http://localhost:7000/orders/${_id}`, {
+      const res = await fetch(`https://cms-api-ty0d.onrender.com/orders/${_id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -34,7 +34,7 @@ const OrderDetails = () => {
 
   const handleUpdateStatus = async () => {
     try {
-      const res = await fetch(`http://localhost:7000/orders/${_id}`, {
+      const res = await fetch(`https://cms-api-ty0d.onrender.com/orders/${_id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

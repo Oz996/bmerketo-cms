@@ -10,6 +10,7 @@ lerna-debug.log*
 node_modules
 dist
 *.local
+/frontend/dist
 
 # Editor directories and files
 .vscode/*

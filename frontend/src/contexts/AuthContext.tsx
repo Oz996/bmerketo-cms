@@ -2,10 +2,13 @@ import { createContext, useState, useEffect, ReactElement } from "react";
 
 interface AuthContextType {
   isAuthenticated: boolean;
+  isAdmin: boolean;
   token: string | null;
   email: string | null;
-  handleLogin: (token: string, email?: string) => void;
+  handleLogin: (token: string, email: string) => void;
   handleLogout: () => void;
+  handleAdminLogin: (token: string) => void;
+  handleAdminLogout: () => void;
 }
 
 export const AuthContext = createContext<AuthContextType | null>(null);
@@ -15,6 +18,7 @@ export const AuthContextProvider = ({
 }: {
   children: ReactElement;
 }) => {
+  const [isAdmin, setIsAdmin] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
@@ -28,7 +32,7 @@ export const AuthContextProvider = ({
     setEmail(email);
   }, []);
 
-  const handleLogin = (token: string, email?: string) => {
+  const handleLogin = (token: string, email: string) => {
     localStorage.setItem("token", token);
     localStorage.setItem("email", email!);
     setIsAuthenticated(true);
@@ -44,9 +48,30 @@ export const AuthContextProvider = ({
     setToken(null);
   };
 
+  const handleAdminLogin = (token: string) => {
+    localStorage.setItem("token", token);
+    setToken(token);
+    setIsAdmin(true);
+  };
+
+  const handleAdminLogout = () => {
+    localStorage.removeItem("token");
+    setToken(null);
+    setIsAdmin(false);
+  };
+
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, token, email, handleLogin, handleLogout }}
+      value={{
+        isAuthenticated,
+        isAdmin,
+        token,
+        email,
+        handleLogin,
+        handleLogout,
+        handleAdminLogin,
+        handleAdminLogout,
+      }}
     >
       {children}
     </AuthContext.Provider>

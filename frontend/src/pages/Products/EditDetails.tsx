@@ -56,9 +56,11 @@ const ProductDetails = () => {
 
   const fetchProducts = async () => {
     try {
-      const res = await fetch(`http://localhost:7000/api/products/${_id}`);
+      const res = await fetch(
+        `https://cms-api-ty0d.onrender.com/api/products/${_id}`
+      );
       const data = await res.json();
-      console.log(data)
+      console.log(data);
       setProduct(data);
     } catch (error) {
       console.error(error);
@@ -68,14 +70,17 @@ const ProductDetails = () => {
   const editProduct = async () => {
     setIsEditing(false);
     try {
-      const res = await fetch(`http://localhost:7000/api/products/${_id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        `https://cms-api-ty0d.onrender.com/api/products/${_id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(formData),
+        }
+      );
       if (res.ok) {
         const newRes = await fetch(
           "https://cms-api-ty0d.onrender.com/api/products"

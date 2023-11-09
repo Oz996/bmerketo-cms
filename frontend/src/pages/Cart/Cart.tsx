@@ -23,7 +23,7 @@ const Cart = () => {
   };
 
   const handleOrder = async () => {
-    const res = await fetch("http://localhost:7000/orders", {
+    const res = await fetch("https://cms-api-ty0d.onrender.com/orders", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

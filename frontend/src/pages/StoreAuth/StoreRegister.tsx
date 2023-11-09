@@ -26,7 +26,7 @@ const StoreRegister = () => {
       if (password !== Cpassword) {
         return setError("Passwords do not match");
       }
-      const res = await fetch("http://localhost:7000/register", {
+      const res = await fetch("https://cms-api-ty0d.onrender.com/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -38,8 +38,8 @@ const Products = () => {
   const { products, setProducts, isLoading } = useProduct();
   const { token } = useAuth();
 
-  const API = "http://localhost:7000/api/products";
-  // const API = "https://cms-api-ty0d.onrender.com/api/products";
+  // const API = "http://localhost:7000/api/products";
+  const API = "https://cms-api-ty0d.onrender.com/api/products";
 
   const addProduct = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -10,7 +10,7 @@ import { useAuth } from "../../hooks/useAuth";
 
 const StoreHeader = () => {
   const [cartModal, setCartModal] = useState(false);
-  const { isAuthenticated, handleLogout } = useAuth();
+  const { isAuthenticated } = useAuth();
   const { cart } = useCart();
 
   const cartRef = useRef<HTMLDivElement | null>(null);

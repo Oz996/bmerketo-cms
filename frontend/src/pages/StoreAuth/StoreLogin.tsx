@@ -24,7 +24,7 @@ const StoreLogin = () => {
       if (!email || !password) {
         return setError("Fill out the required fields");
       }
-      const res = await fetch("http://localhost:7000/login", {
+      const res = await fetch("https://cms-api-ty0d.onrender.com/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
