@@ -23,7 +23,9 @@ const Details = () => {
 
   const getProduct = async () => {
     try {
-      const res = await fetch(`https://cms-api-ty0d.onrender.com/api/products/${_id}`);
+      const res = await fetch(
+        `https://cms-api-ty0d.onrender.com/api/products/${_id}`
+      );
       const data = await res.json();
       // console.log(data);
       setProduct(data);
@@ -83,7 +85,11 @@ const Details = () => {
               <button onClick={() => setQuantity(quantity + 1)}>+</button>
             </div>
             <div className="add-to-cart">
-              <button onClick={() => dispatch({ type: "ADD", payload: product, quantity })}>
+              <button
+                onClick={() =>
+                  dispatch({ type: "ADD", payload: product, quantity })
+                }
+              >
                 Add to Cart <FaShoppingBasket size={17} />
               </button>
             </div>

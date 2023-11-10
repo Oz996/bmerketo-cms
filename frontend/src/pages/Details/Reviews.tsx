@@ -54,12 +54,10 @@ const Reviews = ({ rating, setRating, reviews, setReviews }: props) => {
         body: JSON.stringify({ rating, review, name, email }),
       });
       const data = await res.json();
-      console.log(data);
       if (res.status === 201) {
         setReviews([...reviews, data]);
         setFormData(initalState);
         setRating(0);
-        console.log("reviews", reviews);
       }
     } catch (error) {
       setError("");

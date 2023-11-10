@@ -1,12 +1,11 @@
 import { CartItem, Product } from "../../types/types";
 
 type Actions =
-  | { type: "ADD"; payload: Product, quantity: number }
+  | { type: "ADD"; payload: Product; quantity: number }
   | { type: "INCREMENT"; payload: Product }
   | { type: "DECREMENT"; payload: Product }
-  | { type: "REMOVE"; payload: Product}
-  | { type: "EMPTY" }
-  | { type: "SET"; action: any };
+  | { type: "REMOVE"; payload: Product }
+  | { type: "EMPTY" };
 
 interface Cart {
   cart: CartItem[];
@@ -55,17 +54,19 @@ export const cartReducer = (state: Cart, action: Actions) => {
           .filter((product) => product.quantity > 0),
       };
     case "REMOVE":
-      const product = state.cart.find((product) => product._id === action.payload._id);
+      const product = state.cart.find(
+        (product) => product._id === action.payload._id
+      );
       if (product) {
-        const cart = state.cart.filter((product) => product._id !== action.payload._id);
+        const cart = state.cart.filter(
+          (product) => product._id !== action.payload._id
+        );
         const updatedCart = { ...state, cart: cart };
         return updatedCart;
       }
       return state;
     case "EMPTY":
       return { ...state, cart: [] };
-    case "SET":
-      return { ...state, cart: action };
     default:
       return state;
   }

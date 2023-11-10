@@ -6,12 +6,13 @@ import { Link } from "react-router-dom";
 import "flickity/css/flickity.css";
 import "./Home.scss";
 import StoreCard from "../../components/StoreCard/StoreCard";
+import StoreLoader from "../../utils/Loader/StoreLoader";
 
 const Home = () => {
   const [chairs, setChairs] = useState<Product[] | undefined>([]);
   const [sale, setSale] = useState<Product[] | undefined>([]);
   const [best, setBest] = useState<Product[] | undefined>([]);
-  const { products } = useProduct();
+  const { products, isLoading } = useProduct();
 
   useEffect(() => {
     const chairsFilter = products?.filter((item) => item.category === "chair");
@@ -30,6 +31,11 @@ const Home = () => {
 
   return (
     <section className="home">
+      {isLoading && (
+        <div className="loading">
+          <StoreLoader /> <p>Loading please be patient</p>
+        </div>
+      )}
       <Flickity options={flickityOptions}>
         {chairs?.map((chair) => (
           <article key={chair?._id} className="carousel-content">

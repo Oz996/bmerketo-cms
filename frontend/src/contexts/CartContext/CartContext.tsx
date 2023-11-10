@@ -1,17 +1,16 @@
-import { createContext, useEffect, useReducer } from "react";
+import { ReactElement, createContext, useEffect, useReducer } from "react";
 import { cartReducer } from "./CartReducer";
 
-const initialState = {
-  cart: [],
-};
+const localStorageCart = JSON.parse(localStorage.getItem("cart") || "[]");
 
-export const CartContext = createContext(initialState);
-export function CartContextProvider({ children }) {
-  const [cart, dispatch] = useReducer(cartReducer, initialState);
+export const CartContext = createContext(localStorageCart);
+export function CartContextProvider({ children }: { children: ReactElement }) {
+  const [cart, dispatch] = useReducer(cartReducer, localStorageCart);
+
   useEffect(() => {
-    
-  },[])
-  console.log(cart);
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
   return (
     <CartContext.Provider value={{ cart, dispatch }}>
       {children}

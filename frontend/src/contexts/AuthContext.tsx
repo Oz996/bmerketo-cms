@@ -22,7 +22,7 @@ export const AuthContextProvider = ({
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
-  console.log(email);
+  console.log(token);
 
   useEffect(() => {
     const token = localStorage.getItem("token");

@@ -46,7 +46,9 @@ const CartModal = ({ cartRef, setCartModal }) => {
               <ul>
                 {cart?.cart?.map((product: CartItem) => (
                   <li key={product?._id}>
-                    <Link to={`/store/${product._id}`}>
+                    <Link
+                      to={`/store/${product._id}`}
+                    >
                       <div className="details">
                         <img src={product?.image} alt="" />
                         <div className="text">

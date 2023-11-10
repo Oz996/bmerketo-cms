@@ -51,7 +51,7 @@ const StoreHeader = () => {
               onClick={() => setCartModal(true)}
               className="cart-icon"
             />
-            <div className={cart.cart.length > 0 ? "red" : ""}>
+            <div className={cart?.cart?.length > 0 ? "red" : ""}>
               {cart?.cart?.length}
             </div>
           </div>
