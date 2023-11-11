@@ -5,12 +5,7 @@ import { MdAddShoppingCart } from "react-icons/md";
 import { scrollToTopSmooth } from "../../utils/scrolls";
 
 const StoreCard = ({ product }: { product: Product }) => {
-  const handleIconClick = (e) => {
-    console.log("Icon clicked");
-    e.stopPropagation();
-    // Handle the shopping cart icon click event
-    // For example, add the product to the cart
-  };
+
   return (
     <article>
       <Link to={`/store/${product?._id}`} onClick={scrollToTopSmooth}>
@@ -40,7 +35,6 @@ const StoreCard = ({ product }: { product: Product }) => {
             <MdAddShoppingCart
               size={20}
               className="icon"
-              onClick={handleIconClick}
             />
           </div>
         </div>

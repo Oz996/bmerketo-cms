@@ -7,10 +7,9 @@ interface Cart {
   cart: CartItem[];
 }
 
-const { getItem, setItem } = useLocalStorage("cart");
-
 export const CartContext = createContext<Cart | undefined>(undefined);
 export function CartContextProvider({ children }: { children: ReactElement }) {
+  const { getItem, setItem } = useLocalStorage("cart");
   const initialCartState = getItem() || { cart: [] };
   const [cart, dispatch] = useReducer(cartReducer, initialCartState);
 
