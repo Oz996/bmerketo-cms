@@ -6,11 +6,14 @@ import { BsFillCartXFill } from "react-icons/bs";
 import { useEffect } from "react";
 import { CartItem } from "../../types/types";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 const CartModal = ({ cartRef, setCartModal }) => {
   const { cart, dispatch } = useCart();
 
   console.log(cart.cart);
+
+  const { removeItem } = useLocalStorage("cart");
 
   useEffect(() => {
     document.addEventListener("mousedown", (e) => {
@@ -41,14 +44,19 @@ const CartModal = ({ cartRef, setCartModal }) => {
             <>
               <div className="cart">
                 <h2>Cart ({cart.cart.length})</h2>
-                <p onClick={() => dispatch({ type: "EMPTY" })}>Remove all</p>
+                <p
+                  onClick={() => {
+                    dispatch({ type: "EMPTY" });
+                    removeItem();
+                  }}
+                >
+                  Remove all
+                </p>
               </div>
               <ul>
                 {cart?.cart?.map((product: CartItem) => (
                   <li key={product?._id}>
-                    <Link
-                      to={`/store/${product._id}`}
-                    >
+                    <Link to={`/store/${product._id}`}>
                       <div className="details">
                         <img src={product?.image} alt="" />
                         <div className="text">
@@ -75,9 +83,10 @@ const CartModal = ({ cartRef, setCartModal }) => {
                       </button>
                       <FaTrash
                         size={15}
-                        onClick={() =>
-                          dispatch({ type: "REMOVE", payload: product })
-                        }
+                        onClick={() => {
+                          dispatch({ type: "REMOVE", payload: product });
+                          removeItem();
+                        }}
                       />
                     </div>
                   </li>
