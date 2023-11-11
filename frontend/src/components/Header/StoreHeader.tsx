@@ -1,7 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
 import "./StoreHeader.scss";
 import { BsSearch } from "react-icons/bs";
-import {FaUser} from "react-icons/fa"
+import { FaUser } from "react-icons/fa";
 import { IoMdCart } from "react-icons/io";
 import { useState, useRef } from "react";
 import CartModal from "../CartModal/CartModal";
@@ -11,7 +11,7 @@ import { useAuth } from "../../hooks/useAuth";
 const StoreHeader = () => {
   const [cartModal, setCartModal] = useState(false);
   const { isAuthenticated } = useAuth();
-  const { cart } = useCart();
+  const { cart = { cart: [] } } = useCart();
 
   const cartRef = useRef<HTMLDivElement | null>(null);
 
@@ -41,7 +41,7 @@ const StoreHeader = () => {
                 <Link to="/store/login">Login</Link>
               ) : (
                 <Link to="/store/profile">
-                <FaUser size={17}/>
+                  <FaUser size={17} />
                 </Link>
                 // <p onClick={() => handleLogout()}>Logout</p>
               )}
