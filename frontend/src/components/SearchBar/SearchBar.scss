@@ -1,0 +1,47 @@
+@use "../../sass/" as *;
+
+.search-bar {
+  position: relative;
+  .search-overlay {
+    background-color: black;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    div{
+        max-height: 80rem;
+
+    }
+  }
+  .search-close {
+    color: $store-hover-red;
+    z-index: 3;
+    cursor: pointer;
+    position: fixed;
+    right: 10%;
+
+  }
+  .search-icon {
+    background-color: black;
+    cursor: pointer;
+    color: white;
+  }
+  input {
+    background-color: rgb(246, 246, 246);
+    padding: 1.5rem 2rem;
+    width: 40rem;
+    border-radius: 0.3rem;
+    border: none;
+    transition: 0.3s;
+    font-size: 1.5rem;
+    &:focus {
+      outline: 1px solid red;
+    }
+  }
+}

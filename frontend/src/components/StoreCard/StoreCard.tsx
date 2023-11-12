@@ -4,8 +4,12 @@ import { Product } from "../../types/types";
 import { MdAddShoppingCart } from "react-icons/md";
 import { scrollToTopSmooth } from "../../utils/scrolls";
 
-const StoreCard = ({ product }: { product: Product }) => {
+interface props {
+  product: Product;
+  style?: string;
+}
 
+const StoreCard = ({ product, style }: props) => {
   return (
     <article>
       <Link to={`/store/${product?._id}`} onClick={scrollToTopSmooth}>
@@ -20,22 +24,19 @@ const StoreCard = ({ product }: { product: Product }) => {
             alt={product?.name}
             className="second-image"
           />
-          <p>{product?.name}</p>
+          <p className={style && `${style}`}>{product?.name}</p>
           <div>
             <div>
               {!product?.sale ? (
-                <p>€{product?.price}</p>
+                <p className={style && `${style}`}>€{product?.price}</p>
               ) : (
                 <>
                   <p className="on-sale">€{product?.price}</p>
-                  <p>€{product?.sale}</p>
+                  <p className={style && `${style}`}>€{product?.sale}</p>
                 </>
               )}
             </div>
-            <MdAddShoppingCart
-              size={20}
-              className="icon"
-            />
+            <MdAddShoppingCart size={20} className="icon" />
           </div>
         </div>
       </Link>

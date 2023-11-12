@@ -29,7 +29,10 @@ export const cartReducer = (state: Cart, action: Actions) => {
       } else {
         const newProduct = {
           ...state,
-          cart: [...state.cart, { ...action.payload, quantity: 1 }],
+          cart: [
+            ...state.cart,
+            { ...action.payload, quantity: action.quantity },
+          ],
         };
         return newProduct;
       }

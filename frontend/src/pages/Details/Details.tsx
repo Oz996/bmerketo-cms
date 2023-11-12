@@ -86,9 +86,10 @@ const Details = () => {
             </div>
             <div className="add-to-cart">
               <button
-                onClick={() =>
-                  addToCart(product!, quantity)
-                }
+                onClick={() => {
+                  addToCart(product!, quantity);
+                  setQuantity(1);
+                }}
               >
                 Add to Cart <FaShoppingBasket size={17} />
               </button>
