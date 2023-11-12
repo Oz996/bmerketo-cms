@@ -22,7 +22,7 @@ export const cartReducer = (state: Cart, action: Actions) => {
           ...state,
           cart: state.cart?.map((product) =>
             product._id === action.payload._id
-              ? { ...product, quantity: product.quantity + 1 }
+              ? { ...product, quantity: product.quantity + action.quantity }
               : product
           ),
         };
