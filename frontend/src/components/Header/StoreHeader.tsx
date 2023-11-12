@@ -12,6 +12,7 @@ const StoreHeader = () => {
   const [cartModal, setCartModal] = useState(false);
   const { isAuthenticated } = useAuth();
   const { cart } = useCart();
+  console.log(cart)
 
   const cartRef = useRef<HTMLDivElement | null>(null);
 

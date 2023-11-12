@@ -14,13 +14,13 @@ interface Cart {
 export const cartReducer = (state: Cart, action: Actions) => {
   switch (action.type) {
     case "ADD":
-      const existingProduct = state.cart.find(
+      const existingProduct = state.cart?.find(
         (product) => product._id === action.payload._id
       );
       if (existingProduct) {
         return {
           ...state,
-          cart: state.cart.map((product) =>
+          cart: state.cart?.map((product) =>
             product._id === action.payload._id
               ? { ...product, quantity: product.quantity + action.quantity }
               : product
@@ -36,7 +36,7 @@ export const cartReducer = (state: Cart, action: Actions) => {
     case "INCREMENT":
       return {
         ...state,
-        cart: state.cart.map((product) =>
+        cart: state.cart?.map((product) =>
           product._id === action.payload._id
             ? { ...product, quantity: product.quantity + 1 }
             : product
@@ -54,11 +54,11 @@ export const cartReducer = (state: Cart, action: Actions) => {
           .filter((product) => product.quantity > 0),
       };
     case "REMOVE":
-      const product = state.cart.find(
+      const product = state.cart?.find(
         (product) => product._id === action.payload._id
       );
       if (product) {
-        const cart = state.cart.filter(
+        const cart = state.cart?.filter(
           (product) => product._id !== action.payload._id
         );
         const updatedCart = { ...state, cart: cart };

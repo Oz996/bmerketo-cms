@@ -16,7 +16,7 @@ export function CartContextProvider({ children }: { children: ReactElement }) {
   }, [cart, setItem]);
 
   return (
-    <CartContext.Provider value={{ cart: cart.cart, dispatch }}>
+    <CartContext.Provider value={{ cart: cart?.cart, dispatch }}>
       {children}
     </CartContext.Provider>
   );

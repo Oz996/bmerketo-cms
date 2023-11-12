@@ -16,8 +16,6 @@ interface props {
 const CartModal = ({ cartRef, setCartModal }: props) => {
   const { cart, dispatch } = useCart();
 
-  console.log(cart);
-
   const { removeItem } = useLocalStorage("cart");
 
   useEffect(() => {
@@ -27,6 +25,8 @@ const CartModal = ({ cartRef, setCartModal }: props) => {
       }
     });
   });
+
+  console.log(cart)
 
   return (
     <AnimatePresence>
@@ -47,7 +47,7 @@ const CartModal = ({ cartRef, setCartModal }: props) => {
           ) : (
             <>
               <div className="cart">
-                <h2>Cart ({cart.length})</h2>
+                <h2>Cart ({cart?.length})</h2>
                 <p
                   onClick={() => {
                     dispatch({ type: "EMPTY" });
