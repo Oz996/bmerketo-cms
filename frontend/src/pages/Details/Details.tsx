@@ -9,7 +9,7 @@ import { useCart } from "../../hooks/useCart";
 
 const Details = () => {
   const [product, setProduct] = useState<Product>();
-  const [quantity, setQuantity] = useState(1);
+  // const [quantity, setQuantity] = useState(1);
   const [information, setInformation] = useState(1);
   const [rating, setRating] = useState(0);
 
@@ -20,6 +20,7 @@ const Details = () => {
   const { dispatch } = useCart();
   const { _id } = useParams();
   console.log(product);
+  console.log(dispatch);
 
   const getProduct = async () => {
     try {
@@ -45,9 +46,9 @@ const Details = () => {
     }
   }, [product]);
 
-  const decrementQuantity = () => {
-    if (quantity > 1) setQuantity(quantity - 1);
-  };
+  // const decrementQuantity = () => {
+  //   if (quantity > 1) setQuantity(quantity - 1);
+  // };
 
   return (
     <section className="store-container">
@@ -80,14 +81,14 @@ const Details = () => {
           <p className="details-price">£{product?.price}</p>
           <div className="details-options">
             <div className="buttons">
-              <button onClick={decrementQuantity}>-</button>
-              <p>{quantity}</p>
-              <button onClick={() => setQuantity(quantity + 1)}>+</button>
+              <button>-</button>
+              <p>{1}</p>
+              <button>+</button>
             </div>
             <div className="add-to-cart">
               <button
                 onClick={() =>
-                  dispatch({ type: "ADD", payload: product!, quantity })
+                  dispatch({ type: "ADD", payload: product })
                 }
               >
                 Add to Cart <FaShoppingBasket size={17} />
