@@ -7,7 +7,13 @@ import { useAuth } from "../../hooks/useAuth";
 import { toast } from "react-toastify";
 
 const Cart = () => {
-  const { cart, dispatch } = useCart();
+  const {
+    cart,
+    emptyCart,
+    incrementCartItem,
+    decrementCartItem,
+    removeCartItem,
+  } = useCart();
   const { token } = useAuth();
   const navigate = useNavigate();
 
@@ -41,7 +47,7 @@ const Cart = () => {
     console.log(res);
     if (res.status === 201) {
       navigate("/home");
-      dispatch({ type: "EMPTY" });
+      emptyCart();
       toast.success("Thank you for your order!");
     }
   };
@@ -63,25 +69,10 @@ const Cart = () => {
               </Link>
             </div>
             <div className="buttons">
-              <button
-                onClick={() =>
-                  dispatch({ type: "DECREMENT", payload: product })
-                }
-              >
-                -
-              </button>
+              <button onClick={() => decrementCartItem(product)}>-</button>
               <p>{product?.quantity}</p>
-              <button
-                onClick={() =>
-                  dispatch({ type: "INCREMENT", payload: product })
-                }
-              >
-                +
-              </button>
-              <FaTrash
-                size={15}
-                onClick={() => dispatch({ type: "REMOVE", payload: product })}
-              />
+              <button onClick={() => incrementCartItem(product)}>+</button>
+              <FaTrash size={15} onClick={() => removeCartItem(product)} />
             </div>
             <div className="subtotal">
               <p>Subtotal:</p>
