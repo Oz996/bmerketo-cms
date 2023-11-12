@@ -1,13 +1,11 @@
 import { ReactElement, createContext, useEffect, useReducer } from "react";
-import { cartReducer } from "./CartReducer";
+import { Actions, cartReducer } from "./CartReducer";
 import { CartItem } from "../../types/types";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 
-interface Cart {
-  cart: CartItem[];
-}
-
-export const CartContext = createContext<Cart | undefined>(undefined);
+export const CartContext = createContext<
+  { cart: CartItem[]; dispatch: React.Dispatch<Actions> } | undefined
+>(undefined);
 export function CartContextProvider({ children }: { children: ReactElement }) {
   const { getItem, setItem } = useLocalStorage("cart");
   const initialCartState = getItem() || { cart: [] };
@@ -18,7 +16,7 @@ export function CartContextProvider({ children }: { children: ReactElement }) {
   }, [cart, setItem]);
 
   return (
-    <CartContext.Provider value={{ cart, dispatch }}>
+    <CartContext.Provider value={{ cart: cart.cart, dispatch }}>
       {children}
     </CartContext.Provider>
   );

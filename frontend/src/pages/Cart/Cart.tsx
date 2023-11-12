@@ -16,7 +16,7 @@ const Cart = () => {
   };
 
   const total = () => {
-    return cart.cart.reduce(
+    return cart.reduce(
       (total: number, product: CartItem) => total + subtotal(product),
       0
     );
@@ -30,7 +30,7 @@ const Cart = () => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        products: cart.cart.map((product: CartItem) => {
+        products: cart.map((product: CartItem) => {
           return {
             product: product?._id,
             quantity: product?.quantity,
@@ -49,7 +49,7 @@ const Cart = () => {
   return (
     <section className="store-container cart-page">
       <ul>
-        {cart.cart.map((product: CartItem) => (
+        {cart.map((product: CartItem) => (
           <li key={product?._id}>
             <div className="first">
               <Link to={`/store/${product?._id}`}>
@@ -92,7 +92,7 @@ const Cart = () => {
       </ul>
       <div className="checkout">
         <h2>Total: £{total()}</h2>
-        <button disabled={cart.cart.length === 0} onClick={handleOrder}>
+        <button disabled={cart.length === 0} onClick={handleOrder}>
           Complete Purchase
         </button>
       </div>

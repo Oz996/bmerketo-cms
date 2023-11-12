@@ -3,6 +3,7 @@ import "./Details.scss";
 import { useState, ChangeEvent, FormEvent } from "react";
 import { Review } from "../../types/types";
 import { useParams } from "react-router-dom";
+import StoreLoader from "../../utils/Loader/StoreLoader";
 
 interface props {
   rating: number;
@@ -45,14 +46,17 @@ const Reviews = ({ rating, setRating, reviews, setReviews }: props) => {
         return;
       }
       setLoading(true);
-      const res = await fetch(`https://cms-api-ty0d.onrender.com/api/products/${_id}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          // Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ rating, review, name, email }),
-      });
+      const res = await fetch(
+        `https://cms-api-ty0d.onrender.com/api/products/${_id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ rating, review, name, email }),
+        }
+      );
       const data = await res.json();
       if (res.status === 201) {
         setReviews([...reviews, data]);
@@ -278,7 +282,9 @@ const Reviews = ({ rating, setRating, reviews, setReviews }: props) => {
               className={error.length > 0 ? "error-border" : ""}
             />
             <p>{error}</p>
-            <button type="submit">Submit</button>
+            <button disabled={loading} type="submit">
+              {loading && <StoreLoader />} Submit
+            </button>
           </form>
         </div>
         <div className={`review-div ${reviews?.length === 0 && "short"}`}>

@@ -87,7 +87,7 @@ const Details = () => {
             <div className="add-to-cart">
               <button
                 onClick={() =>
-                  dispatch({ type: "ADD", payload: product, quantity })
+                  dispatch({ type: "ADD", payload: product!, quantity })
                 }
               >
                 Add to Cart <FaShoppingBasket size={17} />

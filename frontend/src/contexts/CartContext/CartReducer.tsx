@@ -1,6 +1,6 @@
 import { CartItem, Product } from "../../types/types";
 
-type Actions =
+export type Actions =
   | { type: "ADD"; payload: Product; quantity: number }
   | { type: "INCREMENT"; payload: Product }
   | { type: "DECREMENT"; payload: Product }

@@ -11,8 +11,7 @@ import { useAuth } from "../../hooks/useAuth";
 const StoreHeader = () => {
   const [cartModal, setCartModal] = useState(false);
   const { isAuthenticated } = useAuth();
-  const cartData = useCart();
-  const cart = cartData ? cartData.cart || [] : [];
+  const { cart } = useCart();
 
   const cartRef = useRef<HTMLDivElement | null>(null);
 
@@ -52,8 +51,8 @@ const StoreHeader = () => {
               onClick={() => setCartModal(true)}
               className="cart-icon"
             />
-            <div className={cart?.cart?.length > 0 ? "red" : ""}>
-              {cart?.cart?.length}
+            <div className={cart?.length > 0 ? "red" : ""}>
+              {cart?.length}
             </div>
           </div>
         </div>
