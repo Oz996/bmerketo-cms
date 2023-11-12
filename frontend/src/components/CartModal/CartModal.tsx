@@ -32,8 +32,6 @@ const CartModal = ({ cartRef, setCartModal }: props) => {
     });
   });
 
-  console.log(cart);
-
   return (
     <AnimatePresence>
       <motion.div

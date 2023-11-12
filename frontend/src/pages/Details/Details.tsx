@@ -19,7 +19,6 @@ const Details = () => {
   );
   const { addToCart } = useCart();
   const { _id } = useParams();
-  console.log(product);
 
   const getProduct = async () => {
     try {
@@ -85,11 +84,7 @@ const Details = () => {
               <button onClick={() => setQuantity(quantity + 1)}>+</button>
             </div>
             <div className="add-to-cart">
-              <button
-                onClick={() =>
-                  addToCart(product!, quantity)
-                }
-              >
+              <button onClick={() => addToCart(product!, quantity)}>
                 Add to Cart <FaShoppingBasket size={17} />
               </button>
             </div>
