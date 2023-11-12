@@ -14,7 +14,13 @@ interface props {
 }
 
 const CartModal = ({ cartRef, setCartModal }: props) => {
-  const { cart, dispatch } = useCart();
+  const {
+    cart,
+    removeCartItem,
+    incrementCartItem,
+    decrementCartItem,
+    emptyCart,
+  } = useCart();
 
   const { removeItem } = useLocalStorage("cart");
 
@@ -26,7 +32,7 @@ const CartModal = ({ cartRef, setCartModal }: props) => {
     });
   });
 
-  console.log(cart)
+  console.log(cart);
 
   return (
     <AnimatePresence>
@@ -50,7 +56,7 @@ const CartModal = ({ cartRef, setCartModal }: props) => {
                 <h2>Cart ({cart?.length})</h2>
                 <p
                   onClick={() => {
-                    dispatch({ type: "EMPTY" });
+                    emptyCart();
                     removeItem();
                   }}
                 >
@@ -70,25 +76,17 @@ const CartModal = ({ cartRef, setCartModal }: props) => {
                       </div>
                     </Link>
                     <div className="buttons">
-                      <button
-                        onClick={() =>
-                          dispatch({ type: "DECREMENT", payload: product })
-                        }
-                      >
+                      <button onClick={() => decrementCartItem(product)}>
                         -
                       </button>
                       <p>{product?.quantity}</p>
-                      <button
-                        onClick={() =>
-                          dispatch({ type: "INCREMENT", payload: product })
-                        }
-                      >
+                      <button onClick={() => incrementCartItem(product)}>
                         +
                       </button>
                       <FaTrash
                         size={15}
                         onClick={() => {
-                          dispatch({ type: "REMOVE", payload: product });
+                          removeCartItem(product);
                           removeItem();
                         }}
                       />

@@ -17,7 +17,7 @@ const Details = () => {
   const [displayImage, setDisplayImage] = useState<string | undefined>(
     undefined
   );
-  const { dispatch } = useCart();
+  const { addToCart } = useCart();
   const { _id } = useParams();
   console.log(product);
 
@@ -87,7 +87,7 @@ const Details = () => {
             <div className="add-to-cart">
               <button
                 onClick={() =>
-                  dispatch({ type: "ADD", payload: product!, quantity })
+                  addToCart(product!, quantity)
                 }
               >
                 Add to Cart <FaShoppingBasket size={17} />
