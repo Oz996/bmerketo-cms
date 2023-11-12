@@ -17,25 +17,20 @@ export const cartReducer = (state: Cart, action: Actions) => {
       const existingProduct = state.cart?.find(
         (product) => product._id === action.payload._id
       );
-      console.log(existingProduct)
       if (existingProduct) {
         return {
           ...state,
           cart: state.cart?.map((product) =>
             product._id === action.payload._id
-              ? [{ ...product, quantity: product.quantity + action.quantity }]
+              ? { ...product, quantity: product.quantity + action.quantity }
               : product
           ),
         };
       } else {
         const newProduct = {
           ...state,
-          cart: [
-            ...state.cart,
-            { ...action.payload, quantity: action.quantity },
-          ],
+          cart: [...state.cart, { ...action.payload, quantity: 1 }],
         };
-        console.log(newProduct)
         return newProduct;
       }
     case "INCREMENT":
