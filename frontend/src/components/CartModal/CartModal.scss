@@ -6,22 +6,22 @@
   z-index: 2;
   background-color: white;
   min-height: 20rem;
-  min-width: 55rem;
-  max-width: 55rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border: 1px solid rgb(226, 226, 226);
   padding: 3rem;
-  @include mobile{
+  max-height: 100vh;
+  overflow-y: scroll;
+  @include mobile {
     width: 100%;
-    min-width: none;
-    max-width: none;
+    left: 0;
+    right: 0;
   }
-
   .content {
     .empty {
       display: flex;
       flex-direction: column;
       align-items: center;
+      width: 50rem;
       p {
         font-size: 2rem;
       }

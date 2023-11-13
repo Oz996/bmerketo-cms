@@ -44,7 +44,7 @@ const CartModal = ({ cartRef, setCartModal }: props) => {
         ref={cartRef}
         className="cart-modal"
       >
-        <div className="content" id="whore">
+        <div className="content">
           {cart?.length === 0 ? (
             <div className="empty">
               <p>Cart is empty</p>
@@ -66,7 +66,10 @@ const CartModal = ({ cartRef, setCartModal }: props) => {
               <ul>
                 {cart?.map((product: CartItem) => (
                   <li key={product?._id}>
-                    <Link to={`/store/${product._id}`}>
+                    <Link
+                      to={`/store/${product._id}`}
+                      onClick={() => setCartModal(false)}
+                    >
                       <div className="details">
                         <img src={product?.image} alt="" />
                         <div className="text">

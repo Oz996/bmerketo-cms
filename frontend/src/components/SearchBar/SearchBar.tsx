@@ -16,7 +16,7 @@ const SearchBar = ({ setSearchBar }: props) => {
 
   const searchFunction = (search: string) => {
     if (search === "") {
-      setDisplayList(products);
+      setDisplayList(null);
       return;
     }
     const searchProducts = products?.filter((product) =>

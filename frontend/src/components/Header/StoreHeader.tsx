@@ -3,7 +3,9 @@ import "./StoreHeader.scss";
 import { BsSearch } from "react-icons/bs";
 import { FaUser } from "react-icons/fa";
 import { IoMdCart } from "react-icons/io";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { GrClose } from "react-icons/gr";
+import { AiOutlineMenu } from "react-icons/ai";
 import CartModal from "../CartModal/CartModal";
 import { useCart } from "../../hooks/useCart";
 import { useAuth } from "../../hooks/useAuth";
@@ -12,24 +14,51 @@ import SearchBar from "../SearchBar/SearchBar";
 const StoreHeader = () => {
   const [cartModal, setCartModal] = useState(false);
   const [searchBar, setSearchBar] = useState(false);
+  const [hamburgerMenu, setHamburgerMenu] = useState(false);
   const { isAuthenticated } = useAuth();
   const { cart } = useCart();
   console.log(cart);
 
   const cartRef = useRef<HTMLDivElement | null>(null);
+  const navRef = useRef<HTMLDivElement | null>(null);
+
+  const closeMenu = () => {
+    setHamburgerMenu(false);
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", (e) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setHamburgerMenu(false);
+      }
+    });
+  });
 
   return (
     <>
       <header className="store-header">
-        <nav>
+        {!hamburgerMenu ? (
+          <AiOutlineMenu
+            size={35}
+            className="hamburger-icon"
+            onClick={() => setHamburgerMenu(true)}
+          />
+        ) : (
+          <GrClose
+            size={35}
+            className="hamburger-icon"
+            onClick={() => setHamburgerMenu(false)}
+          />
+        )}
+        <nav ref={navRef} className={hamburgerMenu ? "show-nav" : ""}>
           <div className="container header-flex">
-            <div>
+            <div className="store-logo">
               <Link to="/home">
                 <img src="/StoreLogo.svg" alt="" />
               </Link>
             </div>
 
-            <ul>
+            <ul onClick={closeMenu}>
               <li>
                 <Link to="/home">Home</Link>
               </li>
@@ -38,7 +67,7 @@ const StoreHeader = () => {
               </li>
             </ul>
 
-            <div className="store-header-end">
+            <div onClick={closeMenu} className="store-header-end">
               <BsSearch size={15} onClick={() => setSearchBar(true)} />
               <span>
                 {!isAuthenticated ? (

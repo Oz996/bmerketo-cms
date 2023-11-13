@@ -53,6 +53,9 @@ ul {
   @include tablet {
     width: 90%;
   }
+  @include mobile {
+    padding-top: 15rem;
+  }
 }
 .images-arrow-active {
   color: blue;
@@ -88,4 +91,8 @@ ul {
   &:active {
     opacity: 0.9;
   }
+}
+.flex {
+  display: flex;
+  gap: 1rem;
 }

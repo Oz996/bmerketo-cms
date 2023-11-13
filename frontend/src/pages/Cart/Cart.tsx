@@ -1,5 +1,6 @@
 import { FaTrash } from "react-icons/fa";
 import { useCart } from "../../hooks/useCart";
+import { useEffect } from "react";
 import "./Cart.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { CartItem } from "../../types/types";
@@ -14,8 +15,15 @@ const Cart = () => {
     decrementCartItem,
     removeCartItem,
   } = useCart();
-  const { token } = useAuth();
+  const { token, isAuthenticated } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/store/login");
+      toast.error("Please sign in to place order");
+    }
+  }, [isAuthenticated, navigate]);
 
   const subtotal = (product: CartItem) => {
     return product?.quantity * product?.price;

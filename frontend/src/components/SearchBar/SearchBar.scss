@@ -14,9 +14,18 @@
     justify-content: center;
     align-items: center;
     z-index: 2;
-    div{
-        max-height: 80rem;
+    overflow-y: scroll;
+    @include tablet {
+      width: 100%;
+      height: 100%;
+    }
+    @include mobile {
+      justify-content: start;
+      padding-top: 15rem;
 
+    }
+    div {
+      max-height: 80rem;
     }
   }
   .search-close {
@@ -25,7 +34,10 @@
     cursor: pointer;
     position: fixed;
     right: 10%;
-
+    top: 2%;
+    @include mobile {
+      top: 3%;
+    }
   }
   .search-icon {
     background-color: black;
@@ -42,6 +54,12 @@
     font-size: 1.5rem;
     &:focus {
       outline: 1px solid red;
+    }
+    @include tablet {
+      width: 90%;
+    }
+    @include mobile{
+      margin-bottom: 2rem;
     }
   }
 }
