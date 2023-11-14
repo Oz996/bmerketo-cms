@@ -1,6 +1,6 @@
 import "./Header.scss";
 import Logo from "/Logo.svg";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import Loader from "../../utils/Loader/Loader";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { CgClose } from "react-icons/cg";
@@ -14,14 +14,16 @@ const Header = () => {
   const navigate = useNavigate();
   const navRef = useRef<HTMLUListElement>(null);
 
+  const location = useLocation();
+
   const handleLogoutClick = () => {
     handleLogout();
     navigate("/");
   };
 
-  const closeNavMenuOnClick = () => {
+  useEffect(() => {
     setHamburgerMenu(false);
-  };
+  }, [location]);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -74,18 +76,17 @@ const Header = () => {
             {isAdmin ? (
               <>
                 <NavLink to="/overview">
-                  <li onClick={closeNavMenuOnClick}> Overview </li>
+                  <li> Overview </li>
                 </NavLink>
                 <NavLink to="/products">
-                  <li onClick={closeNavMenuOnClick}> Products </li>
+                  <li> Products </li>
                 </NavLink>
                 <NavLink to="/orders">
-                  <li onClick={closeNavMenuOnClick}> Orders </li>
+                  <li> Orders </li>
                 </NavLink>
                 <li
                   onClick={() => {
                     handleLogoutClick();
-                    closeNavMenuOnClick();
                   }}
                 >
                   Log Out

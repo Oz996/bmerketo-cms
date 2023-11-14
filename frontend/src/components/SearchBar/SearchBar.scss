@@ -22,7 +22,6 @@
     @include mobile {
       justify-content: start;
       padding-top: 15rem;
-
     }
     div {
       max-height: 80rem;
@@ -36,7 +35,7 @@
     right: 10%;
     top: 2%;
     @include mobile {
-      top: 3%;
+      top: 1%;
     }
   }
   .search-icon {
@@ -58,7 +57,7 @@
     @include tablet {
       width: 90%;
     }
-    @include mobile{
+    @include mobile {
       margin-bottom: 2rem;
     }
   }

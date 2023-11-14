@@ -11,6 +11,7 @@
     left: 0;
     z-index: 3;
     background-color: white;
+    padding: 2rem;
   }
   .mobile-header {
     @include mobile {
@@ -98,7 +99,7 @@
       position: fixed;
       left: 0;
       right: 0;
-      top: 11rem;
+      top: 7.8rem;
       z-index: 3;
       background-color: white;
       padding: 2rem;
