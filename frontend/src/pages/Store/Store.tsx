@@ -31,15 +31,14 @@ const Store = () => {
     }
     const searchProducts = products?.filter((product) =>
       product.name.toLowerCase().includes(search.toLowerCase())
-    );
+      );
+      console.log("search")
     setDisplayList(searchProducts!);
   };
 
   useEffect(() => {
     setDisplayList(products);
   }, [products]);
-
-  console.log(displayList);
 
   return (
     <section className="store-container store">

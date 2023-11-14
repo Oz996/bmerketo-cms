@@ -48,26 +48,27 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-container">
-        {!hamburgerMenu ? (
-          <RxHamburgerMenu
-            size={35}
-            className="hamburger"
-            onClick={() => setHamburgerMenu(true)}
-          />
-        ) : (
-          <CgClose
-            size={35}
-            onClick={() => setHamburgerMenu(false)}
-            className="hamburger"
-          />
-        )}
-        <div className="logo">
-          <Link to="/overview">
-            <img src={Logo} alt="logo" />
-            <h3>CMS</h3>
-          </Link>
-        </div>
         <nav>
+          {!hamburgerMenu ? (
+            <RxHamburgerMenu
+              size={35}
+              className="hamburger"
+              onClick={() => setHamburgerMenu(true)}
+            />
+          ) : (
+            <CgClose
+              size={35}
+              onClick={() => setHamburgerMenu(false)}
+              className="hamburger"
+            />
+          )}
+          <div className="logo">
+            <Link to="/overview">
+              <img src={Logo} alt="logo" />
+              <h3>CMS</h3>
+            </Link>
+          </div>
+
           <ul className={hamburgerMenu ? "show" : ""} ref={navRef}>
             {/* Display navbar with content if admin is logged in */}
             {isAdmin ? (

@@ -4,13 +4,29 @@
   padding: 4rem;
   border-bottom: 1px solid rgb(233, 233, 233);
   margin-bottom: 1rem;
-  @include mobile{
+  @include mobile {
     position: fixed;
     top: 0;
     right: 0;
     left: 0;
     z-index: 3;
     background-color: white;
+  }
+  .mobile-header {
+    @include mobile {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    img {
+      width: 18rem;
+    }
+    :nth-child(2) {
+      display: none;
+      @include mobile {
+        display: flex;
+      }
+    }
   }
   a {
     color: $paragragh;

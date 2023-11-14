@@ -19,7 +19,6 @@ const Details = () => {
   );
   const { addToCart } = useCart();
   const { _id } = useParams();
-  console.log(product);
 
   const getProduct = async () => {
     try {

@@ -26,6 +26,10 @@
     cursor: pointer;
   }
   nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     li {
       text-decoration: none;
       transition: transform 0.2s ease;
@@ -53,6 +57,9 @@
 }
 @media (max-width: 1134px) {
   .header {
+    nav {
+      flex-direction: column;
+    }
     .header-container {
       display: flex;
       flex-direction: column;
@@ -68,6 +75,11 @@
 }
 @media (max-width: 712px) {
   .header {
+    nav {
+      flex-direction: row;
+      justify-content: start;
+      gap: 1rem;
+    }
     .header-container {
       flex-direction: row;
       justify-content: start;
@@ -84,11 +96,13 @@
       flex-direction: column;
       position: absolute;
       padding-block: 2rem;
-      top: 6rem;
-      left: 10%;
+      top: 5rem;
+      left: 0;
+      right: 0;
+      bottom: 0;
       z-index: 1;
-      width: 20rem;
-      border-radius: 1rem;
+      border-radius: 0 0 1rem 1rem;
+      opacity: 0.9;
       background-color: $primary-color;
       transition: opacity 1s;
       li {

@@ -37,19 +37,24 @@ const StoreHeader = () => {
   return (
     <>
       <header className="store-header">
-        {!hamburgerMenu ? (
-          <AiOutlineMenu
-            size={35}
-            className="hamburger-icon"
-            onClick={() => setHamburgerMenu(true)}
-          />
-        ) : (
-          <GrClose
-            size={35}
-            className="hamburger-icon"
-            onClick={() => setHamburgerMenu(false)}
-          />
-        )}
+        <div className="mobile-header">
+          {!hamburgerMenu ? (
+            <AiOutlineMenu
+              size={35}
+              className="hamburger-icon"
+              onClick={() => setHamburgerMenu(true)}
+            />
+          ) : (
+            <GrClose
+              size={35}
+              className="hamburger-icon"
+              onClick={() => setHamburgerMenu(false)}
+            />
+          )}
+          <Link to="/home">
+            <img src="/StoreLogo.svg" alt="" />
+          </Link>
+        </div>
         <nav ref={navRef} className={hamburgerMenu ? "show-nav" : ""}>
           <div className="container header-flex">
             <div className="store-logo">
