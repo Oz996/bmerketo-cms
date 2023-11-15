@@ -40,13 +40,13 @@ const StoreHeader = () => {
         <div className="mobile-header">
           {!hamburgerMenu ? (
             <AiOutlineMenu
-              size={35}
+              size={28}
               className="hamburger-icon"
               onClick={() => setHamburgerMenu(true)}
             />
           ) : (
             <GrClose
-              size={35}
+              size={28}
               className="hamburger-icon"
               onClick={() => setHamburgerMenu(false)}
             />

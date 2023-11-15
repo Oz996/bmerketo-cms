@@ -54,3 +54,8 @@
   top: 50%;
   left: 50%;
 }
+@media (max-width: 712px) {
+  .order-list {
+    padding-top: 5rem;
+  }
+}

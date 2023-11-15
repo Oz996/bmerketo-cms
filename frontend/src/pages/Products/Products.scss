@@ -59,14 +59,13 @@
 
 @media (max-width: 1134px) {
   .new-product {
-    width: 80%;
-    form {
-    }
+    width: 90%;
   }
 }
 @media (max-width: 712px) {
   .new-product {
     width: 90%;
+    padding-top: 6rem;
     .form-div {
       flex-direction: column;
       gap: 0.2rem !important;

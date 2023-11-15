@@ -46,6 +46,12 @@ ul {
 .container {
   width: 110rem;
   margin: 0 auto;
+  @include tablet {
+    width: 90%;
+  }
+  @include mobile {
+    padding-top: 15rem;
+  }
 }
 .store-container {
   width: 120rem;
