@@ -36,6 +36,7 @@ const Details = () => {
 
   useEffect(() => {
     getProduct();
+    setInformation(1)
   }, [_id]);
 
   useEffect(() => {

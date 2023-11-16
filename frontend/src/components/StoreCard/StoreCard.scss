@@ -10,6 +10,8 @@
   flex-direction: column;
   img {
     width: 25rem;
+    align-self: center;
+    padding-bottom: .5rem;
   }
   .icon {
     z-index: 1;

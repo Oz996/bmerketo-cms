@@ -289,7 +289,10 @@ const Reviews = ({ rating, setRating, reviews, setReviews }: props) => {
         </div>
         <div className={`review-div ${reviews?.length === 0 && "short"}`}>
           {reviews?.length === 0 && (
+            <div>
             <h2 className="reaview-header">No reviews yet</h2>
+            <p>Be the first to review this product!</p>
+            </div>
           )}
           <div className="reviews">
             {reviews?.map((review: Review) => (

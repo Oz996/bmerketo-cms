@@ -23,7 +23,7 @@
       flex-direction: column;
       align-items: center;
       width: 50rem;
-      @include mobile{
+      @include mobile {
         width: 100%;
       }
       p {
@@ -83,6 +83,9 @@
       justify-content: end;
       align-items: center;
       gap: 1rem;
+      @include mobile{
+        gap: 0;
+      }
       :nth-child(4) {
         cursor: pointer;
         transition: 0.3s;
@@ -96,6 +99,9 @@
       }
       button {
         @include cart-button;
+      }
+      div {
+        display: flex;
       }
     }
     ul {

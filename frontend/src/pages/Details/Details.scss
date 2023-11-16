@@ -147,7 +147,7 @@
       @include hover-bg;
     }
     p {
-      color: black;
+      color: $store-hover-red;
       z-index: 1;
       font-weight: 400;
       text-align: center;
@@ -261,8 +261,8 @@
       &:hover {
         color: $store-hover-red;
       }
-      @include mobile{
-        padding: .3rem;
+      @include mobile {
+        padding: 0.3rem;
       }
     }
   }

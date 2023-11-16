@@ -86,13 +86,15 @@ const CartModal = ({ cartRef, setCartModal }: props) => {
                       <button onClick={() => incrementCartItem(product)}>
                         +
                       </button>
-                      <FaTrash
-                        size={15}
-                        onClick={() => {
-                          removeCartItem(product);
-                          removeItem();
-                        }}
-                      />
+                      <div>
+                        <FaTrash
+                          size={15}
+                          onClick={() => {
+                            removeCartItem(product);
+                            removeItem();
+                          }}
+                        />
+                      </div>
                     </div>
                   </li>
                 ))}
