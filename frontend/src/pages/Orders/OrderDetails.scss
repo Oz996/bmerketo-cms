@@ -1,8 +1,8 @@
 .order-details {
   width: 60%;
   margin: 0 auto;
-  margin-top: 2rem;
-  .product-orders{
+  margin-top: 8rem;
+  .product-orders {
     display: flex;
     flex-wrap: wrap;
   }
@@ -21,7 +21,7 @@
     }
     select {
       margin-top: 2rem;
-      padding: .8rem;
+      padding: 0.8rem;
       font-size: 1.5rem;
       margin-right: 1rem;
     }

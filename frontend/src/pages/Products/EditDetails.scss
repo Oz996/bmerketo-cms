@@ -69,8 +69,7 @@ a {
   display: flex;
 }
 .product-img {
-  height: 40vh;
-  position: relative;
+  height: 35rem;
   left: 40%;
 }
 .product-buttons {
@@ -81,9 +80,13 @@ a {
     background-color: rgb(2, 2, 159);
   }
 }
+.img-figure {
+  margin-top: 2rem;
+}
 @media (max-width: 1134px) {
   .img-figure {
     width: 20vw;
+    z-index: 0;
     img {
       object-fit: fill;
     }
@@ -101,6 +104,9 @@ a {
   }
 }
 @media (max-width: 712px) {
+  .img-figure {
+    margin-top: 8rem;
+  }
   .edit-product {
     form {
       .form-div {
