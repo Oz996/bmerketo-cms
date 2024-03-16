@@ -3,8 +3,8 @@ import StoreCard from "../../components/StoreCard/StoreCard";
 import { useProduct } from "../../hooks/useProduct";
 import { useState, useEffect } from "react";
 import { Product } from "../../types/types";
-import StoreSearchInput from "./StoreSearchInput";
-import StoreCategorySelect from "./StoreCategorySelect";
+import StoreSearchInput from "../../components/Features/Store/StoreSearchInput/StoreSearchInput";
+import StoreCategorySelect from "../../components/Features/Store/StoreCategorySelect/StoreCategorySelect";
 
 const Store = () => {
   const { products } = useProduct();

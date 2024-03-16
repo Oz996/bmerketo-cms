@@ -1,5 +1,6 @@
 import React, { SetStateAction } from "react";
-import { Product } from "../../types/types";
+import { Product } from "../../../../types/types";
+import "./StoreSearchInput.scss";
 
 interface props {
   setDisplayList: React.Dispatch<SetStateAction<Product[] | null>>;
@@ -21,6 +22,7 @@ const StoreSearchInput = ({ setDisplayList, products }: props) => {
 
   return (
     <input
+      className="search-input"
       type="text"
       id="search"
       placeholder="Search..."

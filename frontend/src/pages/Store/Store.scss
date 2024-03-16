@@ -20,39 +20,4 @@
   p {
     font-size: 1.8rem;
   }
-  select,
-  input {
-    padding: 0.5rem 2rem;
-    font-size: 1.6rem;
-    width: 25rem;
-    font-weight: 600;
-    border-radius: 4px;
-    font-family: "Poppins";
-    border: 1px solid hsl(0, 0%, 80%);
-    @include mobile {
-      width: 100%;
-    }
-  }
-}
-.search-input-div {
-  height: 100%;
-  position: relative;
-}
-.reset-input-icon {
-  position: absolute;
-  right: 1.3rem;
-  top: 0.7rem;
-  cursor: pointer;
-}
-.react-select-container {
-  min-width: 25rem;
-  z-index: 2;
-  font-size: 1.6rem;
-  font-weight: 600;
-  @include mobile {
-    width: 100%;
-  }
-}
-.react-select__control {
-  padding-left: 1rem;
 }

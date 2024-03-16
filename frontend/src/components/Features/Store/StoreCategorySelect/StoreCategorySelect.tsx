@@ -1,6 +1,7 @@
 import { SetStateAction } from "react";
 import Select from "react-select";
-import { Product } from "../../types/types";
+import { Product } from "../../../../types/types";
+import "./StoreCategorySelect.scss";
 
 interface props {
   setDisplayList: React.Dispatch<SetStateAction<Product[] | null>>;

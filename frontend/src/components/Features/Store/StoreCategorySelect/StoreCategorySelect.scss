@@ -1,0 +1,14 @@
+@use "../../../../sass/" as *;
+
+.react-select-container {
+  min-width: 25rem;
+  z-index: 2;
+  font-size: 1.6rem;
+  font-weight: 600;
+  @include mobile {
+    width: 100%;
+  }
+}
+.react-select__control {
+  padding-left: 1rem;
+}
