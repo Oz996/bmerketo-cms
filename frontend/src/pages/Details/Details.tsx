@@ -26,7 +26,7 @@ const Details = () => {
         `https://cms-api-ty0d.onrender.com/api/products/${_id}`
       );
       const data = await res.json();
-      // console.log(data);
+      console.log("data", data);
       setProduct(data);
       setDisplayImage(data?.image);
     } catch (error) {
@@ -36,7 +36,7 @@ const Details = () => {
 
   useEffect(() => {
     getProduct();
-    setInformation(1)
+    setInformation(1);
   }, [_id]);
 
   useEffect(() => {
@@ -82,7 +82,9 @@ const Details = () => {
             <div className="buttons">
               <button onClick={decrementQuantity}>-</button>
               <p>{quantity}</p>
-              <button onClick={() => setQuantity(quantity + 1)}>+</button>
+              <button onClick={() => setQuantity((current) => current + 1)}>
+                +
+              </button>
             </div>
             <div className="add-to-cart">
               <button

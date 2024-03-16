@@ -11,10 +11,10 @@
     padding-bottom: 5rem;
     gap: 5rem;
     @include tablet {
-      
     }
     @include mobile {
       flex-direction: column;
+      gap: 1rem;
     }
   }
   p {
@@ -22,8 +22,22 @@
   }
   select,
   input {
-    padding: 1rem 2rem;
+    padding: 0.5rem 2rem;
     font-size: 1.6rem;
-    min-width: 13.5rem;
+    width: 25rem;
+    font-weight: 600;
+    border-radius: 4px;
+    font-family: "Poppins";
+    border: 1px solid hsl(0, 0%, 80%);
+    @include mobile {
+      width: 100%;
+    }
+  }
+}
+.react-select-container {
+  width: 25rem;
+  z-index: 2;
+  @include mobile {
+    width: 100%;
   }
 }

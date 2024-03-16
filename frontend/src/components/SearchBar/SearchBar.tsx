@@ -36,7 +36,7 @@ const SearchBar = ({ setSearchBar }: props) => {
         <motion.div
           className="search-overlay"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.9 }}
+          animate={{ opacity: 0.95 }}
           exit={{ opacity: 0 }}
         >
           <motion.input

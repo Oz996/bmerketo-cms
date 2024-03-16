@@ -23,7 +23,7 @@ export const ProductContextProvider = ({
       const res = await fetch(`https://cms-api-ty0d.onrender.com/api/products`);
       // const res = await fetch(`http://localhost:7000/api/products`);
       const data = await res.json();
-      console.log(data)
+      console.log(data);
       setProducts(data);
     } catch (error) {
       console.error(error);
