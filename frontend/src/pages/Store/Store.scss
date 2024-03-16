@@ -34,10 +34,25 @@
     }
   }
 }
+.search-input-div {
+  height: 100%;
+  position: relative;
+}
+.reset-input-icon {
+  position: absolute;
+  right: 1.3rem;
+  top: 0.7rem;
+  cursor: pointer;
+}
 .react-select-container {
-  width: 25rem;
+  min-width: 25rem;
   z-index: 2;
+  font-size: 1.6rem;
+  font-weight: 600;
   @include mobile {
     width: 100%;
   }
+}
+.react-select__control {
+  padding-left: 1rem;
 }
