@@ -10,7 +10,7 @@ import { useAuth } from "../../hooks/useAuth";
 const Header = () => {
   const [hamburgerMenu, setHamburgerMenu] = useState(false);
   console.log(hamburgerMenu);
-  const { handleLogout, isAuthenticated } = useAuth();
+  const { handleLogout, isAdmin } = useAuth();
   const navigate = useNavigate();
   const navRef = useRef<HTMLUListElement>(null);
 
@@ -39,6 +39,14 @@ const Header = () => {
     };
   }, []);
 
+  if (isAdmin === null) {
+    return (
+      <span className="loader">
+        <Loader />
+      </span>
+    );
+  }
+
   return (
     <header className="header">
       <div className="header-container">
@@ -65,7 +73,7 @@ const Header = () => {
 
           <ul className={hamburgerMenu ? "show" : ""} ref={navRef}>
             {/* Display navbar with content if admin is logged in */}
-            {isAuthenticated ? (
+            {isAdmin ? (
               <>
                 <NavLink to="/overview">
                   <li> Overview </li>
