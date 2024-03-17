@@ -1,20 +1,14 @@
-import { FaTrash } from "react-icons/fa";
 import { useCart } from "../../hooks/useCart";
 import { useEffect } from "react";
 import "./Cart.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { CartItem } from "../../types/types";
 import { useAuth } from "../../hooks/useAuth";
 import { toast } from "react-toastify";
+import CartItemCard from "../../components/Features/Cart/CartItemCard";
 
 const Cart = () => {
-  const {
-    cart,
-    emptyCart,
-    incrementCartItem,
-    decrementCartItem,
-    removeCartItem,
-  } = useCart();
+  const { cart, emptyCart } = useCart();
   const { token, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
@@ -64,29 +58,7 @@ const Cart = () => {
     <section className="store-container cart-page">
       <ul>
         {cart?.map((product: CartItem) => (
-          <li key={product?._id}>
-            <div className="first">
-              <Link to={`/store/${product?._id}`}>
-                <img src={product?.image} alt={product?.name} />
-              </Link>
-              <Link to={`/store/${product?._id}`}>
-                <div>
-                  <p>{product?.name}</p>
-                  <p>£{product?.price}</p>
-                </div>
-              </Link>
-            </div>
-            <div className="buttons">
-              <button onClick={() => decrementCartItem(product)}>-</button>
-              <p>{product?.quantity}</p>
-              <button onClick={() => incrementCartItem(product)}>+</button>
-              <FaTrash size={15} onClick={() => removeCartItem(product)} />
-            </div>
-            <div className="subtotal">
-              <p>Subtotal:</p>
-              <p> £{subtotal(product)}</p>
-            </div>
-          </li>
+          <CartItemCard key={product._id} product={product} />
         ))}
       </ul>
       <div className="checkout">

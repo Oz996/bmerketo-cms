@@ -51,3 +51,8 @@ export interface Review {
 export interface CartItem extends Product {
   quantity: number;
 }
+
+export interface StoreProps {
+  setDisplayList: React.Dispatch<SetStateAction<Product[] | null>>;
+  products: Product[];
+}

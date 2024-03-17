@@ -1,13 +1,7 @@
-import React, { SetStateAction } from "react";
-import { Product } from "../../../../types/types";
+import { StoreProps } from "@/src/types/types";
 import "./StoreSearchInput.scss";
 
-interface props {
-  setDisplayList: React.Dispatch<SetStateAction<Product[] | null>>;
-  products: Product[];
-}
-
-const StoreSearchInput = ({ setDisplayList, products }: props) => {
+const StoreSearchInput = ({ setDisplayList, products }: StoreProps) => {
   const searchFunction = (search: string) => {
     if (!search) {
       setDisplayList(products);

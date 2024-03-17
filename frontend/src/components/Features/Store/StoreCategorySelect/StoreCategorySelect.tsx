@@ -1,19 +1,13 @@
-import { SetStateAction } from "react";
 import Select from "react-select";
-import { Product } from "../../../../types/types";
+import { StoreProps } from "../../../../types/types";
 import "./StoreCategorySelect.scss";
-
-interface props {
-  setDisplayList: React.Dispatch<SetStateAction<Product[] | null>>;
-  products: Product[];
-}
 
 interface Category {
   label: string;
   value: string;
 }
 
-const StoreCategorySelect = ({ setDisplayList, products }: props) => {
+const StoreCategorySelect = ({ setDisplayList, products }: StoreProps) => {
   const categories: Category[] = [
     { label: "Office Chairs", value: "chair" },
     { label: "Armchairs", value: "armchair" },
