@@ -4,6 +4,6 @@ export const getBaseUrl = () => {
     if (window.location.host === "localhost:5173") {
       return "http://localhost:7000";
     }
-    return import.meta.env.VITE_RENDER_URL;
+    return "https://cms-api-ty0d.onrender.com";
   }
 };
