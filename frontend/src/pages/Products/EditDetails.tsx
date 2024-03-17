@@ -17,10 +17,6 @@ const ProductDetails = () => {
     price: "",
     category: "",
     description: "",
-    image: "",
-    image2: "",
-    image3: "",
-    image4: "",
   });
   const { _id } = useParams();
   const [product, setProduct] = useState<Product | null>(null);
@@ -36,10 +32,6 @@ const ProductDetails = () => {
         price: product.price,
         category: product.category,
         description: product.description,
-        image: product.image,
-        image2: product.image2!,
-        image3: product.image3!,
-        image4: product.image4!,
       });
     }
   }, [product]);
@@ -115,7 +107,11 @@ const ProductDetails = () => {
   return (
     <>
       <figure className="img-figure">
-        <img className="product-img" src={product?.image} alt={product?.name} />
+        <img
+          className="product-img"
+          src={product?.images[0]?.image}
+          alt={product?.name}
+        />
       </figure>
       <section className="product-details">
         <div className="edit-product">

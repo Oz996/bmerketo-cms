@@ -15,12 +15,12 @@ const StoreCard = ({ product, style }: props) => {
       <Link to={`/store/${product?._id}`} onClick={scrollToTopSmooth}>
         <div className="product-card">
           <img
-            src={product?.image}
+            src={product?.images[0]?.image}
             alt={product?.name}
             className="first-image"
           />
           <img
-            src={product?.image2}
+            src={product?.images[1]?.image}
             alt={product?.name}
             className="second-image"
           />

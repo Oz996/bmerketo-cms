@@ -15,7 +15,7 @@ const CartItemCard = ({ product, subtotal }: props) => {
     <li>
       <div className="first">
         <Link to={`/store/${product?._id}`}>
-          <img src={product?.image} alt={product?.name} />
+          <img src={product?.images[0]?.image} alt={product?.name} />
         </Link>
         <Link to={`/store/${product?._id}`}>
           <div>

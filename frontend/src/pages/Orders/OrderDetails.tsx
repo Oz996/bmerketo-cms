@@ -15,11 +15,14 @@ const OrderDetails = () => {
 
   const getOrders = async () => {
     try {
-      const res = await fetch(`https://cms-api-ty0d.onrender.com/orders/${_id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await fetch(
+        `https://cms-api-ty0d.onrender.com/orders/${_id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       const data = await res.json();
       setOrder(data);
       setStatus(data.status);
@@ -34,14 +37,17 @@ const OrderDetails = () => {
 
   const handleUpdateStatus = async () => {
     try {
-      const res = await fetch(`https://cms-api-ty0d.onrender.com/orders/${_id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ status }),
-      });
+      const res = await fetch(
+        `https://cms-api-ty0d.onrender.com/orders/${_id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ status }),
+        }
+      );
       const data = await res.json();
       if (res.ok) {
         toast.info("Status has been changed");
@@ -99,7 +105,7 @@ const OrderDetails = () => {
             {order?.products?.map((product) => (
               <div key={product?._id}>
                 <img
-                  src={product?.product?.image}
+                  src={product?.product?.images[0]?.image}
                   alt={product?.product?.name}
                 />
                 <p>{product?.product?.name}</p>

@@ -29,7 +29,7 @@ const Details = () => {
       const data = await res.json();
       console.log("data", data);
       setProduct(data);
-      setDisplayImage(data?.image);
+      setDisplayImage(data?.images[0]?.image);
     } catch (error) {
       console.error(error);
     }
@@ -50,28 +50,23 @@ const Details = () => {
     if (quantity > 1) setQuantity(quantity - 1);
   };
 
+  const imagesTodisplay = product?.images?.map((image) => image.image);
+  console.log("imagesTodisplay", imagesTodisplay);
+
   return (
     <section className="store-container">
       <div className="details-main">
         <div className="details-images">
           <img src={displayImage} alt="Image of product" />
-          <div>
-            <img
-              src={product?.image}
-              onClick={() => setDisplayImage(product?.image)}
-            />
-            <img
-              src={product?.image2}
-              onClick={() => setDisplayImage(product?.image2)}
-            />
-            <img
-              src={product?.image3}
-              onClick={() => setDisplayImage(product?.image3)}
-            />
-            <img
-              src={product?.image4}
-              onClick={() => setDisplayImage(product?.image4)}
-            />
+          <div className="thumbnail-images">
+            {product?.images.map((image) => (
+              <img
+                key={image?._id}
+                src={image?.image}
+                alt=""
+                onClick={() => setDisplayImage(image?.image)}
+              />
+            ))}
           </div>
         </div>
         <div className="details-details">
@@ -179,7 +174,7 @@ const Details = () => {
                 </p>
               </div>
               <div>
-                <img src={product?.image} alt="Image of product" />
+                <img src={product?.images[0]?.image} alt="Image of product" />
               </div>
             </div>
           </>
