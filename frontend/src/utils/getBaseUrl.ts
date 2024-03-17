@@ -1,7 +1,6 @@
 export const getBaseUrl = () => {
   if (typeof window !== "undefined") {
     // fetch from our local backend if browsing locally, or fetch from hosted service if not
-    console.log("window", window);
     if (window.location.host === "localhost:5173") {
       return "http://localhost:7000";
     }

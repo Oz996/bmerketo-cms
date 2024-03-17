@@ -1,5 +1,6 @@
 interface Image {
   image: string;
+  _id?: string;
 }
 
 export interface Product {
@@ -33,10 +34,6 @@ export interface FormData {
   name: string;
   price: string;
   category: string;
-  image: string;
-  image2: string;
-  image3: string;
-  image4: string;
   description: string;
 }
 

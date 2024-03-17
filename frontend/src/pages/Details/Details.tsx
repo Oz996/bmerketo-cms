@@ -6,6 +6,7 @@ import { FaShoppingBasket } from "react-icons/fa";
 import StoreCard from "../../components/StoreCard/StoreCard";
 import Reviews from "./Reviews";
 import { useCart } from "../../hooks/useCart";
+import { getBaseUrl } from "../../utils/getBaseUrl";
 
 const Details = () => {
   const [product, setProduct] = useState<Product>();
@@ -22,10 +23,7 @@ const Details = () => {
 
   const getProduct = async () => {
     try {
-      // const res = await fetch(
-      //   `https://cms-api-ty0d.onrender.com/api/products/${_id}`
-      // );
-      const res = await fetch(`http://localhost:7000/api/products/${_id}`);
+      const res = await fetch(getBaseUrl() + `/api/products/${_id}`);
       const data = await res.json();
       console.log("data", data);
       setProduct(data);
