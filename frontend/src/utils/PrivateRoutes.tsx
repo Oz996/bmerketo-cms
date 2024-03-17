@@ -3,12 +3,17 @@ import { useAuth } from "../hooks/useAuth";
 import Header from "../components/Header/Header";
 
 const PrivateRoutes = () => {
-  const { token } = useAuth();
+  const { isAuthenticated } = useAuth();
+
+  const isUserAuthenticated = setTimeout(() => {
+    if (isAuthenticated) return true;
+    return false;
+  }, 100);
 
   return (
     <>
       <Header />
-      {token ? <Outlet /> : <Navigate to="/" />}
+      {isUserAuthenticated ? <Outlet /> : <Navigate to="/" />}
     </>
   );
 };
