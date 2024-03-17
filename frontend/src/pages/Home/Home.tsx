@@ -30,7 +30,7 @@ const Home = () => {
   };
 
   return (
-    <section className="home">
+    <section className="home poppins">
       {isLoading && (
         <div className="loading">
           <StoreLoader /> <p>Loading please be patient</p>

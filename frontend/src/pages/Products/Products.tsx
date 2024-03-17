@@ -22,7 +22,7 @@ interface Images {
 }
 
 const initState: Product = {
-  _id: crypto.randomUUID(),
+  _id: "",
   name: "",
   category: "",
   price: "",
@@ -111,10 +111,13 @@ const Products = () => {
     <section className="product-container">
       {/* Add product form */}
       <div className="new-product">
-        <h1>Add New Product</h1>
-        <form onSubmit={addProduct}>
-          <div className="form-group">
-            <label htmlFor="name">
+        <h1>Create new product</h1>
+        <form className="create-form" onSubmit={addProduct}>
+          <div className="form-layout">
+            <div className="form-group">
+              <label className="visually-hidden" htmlFor="name">
+                Name
+              </label>
               <input
                 type="text"
                 id="name"
@@ -122,8 +125,10 @@ const Products = () => {
                 value={formData.name}
                 onChange={handleChange}
               />
-            </label>
-            <label htmlFor="category">
+
+              <label className="visually-hidden" htmlFor="category">
+                Category
+              </label>
               <input
                 type="text"
                 id="category"
@@ -131,8 +136,10 @@ const Products = () => {
                 value={formData.category}
                 onChange={handleChange}
               />
-            </label>
-            <label htmlFor="price">
+
+              <label className="visually-hidden" htmlFor="price">
+                Price
+              </label>
               <input
                 type="text"
                 id="price"
@@ -140,34 +147,33 @@ const Products = () => {
                 value={formData.price}
                 onChange={handleChange}
               />
-            </label>
-            {productImages?.map((image, index) => (
-              <input
-                type="text"
-                placeholder="Image..."
-                value={image.url}
-                onChange={(e) => handleImageChange(e, index)}
-              />
-            ))}
-          </div>
 
-          <div className="form-bottom">
-            <label htmlFor="description">
-              <textarea
-                id="description"
-                rows={7}
-                placeholder="Description..."
-                value={formData.description}
-                onChange={handleChange}
-              ></textarea>
-            </label>
+              {productImages?.map((image, index) => (
+                <input
+                  id="image"
+                  type="text"
+                  placeholder="Image..."
+                  value={image.url}
+                  onChange={(e) => handleImageChange(e, index)}
+                />
+              ))}
+            </div>
+            <label className="visually-hidden" htmlFor="description"></label>
+            <textarea
+              id="description"
+              rows={7}
+              placeholder="Description..."
+              value={formData.description}
+              onChange={handleChange}
+            ></textarea>
           </div>
-          <button className="btn btn-primary" disabled={formLoading}>
-            {formLoading ? <Loader /> : "Add"}
-          </button>
+          <div className="create-button-div">
+            <button className="btn btn-primary" disabled={formLoading}>
+              {formLoading ? <Loader /> : "Submit"}
+            </button>
+          </div>
         </form>
       </div>
-      <hr style={{ marginTop: "5rem" }} />
 
       {/* Listing the products  */}
       <div className="product-list">

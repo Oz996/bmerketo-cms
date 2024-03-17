@@ -1,4 +1,4 @@
-import { StoreProps } from "@/src/types/types";
+import { StoreProps } from "../../../../types/types";
 import "./StoreSearchInput.scss";
 
 const StoreSearchInput = ({ setDisplayList, products }: StoreProps) => {
@@ -19,7 +19,7 @@ const StoreSearchInput = ({ setDisplayList, products }: StoreProps) => {
       className="search-input"
       type="text"
       id="search"
-      placeholder="Search..."
+      placeholder="Search for product..."
       onChange={(e) => {
         searchFunction(e.target.value);
       }}

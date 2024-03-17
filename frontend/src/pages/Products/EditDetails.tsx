@@ -12,6 +12,7 @@ import { getBaseUrl } from "../../utils/getBaseUrl";
 
 const ProductDetails = () => {
   const [isEditing, setIsEditing] = useState(false);
+  const [product, setProduct] = useState<Product | null>(null);
   const [formData, setFormData] = useState<FormData>({
     _id: "",
     name: "",
@@ -19,11 +20,12 @@ const ProductDetails = () => {
     category: "",
     description: "",
   });
+
   const { _id } = useParams();
-  const [product, setProduct] = useState<Product | null>(null);
-  const navigate = useNavigate();
   const { token } = useAuth();
   const { setProducts } = useProduct();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (product) {
@@ -36,6 +38,7 @@ const ProductDetails = () => {
       });
     }
   }, [product]);
+
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {

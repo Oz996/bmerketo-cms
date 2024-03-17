@@ -2,12 +2,13 @@
 
 .search-input {
   padding: 0.5rem 2rem;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   width: 25rem;
   font-weight: 600;
   border-radius: 4px;
-  font-family: "Poppins";
   border: 1px solid hsl(0, 0%, 80%);
+  outline: none;
+
   @include mobile {
     width: 100%;
   }
