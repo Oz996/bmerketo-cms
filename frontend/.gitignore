@@ -11,6 +11,7 @@ node_modules
 dist
 *.local
 /frontend/dist
+/.env
 
 # Editor directories and files
 .vscode/*

@@ -5,14 +5,11 @@ import { Link } from "react-router-dom";
 
 interface props {
   product: CartItem;
+  subtotal: (product: CartItem) => number;
 }
 
-const CartItemCard = ({ product }: props) => {
+const CartItemCard = ({ product, subtotal }: props) => {
   const { decrementCartItem, incrementCartItem, removeCartItem } = useCart();
-
-  const subtotal = (product: CartItem) => {
-    return product?.quantity * product?.price;
-  };
 
   return (
     <li>

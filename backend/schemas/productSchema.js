@@ -1,14 +1,16 @@
 const mongoose = require("mongoose");
 
+const imageSchema = new mongoose.Schema({
+  _id: { type: mongoose.Schema.Types.ObjectId, auto: true },
+  image: { type: String, required: true },
+});
+
 const productSchema = new mongoose.Schema({
   name: { type: String, required: true },
   price: { type: String, required: true },
   description: { type: String, required: true },
   category: { type: String, required: true },
-  image: { type: String },
-  image2: { type: String },
-  image3: { type: String },
-  image4: { type: String },
+  images: [imageSchema],
   related: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
   review: [{ type: mongoose.Schema.Types.ObjectId, ref: "Review" }],
   // locked: { type: Boolean, default: true },

@@ -9,7 +9,7 @@ const ProductCard = ({ product }: { product: Product }) => {
       <Link to={`/products/${product?._id}`}>
         <div className="product">
           <div className="product-info">
-            <img src={product?.image} alt={product?.name} />
+            <img src={product?.images[0]?.image} alt={product?.name} />
             <p>{product?.name}</p>
             <p className="order-edit-text">
               <b>Edit</b> <AiOutlineArrowRight className="hover" />

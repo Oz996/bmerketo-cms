@@ -38,12 +38,10 @@ const Cart = () => {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        products: cart?.map((product: CartItem) => {
-          return {
-            product: product?._id,
-            quantity: product?.quantity,
-          };
-        }),
+        products: cart?.map((product: CartItem) => ({
+          product: product?._id,
+          quantity: product?.quantity,
+        })),
       }),
     });
     console.log(res);
@@ -58,7 +56,11 @@ const Cart = () => {
     <section className="store-container cart-page">
       <ul>
         {cart?.map((product: CartItem) => (
-          <CartItemCard key={product._id} product={product} />
+          <CartItemCard
+            key={product._id}
+            product={product}
+            subtotal={subtotal}
+          />
         ))}
       </ul>
       <div className="checkout">

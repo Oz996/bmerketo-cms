@@ -21,14 +21,3 @@
     font-size: 1.8rem;
   }
 }
-
-.store-container {
-  width: 120rem;
-  margin: 0 auto;
-  @include tablet {
-    width: 90%;
-  }
-  @include mobile {
-    padding-top: 10rem;
-  }
-}

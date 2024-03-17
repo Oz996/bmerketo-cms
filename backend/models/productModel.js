@@ -24,21 +24,17 @@ exports.getProductById = (req, res) => {
 // Add a product
 
 exports.addProduct = (req, res) => {
-  const { name, price, image, image2, image3, image4, category, description } =
-    req.body;
+  const { name, price, images, category, description } = req.body;
 
   if (!name || !price || !category || !description) {
     res.status(400).json({ message: "Product incomplete" });
     return;
   }
-
+  console.log("backend images", images);
   Product.create({
     name,
     price,
-    image,
-    image2,
-    image3,
-    image4,
+    images,
     category,
     description,
   })
@@ -80,8 +76,7 @@ exports.addReview = async (req, res) => {
 // Find a product by ID and update
 
 exports.updateProduct = (req, res) => {
-  const { name, price, image, image2, image3, image4, category, description } =
-    req.body;
+  const { name, price, images, category, description } = req.body;
 
   Product.findByIdAndUpdate(req.params.id).then((data) => {
     if (!data) {
@@ -95,11 +90,8 @@ exports.updateProduct = (req, res) => {
         $set: {
           name,
           price,
-          image,
+          images,
           category,
-          image2,
-          image3,
-          image4,
           description,
         },
       }
