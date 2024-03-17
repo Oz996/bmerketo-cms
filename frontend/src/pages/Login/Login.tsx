@@ -12,7 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const { handleAdminLogin } = useAuth();
+  const { handleLogin } = useAuth();
 
   const navigate = useNavigate();
 
@@ -33,7 +33,7 @@ const Login = () => {
       if (res.ok) {
         const data = await res.json();
         const token = data.token;
-        handleAdminLogin(token);
+        handleLogin(token, email);
         navigate("/overview");
       } else {
         toast.error("Unable to login");
@@ -71,7 +71,7 @@ const Login = () => {
             {isLoading ? (
               <button
                 disabled
-                style={{ opacity: ".5", pointerEvents: "not-allowed" }}
+                style={{ opacity: ".5", pointerEvents: "not-allowed" as any }}
                 className="btn btn-primary"
               >
                 <Loader />

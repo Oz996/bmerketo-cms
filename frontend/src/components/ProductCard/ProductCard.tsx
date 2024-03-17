@@ -5,9 +5,8 @@ import { Product } from "../../types/types";
 
 const ProductCard = ({ product }: { product: Product }) => {
   const location = useLocation();
-  console.log("location", location);
-
   const orderPage = location.pathname.includes("/orders");
+
   return (
     <article>
       <Link to={`/products/${product?._id}`}>
