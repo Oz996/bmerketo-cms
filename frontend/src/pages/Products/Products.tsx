@@ -6,6 +6,7 @@ import LoaderDark from "../../utils/Loader/LoaderDark.tsx";
 import { useProduct } from "../../hooks/useProduct.ts";
 import Loader from "../../utils/Loader/Loader.tsx";
 import { useAuth } from "../../hooks/useAuth.ts";
+import { getBaseUrl } from "../../utils/getBaseUrl.ts";
 
 interface Product {
   _id: string;
@@ -42,8 +43,7 @@ const Products = () => {
   const { token } = useAuth();
 
   console.log("images", productImages);
-  const API = "http://localhost:7000/api/products";
-  // const API = "https://cms-api-ty0d.onrender.com/api/products";
+  const API = getBaseUrl() + "/api/products";
 
   const addProduct = async (e: React.FormEvent) => {
     e.preventDefault();

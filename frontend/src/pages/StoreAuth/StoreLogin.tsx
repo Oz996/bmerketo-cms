@@ -3,6 +3,7 @@ import "./StoreAuth.scss";
 import { ChangeEvent, FormEvent, useState } from "react";
 import StoreLoader from "../../utils/Loader/StoreLoader";
 import { useAuth } from "../../hooks/useAuth";
+import { getBaseUrl } from "../../utils/getBaseUrl";
 
 const StoreLogin = () => {
   const initalState = {
@@ -24,7 +25,7 @@ const StoreLogin = () => {
       if (!email || !password) {
         return setError("Fill out the required fields");
       }
-      const res = await fetch("https://cms-api-ty0d.onrender.com/login", {
+      const res = await fetch(getBaseUrl() + "/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

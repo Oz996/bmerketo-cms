@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useProduct } from "../../hooks/useProduct";
 import { useAuth } from "../../hooks/useAuth";
+import { getBaseUrl } from "../../utils/getBaseUrl";
 
 const DeleteModal = () => {
   const [modal, setModal] = useState(false);
@@ -35,7 +36,7 @@ const DeleteModal = () => {
 
   const handleDeleteClick = async () => {
     try {
-      await fetch(`https://cms-api-ty0d.onrender.com/api/products/${_id}`, {
+      await fetch(getBaseUrl() + `/api/products/${_id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -44,7 +45,7 @@ const DeleteModal = () => {
       });
       toast.info("Product has been removed");
       toggleModal();
-      const newRes = await fetch("https://cms-api-ty0d.onrender.com/api/products/");
+      const newRes = await fetch(getBaseUrl() + "/api/products/");
       const newData = await newRes.json();
       setProducts(newData);
       navigate("/products");

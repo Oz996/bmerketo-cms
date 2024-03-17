@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Order } from "../../types/types";
 import { useAuth } from "../../hooks/useAuth";
+import { getBaseUrl } from "../../utils/getBaseUrl";
 
 const OrderDetails = () => {
   const [order, setOrder] = useState<Order | null>(null);
@@ -15,14 +16,11 @@ const OrderDetails = () => {
 
   const getOrders = async () => {
     try {
-      const res = await fetch(
-        `https://cms-api-ty0d.onrender.com/orders/${_id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const res = await fetch(getBaseUrl() + `/api/orders/${_id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       const data = await res.json();
       setOrder(data);
       setStatus(data.status);
@@ -37,17 +35,14 @@ const OrderDetails = () => {
 
   const handleUpdateStatus = async () => {
     try {
-      const res = await fetch(
-        `https://cms-api-ty0d.onrender.com/orders/${_id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ status }),
-        }
-      );
+      const res = await fetch(getBaseUrl() + `/api/orders/${_id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ status }),
+      });
       const data = await res.json();
       if (res.ok) {
         toast.info("Status has been changed");

@@ -5,6 +5,7 @@ import Loader from "../../utils/Loader/Loader";
 import { useAuth } from "../../hooks/useAuth";
 import { toast } from "react-toastify";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import { getBaseUrl } from "../../utils/getBaseUrl";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -22,7 +23,7 @@ const Login = () => {
 
     try {
       setIsLoading(true);
-      const res = await fetch("https://cms-api-ty0d.onrender.com/login/admin", {
+      const res = await fetch(getBaseUrl() + "/api/login/admin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

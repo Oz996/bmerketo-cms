@@ -4,6 +4,7 @@ import { useState, ChangeEvent, FormEvent } from "react";
 import { Review } from "../../types/types";
 import { useParams } from "react-router-dom";
 import StoreLoader from "../../utils/Loader/StoreLoader";
+import { getBaseUrl } from "../../utils/getBaseUrl";
 
 interface props {
   rating: number;
@@ -46,17 +47,14 @@ const Reviews = ({ rating, setRating, reviews, setReviews }: props) => {
         return;
       }
       setLoading(true);
-      const res = await fetch(
-        `https://cms-api-ty0d.onrender.com/api/products/${_id}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            // Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ rating, review, name, email }),
-        }
-      );
+      const res = await fetch(getBaseUrl() + `/api/products/${_id}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ rating, review, name, email }),
+      });
       const data = await res.json();
       if (res.status === 201) {
         setReviews([...reviews, data]);
@@ -290,8 +288,8 @@ const Reviews = ({ rating, setRating, reviews, setReviews }: props) => {
         <div className={`review-div ${reviews?.length === 0 && "short"}`}>
           {reviews?.length === 0 && (
             <div>
-            <h2 className="reaview-header">No reviews yet</h2>
-            <p>Be the first to review this product!</p>
+              <h2 className="reaview-header">No reviews yet</h2>
+              <p>Be the first to review this product!</p>
             </div>
           )}
           <div className="reviews">

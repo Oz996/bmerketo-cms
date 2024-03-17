@@ -4,16 +4,17 @@ import { Link } from "react-router-dom";
 import LoaderDark from "../../utils/Loader/LoaderDark";
 import { Order } from "../../types/types";
 import { useAuth } from "../../hooks/useAuth";
+import { getBaseUrl } from "../../utils/getBaseUrl";
 
 const Orders = () => {
   const [orders, setOrders] = useState<Order[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const { token } = useAuth()
+  const { token } = useAuth();
 
   const getOrders = async () => {
     setIsLoading(true);
     try {
-      const res = await fetch("https://cms-api-ty0d.onrender.com/orders", {
+      const res = await fetch(getBaseUrl() + "/api/orders", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

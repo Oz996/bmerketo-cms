@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./StoreAuth.scss";
 import { ChangeEvent, FormEvent, useState } from "react";
 import StoreLoader from "../../utils/Loader/StoreLoader";
+import { getBaseUrl } from "../../utils/getBaseUrl";
 
 const StoreRegister = () => {
   const initalState = {
@@ -26,7 +27,7 @@ const StoreRegister = () => {
       if (password !== Cpassword) {
         return setError("Passwords do not match");
       }
-      const res = await fetch("https://cms-api-ty0d.onrender.com/register", {
+      const res = await fetch(getBaseUrl() + "/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

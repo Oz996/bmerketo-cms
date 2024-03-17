@@ -6,6 +6,7 @@ import { CartItem } from "../../types/types";
 import { useAuth } from "../../hooks/useAuth";
 import { toast } from "react-toastify";
 import CartItemCard from "../../components/Features/Cart/CartItemCard";
+import { getBaseUrl } from "../../utils/getBaseUrl";
 
 const Cart = () => {
   const { cart, emptyCart } = useCart();
@@ -31,7 +32,7 @@ const Cart = () => {
   };
 
   const handleOrder = async () => {
-    const res = await fetch("https://cms-api-ty0d.onrender.com/orders", {
+    const res = await fetch(getBaseUrl() + `/api/orders`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

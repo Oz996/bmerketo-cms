@@ -8,6 +8,7 @@ import { Product } from "../../types/types";
 import { FormData } from "../../types/types";
 import { useProduct } from "../../hooks/useProduct";
 import { useAuth } from "../../hooks/useAuth";
+import { getBaseUrl } from "../../utils/getBaseUrl";
 
 const ProductDetails = () => {
   const [isEditing, setIsEditing] = useState(false);
@@ -48,10 +49,7 @@ const ProductDetails = () => {
 
   const fetchProducts = async () => {
     try {
-      const res = await fetch(`http://localhost:7000/api/products/${_id}`);
-      // const res = await fetch(
-      //   `https://cms-api-ty0d.onrender.com/api/products/${_id}`
-      // );
+      const res = await fetch(getBaseUrl() + `/api/products/${_id}`);
       const data = await res.json();
       console.log(data);
       setProduct(data);
@@ -63,21 +61,16 @@ const ProductDetails = () => {
   const editProduct = async () => {
     setIsEditing(false);
     try {
-      const res = await fetch(
-        `https://cms-api-ty0d.onrender.com/api/products/${_id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const res = await fetch(getBaseUrl() + `/api/products/${_id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(formData),
+      });
       if (res.ok) {
-        const newRes = await fetch(
-          "https://cms-api-ty0d.onrender.com/api/products"
-        );
+        const newRes = await fetch(getBaseUrl() + "api/products");
         const newData = await newRes.json();
         setProducts(newData);
         toast.info("Product has been updated");

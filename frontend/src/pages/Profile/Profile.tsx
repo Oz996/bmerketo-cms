@@ -3,6 +3,7 @@ import { useAuth } from "../../hooks/useAuth";
 import "./Profile.scss";
 import { Order } from "../../types/types";
 import { useNavigate } from "react-router-dom";
+import { getBaseUrl } from "../../utils/getBaseUrl";
 
 const Profile = () => {
   const [orders, setOrders] = useState<Order[]>([]);
@@ -11,7 +12,7 @@ const Profile = () => {
   console.log(orders);
 
   const getOrders = async () => {
-    const res = await fetch("https://cms-api-ty0d.onrender.com/orders/", {
+    const res = await fetch(getBaseUrl() + "/api/orders/", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
