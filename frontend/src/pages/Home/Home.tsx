@@ -47,7 +47,7 @@ const Home = () => {
               </Link>
             </div>
             <div>
-              <img src={chair?.image} alt="image of product" />
+              <img src={chair?.images[0]?.image} alt="image of product" />
             </div>
           </article>
         ))}

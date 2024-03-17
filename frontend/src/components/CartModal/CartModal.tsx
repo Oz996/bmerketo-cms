@@ -71,7 +71,7 @@ const CartModal = ({ cartRef, setCartModal }: props) => {
                       onClick={() => setCartModal(false)}
                     >
                       <div className="details">
-                        <img src={product?.image} alt="" />
+                        <img src={product?.images[0]?.image} alt="" />
                         <div className="text">
                           <p>{product?.name}</p>
                           <p>£{product?.price}</p>

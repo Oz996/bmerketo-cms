@@ -1,5 +1,3 @@
-import "vite/client";
-
 interface Image {
   image: string;
   _id?: string;
