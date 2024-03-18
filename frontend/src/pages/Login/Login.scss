@@ -1,103 +1,92 @@
 @use "../../sass/" as *;
 .login-section {
-  .login-container {
-    height: 100vh;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    @include mobile{
-      grid-template-columns: repeat(1,1fr);
-    }
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  @include mobile {
+    grid-template-columns: repeat(1, 1fr);
   }
-  .admin-div {
-    color: white;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(21, 21, 78);
-    @include mobile{
-      align-items: start;
-      padding-top: 2rem;
-      height: 45rem;
-    }
+}
+.admin-div {
+  color: white;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(21, 21, 78);
+  @include mobile {
+    align-items: start;
+    padding-top: 2rem;
+    height: 45rem;
   }
+}
 
-  .line {
-    height: 90vh;
-    border-left: 2px solid black;
-  }
-  .admin-text {
-    // background-color: rgb(126, 126, 220);
+.line {
+  height: 90vh;
+  border-left: 2px solid black;
+}
+.admin-text {
+  // background-color: rgb(126, 126, 220);
 
-    padding: 1rem;
-    border-radius: 0.6rem;
-  }
-  form {
-    width: 35rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  padding: 1rem;
+  border-radius: 0.6rem;
+}
+.login-form {
+  width: min(30rem, 90%);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 
-    h2 {
-      font-size: 2.3rem;
-      text-align: center;
-    }
-    p {
-      font-size: 1.6rem;
-    }
-    span {
-      font-size: 1.6rem;
-      line-height: 1.9rem;
-    }
-    input {
-      font-size: 1.5rem;
-      padding: 1.4rem;
-      border-radius: 0.3rem;
-      border: 1px solid black;
-    }
-    button {
-      width: 100%;
-      min-height: 3.8rem;
-    }
-  }
-  .store-div {
-    width: 100%;
-    justify-content: center;
-    align-items: center;
+  h2 {
+    font-size: 2.3rem;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    @include mobile{
-      padding-top: 2rem;
-      height: 35rem;
-      justify-content: start;
-    }
-    h2 {
-      font-size: 2.3rem;
-    }
-    p,
-    a {
-      font-size: 1.6rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      transition: transform 0.3s ease;
-    }
-    a {
-      &:hover {
-        transform: translateX(5px);
-      }
-    }
+  }
+  p {
+    font-size: 1.6rem;
+  }
+  span {
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+  }
+  input {
+    font-size: 1.5rem;
+    padding: 1.4rem;
+    border-radius: 0.3rem;
+    border: 1px solid black;
+  }
+  button {
+    width: 100%;
+    min-height: 3.8rem;
   }
 }
-@media (max-width: 1134px) {
-}
-@media (max-width: 712px) {
-  .login-container {
-    form {
-      width: 30rem;
+.store-div {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  @include mobile {
+    padding-top: 2rem;
+    height: 35rem;
+    justify-content: start;
+  }
+  h2 {
+    font-size: 2.3rem;
+  }
+  p,
+  a {
+    font-size: 1.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    transition: transform 0.3s ease;
+  }
+  a {
+    &:hover {
+      transform: translateX(5px);
     }
   }
 }

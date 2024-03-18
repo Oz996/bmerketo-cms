@@ -53,13 +53,13 @@ const Header = () => {
         <nav>
           {!hamburgerMenu ? (
             <RxHamburgerMenu
-              size={35}
+              size={30}
               className="hamburger"
               onClick={() => setHamburgerMenu(true)}
             />
           ) : (
             <CgClose
-              size={35}
+              size={30}
               onClick={() => setHamburgerMenu(false)}
               className="hamburger"
             />

@@ -47,54 +47,52 @@ const Login = () => {
 
   return (
     <section className="login-section">
-      <div className="login-container">
-        <div className="admin-div">
-          <form onSubmit={loginAdmin}>
-            <h2>Administrator login</h2>
-            <p className="admin-text">
-              Add, delete or edit products and orders as an admin
-            </p>
-            <input
-              type="email"
-              placeholder="Email"
-              name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            {isLoading ? (
-              <button
-                disabled
-                style={{ opacity: ".5", pointerEvents: "not-allowed" as any }}
-                className="btn btn-primary"
-              >
-                <Loader />
-              </button>
-            ) : (
-              <button className="btn btn-primary">Login</button>
-            )}
+      <div className="admin-div">
+        <form className="login-form" onSubmit={loginAdmin}>
+          <h2>Administrator login</h2>
+          <p className="admin-text">
+            Add, delete or edit products and orders as an admin
+          </p>
+          <input
+            type="email"
+            placeholder="Email"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {isLoading ? (
+            <button
+              disabled
+              style={{ opacity: ".5", pointerEvents: "not-allowed" as any }}
+              className="btn btn-primary"
+            >
+              <Loader />
+            </button>
+          ) : (
+            <button className="btn btn-primary">Login</button>
+          )}
 
-            <p>
-              <b>Example login:</b>
-            </p>
-            <p>bmerketo-admin@mail.com</p>
-            <p>test123</p>
-          </form>
-        </div>
-        {/* <div className="line"/> */}
-        <div className="store-div">
-          <h2>Bmerketo Store</h2>
-          <p>Want to browse our products? </p>
-          <Link to="/home">
-            <b>Browse</b> <AiOutlineArrowRight />
-          </Link>
-        </div>
+          <p>
+            <b>Example login:</b>
+          </p>
+          <p>bmerketo-admin@mail.com</p>
+          <p>test123</p>
+        </form>
+      </div>
+      {/* <div className="line"/> */}
+      <div className="store-div">
+        <h2>Bmerketo Store</h2>
+        <p>Want to browse our products? </p>
+        <Link to="/home">
+          <b>Browse</b> <AiOutlineArrowRight />
+        </Link>
       </div>
     </section>
   );

@@ -6,61 +6,19 @@
   align-items: center;
   background-color: $primary-color;
   min-height: 6vh;
+  @include mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
   .header-container {
     width: 65%;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .hamburger {
-      display: none;
-    }
-  }
-  ul {
-    display: flex;
-    gap: 2rem;
-  }
-  li {
-    font-size: 1.8rem;
-    color: white;
-    cursor: pointer;
-  }
-  nav {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    li {
-      text-decoration: none;
-      transition: transform 0.2s ease;
-      &:hover {
-        transform: scale(101%);
-      }
-    }
-  }
-}
-.logo {
-  a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  h3 {
-    font-size: 1.4rem;
-    color: white;
-    margin-top: -1rem;
-  }
-  img {
-    color: white;
-  }
-}
-@media (max-width: 1134px) {
-  .header {
-    nav {
-      flex-direction: column;
-    }
-    .header-container {
+    @include tablet {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -68,34 +26,28 @@
       gap: 1rem;
       padding-bottom: 0.5rem;
     }
-    ul {
-      align-items: center;
-    }
-  }
-}
-@media (max-width: 712px) {
-  .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    nav {
-      flex-direction: row;
-      justify-content: start;
-      gap: 1rem;
-    }
-    .header-container {
+    @include mobile {
       flex-direction: row;
       justify-content: start;
       width: 90%;
       gap: 1rem;
-      .hamburger {
+    }
+    .hamburger {
+      display: none;
+      @include mobile {
         display: block;
         color: white;
         cursor: pointer;
       }
     }
-    ul {
+  }
+  ul {
+    display: flex;
+    gap: 2rem;
+    @include tablet {
+      align-items: center;
+    }
+    @include mobile {
       display: none;
       flex-direction: column;
       position: absolute;
@@ -110,7 +62,30 @@
       opacity: 0.9;
       background-color: $primary-color;
       transition: opacity 1s;
-      li {
+    }
+  }
+  li {
+    font-size: 1.8rem;
+    color: white;
+    cursor: pointer;
+  }
+  nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include tablet {
+      flex-direction: column;
+    }
+    @include mobile {
+      flex-direction: row;
+      justify-content: start;
+      gap: 1rem;
+    }
+    li {
+      text-decoration: none;
+      transition: transform 0.2s ease;
+      @include mobile {
         transition: 0.2s;
         border-bottom: 1px solid transparent;
         font-size: 2.2rem;
@@ -119,7 +94,28 @@
           transform: none;
         }
       }
+      &:hover {
+        transform: scale(101%);
+      }
     }
+  }
+}
+.logo {
+  a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+    color: white;
+    margin-top: -1rem;
+  }
+  img {
+    color: white;
+    width: 15rem;
   }
 }
 .show {
