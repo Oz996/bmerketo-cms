@@ -1,0 +1,56 @@
+@use "../../../../sass/" as *;
+
+.admin-div {
+  color: white;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(21, 21, 78);
+  @include mobile {
+    align-items: start;
+    padding-top: 2rem;
+    height: 45rem;
+  }
+}
+
+.admin-text {
+  padding: 1rem;
+  border-radius: 0.6rem;
+}
+.login-form {
+  width: min(30rem, 90%);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  h2 {
+    font-size: 2.3rem;
+    text-align: center;
+  }
+  p {
+    font-size: 1.6rem;
+  }
+  span {
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+  }
+  input {
+    font-size: 1.4rem;
+    padding: 1.4rem;
+    border-radius: 0.3rem;
+    border: 1px solid black;
+  }
+  button {
+    width: 100%;
+    min-height: 3.8rem;
+  }
+  .login-error-div {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    p {
+      font-size: 1.5rem;
+    }
+  }
+}
