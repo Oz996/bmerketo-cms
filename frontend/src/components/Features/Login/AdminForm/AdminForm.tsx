@@ -73,11 +73,14 @@ const AdminForm = () => {
           Add, delete or edit products and orders as an admin
         </p>
         <div className="login-form-div">
+          <label htmlFor="email" className="visually-hidden">
+            Email
+          </label>
           <input
             className={email.error && "login-input-error"}
             type="text"
             placeholder="Email"
-            name="email"
+            id="email"
             value={email.value}
             onChange={(e) => setEmail({ value: e.target.value, error: "" })}
           />
@@ -89,12 +92,16 @@ const AdminForm = () => {
             <p>{email.error}</p>
           </div>
         )}
+
         <div className="login-form-div">
+          <label htmlFor="password" className="visually-hidden">
+            Password
+          </label>
           <input
             className={password.error && "login-input-error"}
             type="password"
             placeholder="Password"
-            name="password"
+            id="name"
             value={password.value}
             onChange={(e) => setPassword({ value: e.target.value, error: "" })}
           />
@@ -106,6 +113,7 @@ const AdminForm = () => {
             <p>{password.error}</p>
           </div>
         )}
+
         {isLoading ? (
           <button
             disabled
