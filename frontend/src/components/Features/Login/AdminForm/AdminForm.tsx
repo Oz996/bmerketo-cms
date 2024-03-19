@@ -12,10 +12,7 @@ const AdminForm = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { handleLogin } = useAuth();
-
   const navigate = useNavigate();
-
-  console.log(email.value);
 
   const loginAdmin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,10 +35,12 @@ const AdminForm = () => {
 
     try {
       setIsLoading(true);
+
       const dataObject = {
         email: email.value,
         password: password.value,
       };
+
       const res = await fetch(getBaseUrl() + "/api/login/admin", {
         method: "POST",
         headers: {
@@ -49,6 +48,7 @@ const AdminForm = () => {
         },
         body: JSON.stringify(dataObject),
       });
+
       if (res.ok) {
         const data = await res.json();
         const token = data.token;
@@ -57,8 +57,8 @@ const AdminForm = () => {
       } else {
         setEmail({ ...email, error: "Incorrect credentials" });
       }
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      console.error(error.message);
     } finally {
       setIsLoading(false);
     }
