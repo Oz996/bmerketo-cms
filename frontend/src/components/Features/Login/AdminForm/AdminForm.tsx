@@ -3,8 +3,10 @@ import { useState } from "react";
 import { useAuth } from "../../../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { getBaseUrl } from "../../../../utils/getBaseUrl";
-import { BiError } from "react-icons/bi";
 import Loader from "../../../../utils/Loader/Loader";
+import { BiError } from "react-icons/bi";
+import { BiAt } from "react-icons/bi";
+import { BiLockAlt } from "react-icons/bi";
 
 const AdminForm = () => {
   const [email, setEmail] = useState({ value: "", error: "" });
@@ -70,28 +72,34 @@ const AdminForm = () => {
         <p className="admin-text">
           Add, delete or edit products and orders as an admin
         </p>
-        <input
-          className={email.error && "login-input-error"}
-          type="text"
-          placeholder="Email"
-          name="email"
-          value={email.value}
-          onChange={(e) => setEmail({ value: e.target.value, error: "" })}
-        />
+        <div className="login-form-div">
+          <input
+            className={email.error && "login-input-error"}
+            type="text"
+            placeholder="Email"
+            name="email"
+            value={email.value}
+            onChange={(e) => setEmail({ value: e.target.value, error: "" })}
+          />
+          <BiAt className="login-input-icon" size={19} />
+        </div>
         {email.error && (
           <div className="login-error-div">
             <BiError size={20} style={{ color: "red" }} />
             <p>{email.error}</p>
           </div>
         )}
-        <input
-          className={password.error && "login-input-error"}
-          type="password"
-          placeholder="Password"
-          name="password"
-          value={password.value}
-          onChange={(e) => setPassword({ value: e.target.value, error: "" })}
-        />
+        <div className="login-form-div">
+          <input
+            className={password.error && "login-input-error"}
+            type="password"
+            placeholder="Password"
+            name="password"
+            value={password.value}
+            onChange={(e) => setPassword({ value: e.target.value, error: "" })}
+          />
+          <BiLockAlt className="login-input-icon" size={19} />
+        </div>
         {password.error && (
           <div className="login-error-div">
             <BiError size={20} style={{ color: "red" }} />
