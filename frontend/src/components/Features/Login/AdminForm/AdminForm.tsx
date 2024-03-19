@@ -22,17 +22,17 @@ const AdminForm = () => {
 
     // form error handling
     if (!email.value && !password.value) {
-      setEmail({ value: "", error: "Please enter a email address" });
+      setEmail({ value: "", error: "Please enter an email address" });
       setPassword({ value: "", error: "Please enter your password" });
       return;
     }
     if (!email.value && password.value)
-      return setEmail({ ...email, error: "Please enter a email address" });
+      return setEmail({ ...email, error: "Please enter an email address" });
     if (!password.value && email.value)
       return setPassword({ ...password, error: "Please enter your password" });
 
     if (!/^\S+@\S+$/.test(email.value)) {
-      setEmail({ ...email, error: "Invalid email" });
+      setEmail({ ...email, error: "Please enter a valid email address" });
       return;
     }
 
