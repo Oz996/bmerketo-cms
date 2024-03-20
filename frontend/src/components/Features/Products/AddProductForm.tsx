@@ -94,6 +94,11 @@ const AddProductForm = () => {
       newErrors[field] = "This field is required";
     });
     if (emptyFields.length > 0) return setErrors(newErrors);
+
+    const dataObject = {
+      ...formData,
+      images: [{ image: formData.image }],
+    };
     try {
       setFormLoading(true);
       const res = await fetch(API, {
@@ -102,14 +107,28 @@ const AddProductForm = () => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(dataObject),
       });
 
       if (res.status === 201) {
+        const data = await res.json();
+        console.log("post res", data);
+
+        const { name, category, price, image, description } = formData;
+        const newProduct = {
+          name,
+          category,
+          price,
+          images: [{ image }],
+          description,
+          _id: data._id,
+        };
+
+        console.log("newProduct", newProduct);
+
+        setProducts((prev) => [...prev, newProduct]);
+
         toast.success("Product has been added");
-        const newRres = await fetch(API);
-        const newData = await newRres.json();
-        setProducts(newData);
         setFormData(initState);
       }
     } catch (error: any) {

@@ -6,9 +6,9 @@ router.get("/", productModel.getAllProducts);
 
 router.get("/:id", productModel.getProductById);
 
-router.post("/", authMiddleware, productModel.addProduct);
+router.post("/", productModel.addProduct);
 
-router.post("/:id",  productModel.addReview);
+router.post("/:id", productModel.addReview);
 
 router.put("/:id", authMiddleware, productModel.updateProduct);
 
