@@ -7,6 +7,7 @@ import Loader from "../../../../utils/Loader/Loader";
 import { BiError } from "react-icons/bi";
 import { BiAt } from "react-icons/bi";
 import { BiLockAlt } from "react-icons/bi";
+import { isValidEmail } from "../../../../utils/isValidEmail";
 
 const AdminForm = () => {
   const [email, setEmail] = useState({ value: "", error: "" });
@@ -19,21 +20,26 @@ const AdminForm = () => {
   const loginAdmin = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    let errors = false;
+
     // form error handling
     if (!email.value && !password.value) {
       setEmail({ value: "", error: "Please enter an email address" });
       setPassword({ value: "", error: "Please enter your password" });
-      return;
+      errors = true;
+    } else if (!email.value) {
+      setEmail({ ...email, error: "Please enter an email address" });
+      errors = true;
+    } else if (!password.value) {
+      setPassword({ ...password, error: "Please enter your password" });
+      errors = true;
     }
-    if (!email.value && password.value)
-      return setEmail({ ...email, error: "Please enter an email address" });
-    if (!password.value && email.value)
-      return setPassword({ ...password, error: "Please enter your password" });
-
-    if (!/^\S+@\S+$/.test(email.value)) {
+    if (email.value && !isValidEmail(email.value)) {
       setEmail({ ...email, error: "Please enter a valid email address" });
-      return;
+      errors = true;
     }
+
+    if (errors) return;
 
     try {
       setIsLoading(true);
