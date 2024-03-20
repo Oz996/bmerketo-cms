@@ -5,16 +5,9 @@ import { useAuth } from "../../../hooks/useAuth";
 import { useProduct } from "../../../hooks/useProduct";
 import { getBaseUrl } from "../../../utils/getBaseUrl";
 import Loader from "../../../utils/Loader/Loader";
+import { emptyFields } from "../../../utils/validateFields";
 
-interface Product {
-  name: string;
-  category: string;
-  price: string;
-  image: string;
-  description: string;
-}
-
-interface Errors {
+interface Object {
   name: string;
   category: string;
   price: string;
@@ -26,7 +19,7 @@ interface Images {
   url: string;
 }
 
-const initState: Product = {
+const initState: Object = {
   name: "",
   category: "",
   price: "",
@@ -34,7 +27,7 @@ const initState: Product = {
   description: "",
 };
 
-const errorState: Errors = {
+const errorState: Object = {
   name: "",
   category: "",
   price: "",
@@ -54,11 +47,11 @@ const AddProductForm = () => {
 
   console.log("errors", errors);
 
-  const { setProducts, productId, handleRemoveProductId } = useProduct();
+  const { products, setProducts, productId, handleRemoveProductId } =
+    useProduct();
   const { token } = useAuth();
 
   console.log("images", productImages);
-  const API = getBaseUrl() + "/api/products";
 
   // if we clicked on edit a product, fetch the product info through the products id
   // and fill the form with fetched data
@@ -67,7 +60,6 @@ const AddProductForm = () => {
       const fetchProduct = async () => {
         const res = await fetch(getBaseUrl() + `/api/products/${productId}`);
         const data = await res.json();
-        console.log("data!", data);
 
         const { name, category, price, images, description } = data;
         setFormData({
@@ -85,15 +77,8 @@ const AddProductForm = () => {
   const handlePostSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const emptyFields = Object.entries(formData)
-      .filter((item) => item[1].trim() === "")
-      .map((item) => item[0]);
-
-    const newErrors = {};
-    emptyFields.forEach((field) => {
-      newErrors[field] = "This field is required";
-    });
-    if (emptyFields.length > 0) return setErrors(newErrors);
+    const invalid = emptyFields(formData, setErrors);
+    if (invalid) return;
 
     const dataObject = {
       ...formData,
@@ -101,7 +86,7 @@ const AddProductForm = () => {
     };
     try {
       setFormLoading(true);
-      const res = await fetch(API, {
+      const res = await fetch(getBaseUrl() + `/api/products`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -142,15 +127,8 @@ const AddProductForm = () => {
   const handlePutSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const emptyFields = Object.entries(formData)
-      .filter((item) => item[1].trim() === "")
-      .map((item) => item[0]);
-
-    const newErrors = {};
-    emptyFields.forEach((field) => {
-      newErrors[field] = "This field is required";
-    });
-    if (emptyFields.length > 0) return setErrors(newErrors);
+    const invalid = emptyFields(formData, setErrors);
+    if (invalid) return;
 
     try {
       setFormLoading(true);
@@ -165,7 +143,32 @@ const AddProductForm = () => {
       });
 
       if (res.ok) {
+        const { name, category, price, image, description } = formData;
+
+        const productIndexToUpdate = products!.findIndex(
+          (product) => product._id === productId
+        );
+
+        if (productIndexToUpdate !== -1) {
+          const updatedProduct = {
+            name,
+            category,
+            price,
+            images: [{ image }],
+            description,
+            _id: productId,
+          };
+
+          const updatedProductList = [...products];
+          updatedProductList[productIndexToUpdate] = updatedProduct;
+
+          console.log("updatedProductList", updatedProductList);
+
+          setProducts(updatedProductList);
+        }
+
         setFormData(initState);
+        handleRemoveProductId();
         toast.success("Product has been updated");
       }
     } catch (error: any) {
@@ -196,7 +199,7 @@ const AddProductForm = () => {
 
   return (
     <div className="new-product">
-      <h1>Create new product</h1>
+      <h1>{productId ? "Update product" : "Create product"}</h1>
       <form
         className="create-form"
         onSubmit={productId ? handlePutSubmit : handlePostSubmit}
