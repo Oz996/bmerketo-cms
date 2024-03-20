@@ -1,5 +1,5 @@
 import "./AddProductForm.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useAuth } from "../../../hooks/useAuth";
 import { useProduct } from "../../../hooks/useProduct";
@@ -54,13 +54,35 @@ const AddProductForm = () => {
 
   console.log("errors", errors);
 
-  const { setProducts } = useProduct();
+  const { setProducts, productId, handleRemoveProductId } = useProduct();
   const { token } = useAuth();
 
   console.log("images", productImages);
   const API = getBaseUrl() + "/api/products";
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // if we clicked on edit a product, fetch the product info through the products id
+  // and fill the form with fetched data
+  useEffect(() => {
+    if (productId) {
+      const fetchProduct = async () => {
+        const res = await fetch(getBaseUrl() + `/api/products/${productId}`);
+        const data = await res.json();
+        console.log("data!", data);
+
+        const { name, category, price, images, description } = data;
+        setFormData({
+          name,
+          category,
+          price,
+          image: images[0].image,
+          description,
+        });
+      };
+      fetchProduct();
+    }
+  }, [productId]);
+
+  const handlePostSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const emptyFields = Object.entries(formData)
@@ -98,6 +120,42 @@ const AddProductForm = () => {
     }
   };
 
+  const handlePutSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const emptyFields = Object.entries(formData)
+      .filter((item) => item[1].trim() === "")
+      .map((item) => item[0]);
+
+    const newErrors = {};
+    emptyFields.forEach((field) => {
+      newErrors[field] = "This field is required";
+    });
+    if (emptyFields.length > 0) return setErrors(newErrors);
+
+    try {
+      setFormLoading(true);
+
+      const res = await fetch(getBaseUrl() + `/api/products/${productId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        setFormData(initState);
+        toast.success("Product has been updated");
+      }
+    } catch (error: any) {
+      console.error(error);
+    } finally {
+      setFormLoading(false);
+    }
+  };
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -112,10 +170,18 @@ const AddProductForm = () => {
     }));
   };
 
+  const handleCancelEdit = () => {
+    handleRemoveProductId();
+    setFormData(initState);
+  };
+
   return (
     <div className="new-product">
       <h1>Create new product</h1>
-      <form className="create-form" onSubmit={handleSubmit}>
+      <form
+        className="create-form"
+        onSubmit={productId ? handlePutSubmit : handlePostSubmit}
+      >
         <div className="form-layout">
           <div className="form-group">
             <div className="form-item">
@@ -201,6 +267,15 @@ const AddProductForm = () => {
           </div>
         </div>
         <div className="create-button-div">
+          {productId && (
+            <button
+              className="btn btn-danger"
+              disabled={formLoading}
+              onClick={handleCancelEdit}
+            >
+              Cancel
+            </button>
+          )}
           <button className="btn btn-primary" disabled={formLoading}>
             {formLoading ? <Loader /> : "Submit"}
           </button>

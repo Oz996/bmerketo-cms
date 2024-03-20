@@ -2,14 +2,18 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  width: 80%;
-  margin: 0 auto;
+  width: 70%;
+  margin-inline: auto;
   margin-top: 3rem;
 
   .product {
     display: flex;
     gap: 3rem;
     margin-top: 3rem;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.3rem;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
     &:hover .order-edit-text {
       transform: translateX(5px);
@@ -24,7 +28,6 @@
     }
     a {
       color: black;
-      text-decoration: underline;
     }
     .order-edit-text {
       transition: transform 0.3s ease;

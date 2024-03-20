@@ -8,21 +8,19 @@ const ProductCard = ({ product }: { product: Product }) => {
   const orderPage = location.pathname.includes("/orders");
 
   return (
-    <article>
-      <Link to={`/products/${product?._id}`}>
-        <div className="product">
-          <div className="product-info">
-            <img src={product?.images[0]?.image} alt={product?.name} />
-            <p>{product?.name}</p>
-            {!orderPage && (
-              <p className="order-edit-text">
-                <b>Edit</b> <AiOutlineArrowRight className="hover" />
-              </p>
-            )}
-          </div>
+    <Link to={`/products/${product?._id}`}>
+      <article className="product">
+        <div className="product-info">
+          <img src={product?.images[0]?.image} alt={product?.name} />
+          <p>{product?.name}</p>
+          {!orderPage && (
+            <p className="order-edit-text">
+              <b>Edit</b> <AiOutlineArrowRight className="hover" />
+            </p>
+          )}
         </div>
-      </Link>
-    </article>
+      </article>
+    </Link>
   );
 };
 

@@ -23,7 +23,7 @@ const ProductDetails = () => {
 
   const { _id } = useParams();
   const { token } = useAuth();
-  const { setProducts } = useProduct();
+  const { setProducts, handleAddProductId } = useProduct();
 
   const navigate = useNavigate();
 
@@ -83,8 +83,9 @@ const ProductDetails = () => {
     }
   };
 
-  const handleEditClick = () => {
-    setIsEditing(true);
+  const handleEditClick = (id: string) => {
+    handleAddProductId(id);
+    navigate("/products");
   };
 
   const handleSaveClick = () => {
@@ -245,7 +246,7 @@ const ProductDetails = () => {
                   <>
                     <button
                       className="btn btn-primary"
-                      onClick={handleEditClick}
+                      onClick={() => handleEditClick(product?._id)}
                     >
                       Edit
                     </button>
