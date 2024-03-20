@@ -8,7 +8,7 @@ const Products = () => {
   const { products, isLoading } = useProduct();
 
   return (
-    <section className="product-container">
+    <section className="product-container cms-bg-color">
       <AddProductForm />
       <div className="product-list">
         {isLoading && <LoaderDark />}

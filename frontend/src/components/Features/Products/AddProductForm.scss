@@ -1,0 +1,92 @@
+@use "../../../sass/" as *;
+
+.new-product {
+  margin: 0 auto;
+  width: min(100rem, 90%);
+  @include mobile {
+    padding-top: 1rem;
+  }
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-block: 1.5rem;
+    font-weight: 400;
+  }
+  .create-form {
+    .form-item {
+      position: relative;
+      input,
+      textarea {
+        width: 100%;
+        height: 100%;
+        background-color: hsl(0, 0%, 98%);
+      }
+    }
+    .form-layout {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4rem;
+      @include mobile {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 2rem;
+      }
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    input {
+      font-size: 1.5rem;
+      padding: 1.2rem;
+      border-radius: 0.3rem;
+    }
+
+    textarea {
+      resize: none;
+      border-radius: 0.3rem;
+      padding: 1rem;
+      font-size: 1.5rem;
+      font-weight: 300;
+      font-family: "Poppins", sans-serif;
+    }
+    input,
+    textarea {
+      border: 1px solid hsl(0, 0%, 80%);
+      outline: none;
+      &:focus {
+        border-color: hsl(0, 0%, 65%);
+      }
+    }
+    .added {
+      font-size: 1.6rem;
+      margin: 0;
+      padding: 0;
+      color: rgb(58, 50, 208);
+      margin-block: -1rem;
+      margin-bottom: -2.5rem;
+    }
+    .create-button-div {
+      display: flex;
+      width: 100%;
+      justify-content: end;
+      button {
+        margin-top: 2rem;
+      }
+    }
+  }
+}
+
+.form-input-error {
+  border: 1px solid red !important;
+}
+
+.form-input-error-text {
+  position: absolute;
+  right: 1rem;
+  top: 1.1rem;
+
+  color: red;
+  font-size: 1.4rem;
+  font-weight: 500;
+}

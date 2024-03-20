@@ -7,35 +7,52 @@ import { getBaseUrl } from "../../../utils/getBaseUrl";
 import Loader from "../../../utils/Loader/Loader";
 
 interface Product {
-  _id: string;
   name: string;
   category: string;
   price: string;
+  image: string;
+  description: string;
+}
+
+interface Errors {
+  name: string;
+  category: string;
+  price: string;
+  image: string;
   description: string;
 }
 
 interface Images {
   url: string;
-  error: string;
 }
 
 const initState: Product = {
-  _id: "",
   name: "",
   category: "",
   price: "",
+  image: "",
+  description: "",
+};
+
+const errorState: Errors = {
+  name: "",
+  category: "",
+  price: "",
+  image: "",
   description: "",
 };
 
 const initStateImages: Images = {
   url: "",
-  error: "",
 };
 
 const AddProductForm = () => {
   const [formData, setFormData] = useState(initState);
   const [formLoading, setFormLoading] = useState(false);
   const [productImages, setProductImages] = useState([initStateImages]);
+  const [errors, setErrors] = useState(errorState);
+
+  console.log("errors", errors);
 
   const { setProducts } = useProduct();
   const { token } = useAuth();
@@ -43,31 +60,27 @@ const AddProductForm = () => {
   console.log("images", productImages);
   const API = getBaseUrl() + "/api/products";
 
-  const addProduct = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const { name, category, price, description } = formData;
-    if (!name || !category || !price || !description) {
-      return toast.error("Fill out the required fields");
-    }
-    for (const image of productImages) {
-      if (!image.url) return toast.error("Fill out the required fields");
-    }
+    const emptyFields = Object.entries(formData)
+      .filter((item) => item[1].trim() === "")
+      .map((item) => item[0]);
+
+    const newErrors = {};
+    emptyFields.forEach((field) => {
+      newErrors[field] = "This field is required";
+    });
+    if (emptyFields.length > 0) return setErrors(newErrors);
     try {
       setFormLoading(true);
-
-      const dataObject = {
-        ...formData,
-        images: productImages.map((image) => ({ image: image.url })),
-      };
-
       const res = await fetch(API, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(dataObject),
+        body: JSON.stringify(formData),
       });
 
       if (res.status === 201) {
@@ -77,8 +90,8 @@ const AddProductForm = () => {
         setProducts(newData);
         setFormData(initState);
       }
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      console.error(error.message);
       toast.error("error");
     } finally {
       setFormLoading(false);
@@ -92,79 +105,100 @@ const AddProductForm = () => {
       ...data,
       [e.target.id]: e.target.value,
     }));
-  };
 
-  const handleImageChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
-    const newUrl = e.target.value;
-    const updatedUrl = {
-      ...productImages[index],
-      url: newUrl,
-    };
-    const updatedImages = [...productImages];
-    updatedImages[index] = updatedUrl;
-    setProductImages(updatedImages);
+    setErrors((prev) => ({
+      ...prev,
+      [e.target.id]: "",
+    }));
   };
 
   return (
     <div className="new-product">
       <h1>Create new product</h1>
-      <form className="create-form" onSubmit={addProduct}>
+      <form className="create-form" onSubmit={handleSubmit}>
         <div className="form-layout">
           <div className="form-group">
-            <label className="visually-hidden" htmlFor="name">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              placeholder="Name..."
-              value={formData.name}
-              onChange={handleChange}
-            />
-
-            <label className="visually-hidden" htmlFor="category">
-              Category
-            </label>
-            <input
-              type="text"
-              id="category"
-              placeholder="Category..."
-              value={formData.category}
-              onChange={handleChange}
-            />
-
-            <label className="visually-hidden" htmlFor="price">
-              Price
-            </label>
-            <input
-              type="text"
-              id="price"
-              placeholder="Price..."
-              value={formData.price}
-              onChange={handleChange}
-            />
-
-            {productImages?.map((image, index) => (
+            <div className="form-item">
+              <label className="visually-hidden" htmlFor="name">
+                Name
+              </label>
               <input
+                className={errors.name && "form-input-error"}
+                type="text"
+                id="name"
+                placeholder="Name..."
+                value={formData.name}
+                onChange={handleChange}
+              />
+              {errors.name && (
+                <p className="form-input-error-text">{errors.name}</p>
+              )}
+            </div>
+            <div className="form-item">
+              <label className="visually-hidden" htmlFor="category">
+                Category
+              </label>
+              <input
+                className={errors.category && "form-input-error"}
+                type="text"
+                id="category"
+                placeholder="Category..."
+                value={formData.category}
+                onChange={handleChange}
+              />
+              {errors.category && (
+                <p className="form-input-error-text">{errors.category}</p>
+              )}
+            </div>
+
+            <div className="form-item">
+              <label className="visually-hidden" htmlFor="price">
+                Price
+              </label>
+              <input
+                className={errors.price && "form-input-error"}
+                type="text"
+                id="price"
+                placeholder="Price..."
+                value={formData.price}
+                onChange={handleChange}
+              />
+              {errors.price && (
+                <p className="form-input-error-text">{errors.price}</p>
+              )}
+            </div>
+
+            <div className="form-item">
+              <label className="visually-hidden" htmlFor="image">
+                Image
+              </label>
+              <input
+                className={errors.image && "form-input-error"}
                 id="image"
                 type="text"
                 placeholder="Image..."
-                value={image.url}
-                onChange={(e) => handleImageChange(e, index)}
+                value={formData.image}
+                onChange={handleChange}
               />
-            ))}
+              {errors.image && (
+                <p className="form-input-error-text">{errors.image}</p>
+              )}
+            </div>
           </div>
-          <label className="visually-hidden" htmlFor="description"></label>
-          <textarea
-            id="description"
-            rows={7}
-            placeholder="Description..."
-            value={formData.description}
-            onChange={handleChange}
-          ></textarea>
+          <div className="form-item">
+            <label className="visually-hidden" htmlFor="description"></label>
+            <textarea
+              className={errors.description && "form-input-error"}
+              id="description"
+              rows={7}
+              placeholder="Description..."
+              value={formData.description}
+              onChange={handleChange}
+            ></textarea>
+            {errors.name && (
+              <p className="form-input-error-text">{errors.description}</p>
+            )}
+          </div>
         </div>
         <div className="create-button-div">
           <button className="btn btn-primary" disabled={formLoading}>

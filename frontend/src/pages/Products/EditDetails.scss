@@ -1,3 +1,5 @@
+@use "../../sass/" as *;
+
 .edit-product {
   display: flex;
   flex-direction: column;
@@ -16,6 +18,10 @@
     .form-div {
       display: flex;
       gap: 2rem;
+      @include mobile {
+        flex-direction: column;
+        gap: 0.2rem !important;
+      }
     }
     .form-bottom {
     }

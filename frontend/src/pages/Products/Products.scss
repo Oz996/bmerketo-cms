@@ -1,86 +1,11 @@
 @use "../../sass/" as *;
 
-.new-product {
-  margin: 0 auto;
-  width: 90rem;
-  @include mobile {
-    width: 90%;
-  }
-  h1 {
-    text-align: center;
-    font-size: 2rem;
-    margin-block: 1.5rem;
-    font-weight: 400;
-  }
-  .create-form {
-    .form-layout {
-      display: grid;
-      grid-template-columns: 38% 58%;
-      gap: 4rem;
-      @include mobile {
-        grid-template-columns: repeat(1, 1fr);
-        gap: 2rem;
-      }
-    }
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-    input {
-      font-size: 1.5rem;
-      padding: 1.2rem;
-      border-radius: 0.3rem;
-    }
-
-    textarea {
-      resize: none;
-      border-radius: 0.3rem;
-      padding: 1rem;
-      font-size: 1.5rem;
-      font-weight: 300;
-      font-family: "Poppins", sans-serif;
-    }
-    input,
-    textarea {
-      border: 1px solid hsl(0, 0%, 80%);
-      outline: none;
-      &:focus {
-        border-color: hsl(0, 0%, 65%);
-      }
-    }
-    .added {
-      font-size: 1.6rem;
-      margin: 0;
-      padding: 0;
-      color: rgb(58, 50, 208);
-      margin-block: -1rem;
-      margin-bottom: -2.5rem;
-    }
-    .create-button-div {
-      display: flex;
-      width: 100%;
-      justify-content: end;
-      button {
-        margin-top: 2rem;
-      }
-    }
-  }
-}
 .product-loader {
   margin-top: 1rem;
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
 }
-
-@media (max-width: 712px) {
-  .new-product {
-    width: 90%;
-    padding-top: 6rem;
-    .form-div {
-      flex-direction: column;
-      gap: 0.2rem !important;
-    }
-  }
+.product-container {
+  padding-block: 4rem;
 }
