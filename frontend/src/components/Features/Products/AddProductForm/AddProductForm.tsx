@@ -63,7 +63,7 @@ const AddProductForm = ({ dialogRef }: props) => {
   // if we clicked on edit a product, fetch the product info through the products id
   // and fill the form with fetched data
   useEffect(() => {
-    if (productId && !dialogOpen) {
+    if (productId) {
       const fetchProduct = async () => {
         const res = await fetch(getBaseUrl() + `/api/products/${productId}`);
         const data = await res.json();
@@ -306,7 +306,7 @@ const AddProductForm = ({ dialogRef }: props) => {
           </div>
         </div>
         <div className="create-button-div">
-          {productId && !dialogOpen && (
+          {productId && (
             <button
               className="btn btn-danger"
               disabled={formLoading}
