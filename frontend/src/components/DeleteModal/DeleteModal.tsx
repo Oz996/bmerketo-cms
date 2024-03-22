@@ -84,11 +84,11 @@ const DeleteModal = ({ dialogRef }: props) => {
                 action.
               </p>
               <div className="modal-delete-buttons">
-                <button className="btn btn-danger" onClick={handleDeleteClick}>
-                  Remove
-                </button>
                 <button className="btn btn-primary" onClick={toggleModal}>
                   Cancel
+                </button>
+                <button className="btn btn-danger" onClick={handleDeleteClick}>
+                  Delete
                 </button>
               </div>
             </div>

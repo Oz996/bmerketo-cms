@@ -30,6 +30,11 @@ const DialogProduct = ({ dialogRef, currentProduct }: props) => {
       handleRemoveProductId();
     }
   };
+
+  console.log("current modal", currentProduct);
+
+  const { name, category, price, images, description, _id } =
+    currentProduct || {};
   return (
     <dialog
       ref={dialogRef}
@@ -42,27 +47,23 @@ const DialogProduct = ({ dialogRef, currentProduct }: props) => {
           className="dialog-close-icon"
           onClick={() => {
             dialogRef!.current?.close();
-            setDialogOpen(false);
           }}
         />
         <div className="dialog-image">
-          <img
-            src={currentProduct?.images[0]?.image}
-            alt={currentProduct?.name}
-          />
+          {images && <img src={images[0]?.image} alt={name} />}
         </div>
 
         <div className="product-dialog-body">
-          <h2>{currentProduct?.name}</h2>
-          <span>{currentProduct?.category}</span>
-          <span>£{currentProduct?.price}</span>
-          <p>{currentProduct?.description}</p>
-          <span>{currentProduct?._id}</span>
+          <h2>{name}</h2>
+          <span>{category}</span>
+          <span>£{price}</span>
+          <p>{description}</p>
+          <span>{_id}</span>
         </div>
         <div className="dialog-buttons-sticky">
           <button
             onClick={() => {
-              handleAddProductId(currentProduct?._id!);
+              handleAddProductId(_id!);
               dialogRef!.current?.close();
             }}
             className="btn btn-primary"
