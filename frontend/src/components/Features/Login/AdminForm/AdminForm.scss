@@ -6,7 +6,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(21, 21, 78);
+  // background-color: rgb(21, 21, 78);
+  background-color: $secondary-color;
 
   @include mobile {
     align-items: start;
@@ -35,6 +36,12 @@
   span {
     font-size: 1.6rem;
     line-height: 1.9rem;
+  }
+  button {
+    background-color: $secondary-color;
+    &:hover {
+      background-color: hsl(0, 4%, 4%);
+    }
   }
   .admin-button {
     display: flex;

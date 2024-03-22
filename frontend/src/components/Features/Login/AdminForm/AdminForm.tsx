@@ -122,7 +122,7 @@ const AdminForm = () => {
 
         <button
           disabled={isLoading}
-          className={`btn btn-primary ${isLoading && "admin-button"}`}
+          className={`btn  ${isLoading && "admin-button"}`}
         >
           <span>{isLoading && <Loader />}</span>
           Login
