@@ -1,4 +1,4 @@
-import React, { RefObject, SetStateAction } from "react";
+import React, { RefObject } from "react";
 import "./DialogProduct.scss";
 import { useProduct } from "../../../../hooks/useProduct";
 import { GrClose } from "react-icons/gr";

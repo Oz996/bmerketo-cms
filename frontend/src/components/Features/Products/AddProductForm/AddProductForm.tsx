@@ -1,5 +1,5 @@
 import "./AddProductForm.scss";
-import React, { useEffect, useRef, useState } from "react";
+import React, { RefObject, useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { useAuth } from "../../../../hooks/useAuth";
 import { useProduct } from "../../../../hooks/useProduct";
@@ -45,20 +45,11 @@ const AddProductForm = ({ dialogRef }: props) => {
   const [errors, setErrors] = useState(errorState);
   const [currentProduct, setCurrentProduct] = useState<Product>();
 
-  const {
-    products,
-    setProducts,
-    productId,
-    handleRemoveProductId,
-    handleAddProductId,
-  } = useProduct();
+  const { products, setProducts, productId, handleRemoveProductId } =
+    useProduct();
   const { token } = useAuth();
 
-  console.log("currentProduct", currentProduct);
-  console.log("formData", formData);
-
   const dialogOpen = dialogRef.current?.hasAttribute("open");
-  console.log("current", dialogOpen);
 
   // if we clicked on edit a product, fetch the product info through the products id
   // and fill the form with fetched data
@@ -70,6 +61,7 @@ const AddProductForm = ({ dialogRef }: props) => {
         setCurrentProduct(data);
 
         const { name, category, price, images, description } = data;
+
         setFormData({
           name,
           category,
@@ -82,7 +74,7 @@ const AddProductForm = ({ dialogRef }: props) => {
     } else {
       setFormData(initState);
     }
-  }, [productId]);
+  }, [productId, dialogOpen]);
 
   useEffect(() => {
     if (productId && dialogOpen) {
@@ -321,11 +313,7 @@ const AddProductForm = ({ dialogRef }: props) => {
         </div>
       </form>
 
-      <DialogProduct
-        dialogRef={dialogRef}
-        currentProduct={currentProduct!}
-        // setDialogOpen={setDialogOpen}
-      />
+      <DialogProduct dialogRef={dialogRef} currentProduct={currentProduct!} />
     </div>
   );
 };

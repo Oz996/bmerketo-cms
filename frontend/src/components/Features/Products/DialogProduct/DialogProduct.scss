@@ -9,6 +9,17 @@
   padding-inline: 2rem;
   padding-top: 2rem;
   overflow-y: auto;
+
+  @include tablet {
+    left: 25%;
+  }
+
+  @include mobile {
+    left: 0;
+    right: 0;
+    width: 100%;
+    margin-inline: auto;
+  }
 }
 .product-dialog::-webkit-scrollbar {
   display: none;
@@ -21,6 +32,9 @@
   width: 40rem;
   height: 60rem;
   margin-inline: auto;
+  @include mobile {
+    width: 100%;
+  }
 }
 .dialog-close-icon {
   position: absolute;
@@ -53,6 +67,9 @@
     width: 30rem;
     margin-inline: auto;
     margin-top: 0.5rem;
+    @include mobile {
+      width: 25rem;
+    }
   }
 }
 .dialog-buttons-sticky {
