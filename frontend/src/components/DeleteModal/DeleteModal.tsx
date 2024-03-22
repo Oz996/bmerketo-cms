@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useProduct } from "../../hooks/useProduct";
 import { useAuth } from "../../hooks/useAuth";
 import { getBaseUrl } from "../../utils/getBaseUrl";
+import { BiError } from "react-icons/bi";
 
 interface props {
   dialogRef: React.RefObject<HTMLDialogElement>;
@@ -74,8 +75,15 @@ const DeleteModal = ({ dialogRef }: props) => {
           <div className="modal">
             <div className="overlay"></div>
             <div className="modal-content" ref={modalRef}>
-              <h2>Are you sure you want to remove this product?</h2>
-              <div>
+              <div className="modal-delete-title">
+                <BiError size={20} style={{ color: "red" }} />
+                <h2>Confirm Deletion</h2>
+              </div>
+              <p>
+                This will delete this product permanently. You cannot undo this
+                action.
+              </p>
+              <div className="modal-delete-buttons">
                 <button className="btn btn-danger" onClick={handleDeleteClick}>
                   Remove
                 </button>

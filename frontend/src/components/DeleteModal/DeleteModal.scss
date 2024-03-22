@@ -1,3 +1,5 @@
+@use "../../sass/" as *;
+
 .modal-delete {
   .modal,
   .overlay {
@@ -14,16 +16,37 @@
     position: fixed;
     top: 40%;
     left: 40%;
+    width: 44rem;
     display: flex;
     flex-direction: column;
     background-color: rgb(255, 255, 255);
-    padding: 4rem;
+    padding: 2rem;
+    padding-inline: 2.5rem;
     border-radius: 1rem;
 
-    div {
+    .modal-delete-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-size: 1.7rem;
+    }
+    // p {
+    //   @include paragraph;
+    //   color: black;
+    // }
+    p {
+      font-size: 1.6rem;
+    }
+
+    .modal-delete-buttons {
       display: flex;
       justify-content: center;
-      gap: 5rem;
+      gap: 0.3rem;
       margin-top: 3rem;
     }
   }

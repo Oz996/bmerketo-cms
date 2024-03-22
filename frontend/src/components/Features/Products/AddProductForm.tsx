@@ -335,8 +335,6 @@ const AddProductForm = ({ dialogOpen, setDialogOpen }: props) => {
         </div>
       </form>
 
-      <button onClick={() => dialogRef!.current?.showModal()}>open</button>
-
       <dialog
         ref={dialogRef}
         className="product-dialog"
