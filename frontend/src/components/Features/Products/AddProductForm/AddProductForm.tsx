@@ -1,16 +1,17 @@
 import "./AddProductForm.scss";
 import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
-import { useAuth } from "../../../hooks/useAuth";
-import { useProduct } from "../../../hooks/useProduct";
-import { getBaseUrl } from "../../../utils/getBaseUrl";
-import Loader from "../../../utils/Loader/Loader";
-import { emptyFields } from "../../../utils/validateFields";
+import { useAuth } from "../../../../hooks/useAuth";
+import { useProduct } from "../../../../hooks/useProduct";
+import { getBaseUrl } from "../../../../utils/getBaseUrl";
+import Loader from "../../../../utils/Loader/Loader";
+import { emptyFields } from "../../../../utils/validateFields";
 import { GrClose } from "react-icons/gr";
-import { Product } from "../../../types/types";
-import DeleteModal from "../../DeleteModal/DeleteModal";
+import { Product } from "../../../../types/types";
+import DeleteModal from "../../../DeleteModal/DeleteModal";
+import DialogProduct from "../DialogProduct/DialogProduct";
 
-interface Object {
+export interface Object {
   name: string;
   category: string;
   price: string;
@@ -91,7 +92,10 @@ const AddProductForm = ({ dialogOpen, setDialogOpen }: props) => {
   }, [productId]);
 
   useEffect(() => {
-    if (productId && dialogOpen) dialogRef.current?.showModal();
+    if (productId && dialogOpen) {
+      dialogRef.current?.showModal();
+      setErrors(initState);
+    }
   }, [productId]);
 
   const handlePostSubmit = async (e: React.FormEvent) => {
@@ -335,48 +339,11 @@ const AddProductForm = ({ dialogOpen, setDialogOpen }: props) => {
         </div>
       </form>
 
-      <dialog
-        ref={dialogRef}
-        className="product-dialog"
-        onClick={handleClickOutside}
-      >
-        <div className="product-dialog-content">
-          <GrClose
-            size={12}
-            className="dialog-close-icon"
-            onClick={() => {
-              dialogRef!.current?.close();
-              setDialogOpen(false);
-            }}
-          />
-          <div className="dialog-image">
-            <img
-              src={currentProduct?.images[0]?.image}
-              alt={currentProduct?.name}
-            />
-          </div>
-
-          <div className="product-dialog-body">
-            <h2>{currentProduct?.name}</h2>
-            <span>{currentProduct?.category}</span>
-            <span>£{currentProduct?.price}</span>
-            <p>{currentProduct?.description}</p>
-            <span>{currentProduct?._id}</span>
-          </div>
-          <div className="dialog-buttons-sticky">
-            <button
-              onClick={() => {
-                handleAddProductId(currentProduct?._id!);
-                dialogRef!.current?.close();
-              }}
-              className="btn btn-primary"
-            >
-              Edit
-            </button>
-            <DeleteModal dialogRef={dialogRef} />
-          </div>
-        </div>
-      </dialog>
+      <DialogProduct
+        dialogRef={dialogRef}
+        currentProduct={currentProduct!}
+        setDialogOpen={setDialogOpen}
+      />
     </div>
   );
 };
