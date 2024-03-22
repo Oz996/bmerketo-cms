@@ -2,15 +2,15 @@ import "./ProductCard.scss";
 import { Link, useLocation } from "react-router-dom";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { Product } from "../../types/types";
-import React from "react";
+import React, { RefObject } from "react";
 import { useProduct } from "../../hooks/useProduct";
 
 interface props {
   product: Product;
-  setDialogOpen: any;
+  dialogRef: RefObject<HTMLDialogElement>;
 }
 
-const ProductCard = ({ product, setDialogOpen }: props) => {
+const ProductCard = ({ product, dialogRef }: props) => {
   const location = useLocation();
   const orderPage = location.pathname.includes("/orders");
 
@@ -18,7 +18,7 @@ const ProductCard = ({ product, setDialogOpen }: props) => {
 
   const handleClick = (id: string) => {
     handleAddProductId(id);
-    setDialogOpen(true);
+    dialogRef.current?.showModal();
   };
 
   return (

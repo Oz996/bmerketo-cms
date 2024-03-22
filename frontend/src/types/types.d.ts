@@ -11,8 +11,8 @@ export interface Product {
   description: string;
   images: Image[];
   product?: Product;
-  related: Product[];
-  review: Review[];
+  related?: Product[];
+  review?: Review[];
   best?: boolean;
   sale?: string;
 }
@@ -43,6 +43,14 @@ export interface Review {
   name: string;
   email: string;
   review: string;
+}
+
+export interface Object {
+  name: string;
+  category: string;
+  price: string;
+  image: string;
+  description: string;
 }
 
 export interface CartItem extends Product {

@@ -9,10 +9,10 @@ import { Product } from "../types/types";
 import { getBaseUrl } from "../utils/getBaseUrl";
 
 interface ProdcutContextType {
-  products: Product[] | null;
+  products: Product[];
   isLoading: boolean;
   productId: string;
-  setProducts: React.Dispatch<SetStateAction<Product[] | null>>;
+  setProducts: React.Dispatch<SetStateAction<Product[]>>;
   handleAddProductId: (id: string) => void;
   handleRemoveProductId: () => void;
 }
@@ -24,7 +24,7 @@ export const ProductContextProvider = ({
 }: {
   children: ReactElement;
 }) => {
-  const [products, setProducts] = useState<Product[] | null>(null);
+  const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [productId, setProductId] = useState("");
 

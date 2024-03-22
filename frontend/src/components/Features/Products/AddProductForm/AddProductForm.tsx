@@ -7,17 +7,9 @@ import { getBaseUrl } from "../../../../utils/getBaseUrl";
 import Loader from "../../../../utils/Loader/Loader";
 import { emptyFields } from "../../../../utils/validateFields";
 import { GrClose } from "react-icons/gr";
-import { Product } from "../../../../types/types";
+import { Object, Product } from "../../../../types/types";
 import DeleteModal from "../../../DeleteModal/DeleteModal";
 import DialogProduct from "../DialogProduct/DialogProduct";
-
-export interface Object {
-  name: string;
-  category: string;
-  price: string;
-  image: string;
-  description: string;
-}
 
 interface Images {
   url: string;
@@ -43,17 +35,15 @@ const initStateImages: Images = {
   url: "",
 };
 interface props {
-  dialogOpen: any;
-  setDialogOpen: any;
+  dialogRef: RefObject<HTMLDialogElement>;
 }
 
-const AddProductForm = ({ dialogOpen, setDialogOpen }: props) => {
+const AddProductForm = ({ dialogRef }: props) => {
   const [formData, setFormData] = useState(initState);
   const [formLoading, setFormLoading] = useState(false);
   const [productImages, setProductImages] = useState([initStateImages]);
   const [errors, setErrors] = useState(errorState);
   const [currentProduct, setCurrentProduct] = useState<Product>();
-  const dialogRef = useRef<HTMLDialogElement>(null);
 
   const {
     products,
@@ -66,6 +56,9 @@ const AddProductForm = ({ dialogOpen, setDialogOpen }: props) => {
 
   console.log("currentProduct", currentProduct);
   console.log("formData", formData);
+
+  const dialogOpen = dialogRef.current?.hasAttribute("open");
+  console.log("current", dialogOpen);
 
   // if we clicked on edit a product, fetch the product info through the products id
   // and fill the form with fetched data
@@ -183,7 +176,7 @@ const AddProductForm = ({ dialogOpen, setDialogOpen }: props) => {
             _id: productId,
           };
 
-          const updatedProductList = [...products];
+          const updatedProductList = [...products!];
           updatedProductList[productIndexToUpdate] = updatedProduct;
 
           console.log("updatedProductList", updatedProductList);
@@ -219,17 +212,6 @@ const AddProductForm = ({ dialogOpen, setDialogOpen }: props) => {
   const handleCancelEdit = () => {
     handleRemoveProductId();
     setFormData(initState);
-  };
-
-  const handleClickOutside = (
-    e: React.MouseEvent<HTMLDialogElement, MouseEvent>
-  ) => {
-    const target = e.target as HTMLDialogElement;
-    if (target.nodeName === "DIALOG") {
-      target.close();
-      setDialogOpen(false);
-      handleRemoveProductId();
-    }
   };
 
   return (
@@ -342,7 +324,7 @@ const AddProductForm = ({ dialogOpen, setDialogOpen }: props) => {
       <DialogProduct
         dialogRef={dialogRef}
         currentProduct={currentProduct!}
-        setDialogOpen={setDialogOpen}
+        // setDialogOpen={setDialogOpen}
       />
     </div>
   );

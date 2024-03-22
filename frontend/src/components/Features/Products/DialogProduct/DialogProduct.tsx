@@ -1,15 +1,13 @@
-import React, { SetStateAction } from "react";
+import React, { RefObject, SetStateAction } from "react";
 import "./DialogProduct.scss";
 import { useProduct } from "../../../../hooks/useProduct";
 import { GrClose } from "react-icons/gr";
-import { Object } from "../AddProductForm/AddProductForm";
 import { Product } from "../../../../types/types";
 import DeleteModal from "../../../DeleteModal/DeleteModal";
 
 interface props {
-  dialogRef: React.Ref<HTMLDialogElement>;
+  dialogRef: RefObject<HTMLDialogElement>;
   currentProduct: Product;
-  setDialogOpen: React.Dispatch<SetStateAction<boolean>>;
 }
 
 const initState: Object = {
@@ -20,7 +18,7 @@ const initState: Object = {
   description: "",
 };
 
-const DialogProduct = ({ dialogRef, currentProduct, setDialogOpen }: props) => {
+const DialogProduct = ({ dialogRef, currentProduct }: props) => {
   const { handleRemoveProductId, handleAddProductId } = useProduct();
   const handleClickOutside = (
     e: React.MouseEvent<HTMLDialogElement, MouseEvent>
@@ -28,7 +26,7 @@ const DialogProduct = ({ dialogRef, currentProduct, setDialogOpen }: props) => {
     const target = e.target as HTMLDialogElement;
     if (target.nodeName === "DIALOG") {
       target.close();
-      setDialogOpen(false);
+      dialogRef.current?.close();
       handleRemoveProductId();
     }
   };
