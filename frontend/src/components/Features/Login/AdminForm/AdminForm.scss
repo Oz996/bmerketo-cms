@@ -7,9 +7,7 @@
   justify-content: center;
   align-items: center;
   background-color: rgb(21, 21, 78);
-  :nth-child(8) {
-    margin-top: -0.5rem;
-  }
+
   @include mobile {
     align-items: start;
     padding-top: 2rem;
@@ -37,6 +35,13 @@
   span {
     font-size: 1.6rem;
     line-height: 1.9rem;
+  }
+  .admin-button {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    min-height: 3.9rem;
   }
   .login-form-div {
     width: 100%;

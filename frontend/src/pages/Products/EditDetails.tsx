@@ -103,159 +103,64 @@ const ProductDetails = () => {
 
   return (
     <>
-      <figure className="img-figure">
-        <img
-          className="product-img"
-          src={product?.images[0]?.image}
-          alt={product?.name}
-        />
-      </figure>
       <section className="product-details">
+        <figure className="img-figure">
+          <img
+            className="product-img"
+            src={product?.images[0]?.image}
+            alt={product?.name}
+          />
+        </figure>
         <div className="edit-product">
-          {isEditing ? (
-            <form>
-              <div className="form-div">
-                <div className="form-group">
-                  <label>
-                    Name:
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                    />
-                  </label>
-                  <label>
-                    Price:
-                    <input
-                      type="text"
-                      name="price"
-                      value={formData.price}
-                      onChange={handleChange}
-                    />
-                  </label>
-                </div>
-                <div className="form-group">
-                  <label>
-                    Category:
-                    <input
-                      type="text"
-                      name="category"
-                      value={formData.category}
-                      onChange={handleChange}
-                    />
-                  </label>
-                  <label>
-                    ImageURL:
-                    <input
-                      type="text"
-                      name="image"
-                      value={formData.image}
-                      onChange={handleChange}
-                    />
-                  </label>
-                </div>
-              </div>
-              <label>
-                ImageURL2:
-                <input
-                  type="text"
-                  name="image"
-                  value={formData.image2}
-                  onChange={handleChange}
-                />
-              </label>
-              <label>
-                ImageURL3:
-                <input
-                  type="text"
-                  name="image"
-                  value={formData.image3}
-                  onChange={handleChange}
-                />
-              </label>
-              <label>
-                ImageURL4:
-                <input
-                  type="text"
-                  name="image"
-                  value={formData.image4}
-                  onChange={handleChange}
-                />
-              </label>
-              <div className="form-bottom">
-                <label>
-                  Description:
-                  <textarea
-                    name="description"
-                    rows={15}
-                    value={formData.description}
-                    onChange={handleChange}
-                  ></textarea>
-                </label>
-              </div>
-              <div className="product-buttons">
-                <button className="btn btn-primary" onClick={handleSaveClick}>
-                  Save
+          <p>
+            <b>Id: </b>
+            {product?._id}
+          </p>
+          <p>
+            <b>Name: </b>
+            {product?.name}
+          </p>
+          <p>
+            <b>Price: </b> {product?.price}
+          </p>
+          <p>
+            <b>Category: </b>
+            {product?.category}
+          </p>
+          <p>
+            <b>Description: </b>
+            {product?.description}
+          </p>
+          <div className="product-buttons">
+            {product?.locked ? (
+              <>
+                <button
+                  className="btn btn-primary"
+                  disabled
+                  title="Cannot edit base products for showcase reasons"
+                >
+                  <BsLockFill /> Edit
                 </button>
-                <button className="btn btn-danger" onClick={handleCancelClick}>
-                  Cancel
+                <button
+                  className="btn btn-danger"
+                  disabled
+                  title="Cannot delete base products for showcase reasons"
+                >
+                  <BsLockFill /> Delete
                 </button>
-              </div>
-            </form>
-          ) : (
-            <>
-              <p>
-                <b>Id: </b>
-                {product?._id}
-              </p>
-              <p>
-                <b>Name: </b>
-                {product?.name}
-              </p>
-              <p>
-                <b>Price: </b> {product?.price}
-              </p>
-              <p>
-                <b>Category: </b>
-                {product?.category}
-              </p>
-              <p>
-                <b>Description: </b>
-                {product?.description}
-              </p>
-              <div className="product-buttons">
-                {product?.locked ? (
-                  <>
-                    <button
-                      className="btn btn-primary"
-                      disabled
-                      title="Cannot edit base products for showcase reasons"
-                    >
-                      <BsLockFill /> Edit
-                    </button>
-                    <button
-                      className="btn btn-danger"
-                      disabled
-                      title="Cannot delete base products for showcase reasons"
-                    >
-                      <BsLockFill /> Delete
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <button
-                      className="btn btn-primary"
-                      onClick={() => handleEditClick(product?._id)}
-                    >
-                      Edit
-                    </button>
-                    <DeleteModal />
-                  </>
-                )}
-              </div>
-            </>
-          )}
+              </>
+            ) : (
+              <>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => handleEditClick(product?._id)}
+                >
+                  Edit
+                </button>
+                <DeleteModal />
+              </>
+            )}
+          </div>
         </div>
       </section>
     </>

@@ -120,23 +120,19 @@ const AdminForm = () => {
           </div>
         )}
 
-        {isLoading ? (
-          <button
-            disabled
-            style={{ opacity: ".5", pointerEvents: "not-allowed" as any }}
-            className="btn btn-primary"
-          >
-            <Loader />
-          </button>
-        ) : (
-          <button className="btn btn-primary">Login</button>
-        )}
+        <button
+          disabled={isLoading}
+          className={`btn btn-primary ${isLoading && "admin-button"}`}
+        >
+          <span>{isLoading && <Loader />}</span>
+          Login
+        </button>
 
         <p>
           <b>Example login:</b>
         </p>
         <p>bmerketo-admin@mail.com</p>
-        <p>test123</p>
+        <p style={{ marginTop: "-.5rem" }}>test123</p>
       </form>
     </div>
   );

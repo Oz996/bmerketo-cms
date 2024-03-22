@@ -68,7 +68,9 @@ a {
 }
 .product-details {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .details-container {

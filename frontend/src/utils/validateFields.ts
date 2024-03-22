@@ -11,7 +11,7 @@ export const emptyFields = (
     newErrors[field] = "This field is required";
   });
 
-  if (emptyFields.length > 0) {
+  if (emptyFieldValues.length > 0) {
     setState(newErrors);
     return true;
   }

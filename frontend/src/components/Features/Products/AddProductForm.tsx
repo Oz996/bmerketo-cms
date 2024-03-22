@@ -1,11 +1,14 @@
 import "./AddProductForm.scss";
-import { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { useAuth } from "../../../hooks/useAuth";
 import { useProduct } from "../../../hooks/useProduct";
 import { getBaseUrl } from "../../../utils/getBaseUrl";
 import Loader from "../../../utils/Loader/Loader";
 import { emptyFields } from "../../../utils/validateFields";
+import { GrClose } from "react-icons/gr";
+import { Product } from "../../../types/types";
+import DeleteModal from "../../DeleteModal/DeleteModal";
 
 interface Object {
   name: string;
@@ -38,20 +41,30 @@ const errorState: Object = {
 const initStateImages: Images = {
   url: "",
 };
+interface props {
+  dialogOpen: any;
+  setDialogOpen: any;
+}
 
-const AddProductForm = () => {
+const AddProductForm = ({ dialogOpen, setDialogOpen }: props) => {
   const [formData, setFormData] = useState(initState);
   const [formLoading, setFormLoading] = useState(false);
   const [productImages, setProductImages] = useState([initStateImages]);
   const [errors, setErrors] = useState(errorState);
+  const [currentProduct, setCurrentProduct] = useState<Product>();
+  const dialogRef = useRef<HTMLDialogElement>(null);
 
-  console.log("errors", errors);
-
-  const { products, setProducts, productId, handleRemoveProductId } =
-    useProduct();
+  const {
+    products,
+    setProducts,
+    productId,
+    handleRemoveProductId,
+    handleAddProductId,
+  } = useProduct();
   const { token } = useAuth();
 
-  console.log("images", productImages);
+  console.log("currentProduct", currentProduct);
+  console.log("formData", formData);
 
   // if we clicked on edit a product, fetch the product info through the products id
   // and fill the form with fetched data
@@ -60,6 +73,7 @@ const AddProductForm = () => {
       const fetchProduct = async () => {
         const res = await fetch(getBaseUrl() + `/api/products/${productId}`);
         const data = await res.json();
+        setCurrentProduct(data);
 
         const { name, category, price, images, description } = data;
         setFormData({
@@ -71,7 +85,13 @@ const AddProductForm = () => {
         });
       };
       fetchProduct();
+    } else {
+      setFormData(initState);
     }
+  }, [productId]);
+
+  useEffect(() => {
+    if (productId && dialogOpen) dialogRef.current?.showModal();
   }, [productId]);
 
   const handlePostSubmit = async (e: React.FormEvent) => {
@@ -197,6 +217,17 @@ const AddProductForm = () => {
     setFormData(initState);
   };
 
+  const handleClickOutside = (
+    e: React.MouseEvent<HTMLDialogElement, MouseEvent>
+  ) => {
+    const target = e.target as HTMLDialogElement;
+    if (target.nodeName === "DIALOG") {
+      target.close();
+      setDialogOpen(false);
+      handleRemoveProductId();
+    }
+  };
+
   return (
     <div className="new-product">
       <h1>{productId ? "Update product" : "Create product"}</h1>
@@ -303,6 +334,51 @@ const AddProductForm = () => {
           </button>
         </div>
       </form>
+
+      <button onClick={() => dialogRef!.current?.showModal()}>open</button>
+
+      <dialog
+        ref={dialogRef}
+        className="product-dialog"
+        onClick={handleClickOutside}
+      >
+        <div className="product-dialog-content">
+          <GrClose
+            size={12}
+            className="dialog-close-icon"
+            onClick={() => {
+              dialogRef!.current?.close();
+              setDialogOpen(false);
+            }}
+          />
+          <div className="dialog-image">
+            <img
+              src={currentProduct?.images[0]?.image}
+              alt={currentProduct?.name}
+            />
+          </div>
+
+          <div className="product-dialog-body">
+            <h2>{currentProduct?.name}</h2>
+            <span>{currentProduct?.category}</span>
+            <span>£{currentProduct?.price}</span>
+            <p>{currentProduct?.description}</p>
+            <span>{currentProduct?._id}</span>
+          </div>
+          <div className="dialog-buttons-sticky">
+            <button
+              onClick={() => {
+                handleAddProductId(currentProduct?._id!);
+                dialogRef!.current?.close();
+              }}
+              className="btn btn-primary"
+            >
+              Edit
+            </button>
+            <DeleteModal dialogRef={dialogRef} />
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 };
