@@ -22,7 +22,6 @@ const ProductCard = ({ product, dialogRef }: props) => {
   };
 
   return (
-    // <Link to={`/products/${product?._id}`}>
     <article className="product" onClick={() => handleClick(product?._id)}>
       <div className="product-info">
         <img src={product?.images[0]?.image} alt={product?.name} />

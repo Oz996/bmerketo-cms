@@ -44,33 +44,35 @@ const Orders = () => {
   }, []);
 
   return (
-    <section className="order-list">
-      <div className="orders">
-        {isLoading && (
-          <div className="order-loader">
-            <LoaderDark />
-          </div>
-        )}
-        {orders
-          ? orders.map((order) => (
-              <Link to={`/orders/${order._id}`} key={order._id}>
-                <div
-                  className={`order ${
-                    (order.status === "pending" && "orange") ||
-                    (order.status === "in transit" && "yellow") ||
-                    (order.status === "delivered" && "green")
-                  }`}
-                  key={order._id}
-                >
-                  <h3>{order.user.email}</h3>
-                  <div className="status-div">
-                    <p>{`Status: ${order.status}`}</p>
+    <section className="order-list cms-bg-color">
+      <div className="order-div">
+        <div className="orders">
+          {isLoading && (
+            <div className="order-loader">
+              <LoaderDark />
+            </div>
+          )}
+          {orders
+            ? orders.map((order) => (
+                <Link to={`/orders/${order._id}`} key={order._id}>
+                  <div
+                    className={`order ${
+                      (order.status === "pending" && "orange") ||
+                      (order.status === "in transit" && "yellow") ||
+                      (order.status === "delivered" && "green")
+                    }`}
+                    key={order._id}
+                  >
+                    <h3>{order.user.email}</h3>
+                    <div className="status-div">
+                      <p>{`Status: ${order.status}`}</p>
+                    </div>
+                    <p>{`Products: ${order.products.length}`}</p>
                   </div>
-                  <p>{`Products: ${order.products.length}`}</p>
-                </div>
-              </Link>
-            ))
-          : null}
+                </Link>
+              ))
+            : null}
+        </div>
       </div>
     </section>
   );

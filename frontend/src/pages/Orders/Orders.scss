@@ -1,13 +1,28 @@
-.order-list {
-  width: 70%;
-  margin: 0 auto;
-  display: flex;
+@use "../../sass/" as *;
 
+.order-list {
+  display: flex;
+  height: calc(100vh - 5.5rem);
+
+  .order-div {
+    margin-inline: auto;
+  }
   .orders {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    margin-inline: auto;
+    grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
     margin-top: 3rem;
+    @include tablet {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include mobile {
+      grid-template-columns: repeat(2, 1fr);
+      width: 100%;
+    }
+    @include xs-mobile {
+      grid-template-columns: repeat(1, 1fr);
+    }
 
     h3 {
       font-size: 1.8rem;
@@ -26,7 +41,7 @@
       border: 1px solid rgb(229, 229, 229);
       padding: 1.5rem;
       border-radius: 0.5rem;
-      min-width: 16vw;
+      min-width: 25rem;
     }
     .orange {
       border-bottom: 5px solid rgb(212, 138, 0);
