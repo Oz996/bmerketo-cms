@@ -3,7 +3,6 @@ import Login from "./pages/Login/Login";
 import Overview from "./pages/Overview/Overview";
 import NotFound from "./pages/NotFound";
 import Products from "./pages/Products/Products";
-import EditDetails from "./pages/Products/EditDetails";
 import Orders from "./pages/Orders/Orders";
 import Order from "./pages/Order/Order";
 import PrivateRoutes from "./utils/PrivateRoutes";
@@ -26,7 +25,6 @@ const App = () => {
         <Route element={<PrivateRoutes />}>
           <Route path="/overview" element={<Overview />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/products/:_id" element={<EditDetails />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/order/:_id" element={<Order />} />
         </Route>

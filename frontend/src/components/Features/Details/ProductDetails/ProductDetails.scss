@@ -10,8 +10,6 @@
     margin-top: 3rem;
     gap: 3rem;
   }
-  @include mobile {
-  }
 
   .details-images {
     display: flex;
@@ -91,6 +89,7 @@
       display: flex;
       gap: 2rem;
       height: 5rem;
+
       .add-to-cart {
         button {
           display: flex;
