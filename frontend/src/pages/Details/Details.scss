@@ -125,3 +125,25 @@
 .short {
   height: 5rem !important;
 }
+
+.details-tabs {
+  display: flex;
+  height: 5rem;
+
+  margin-bottom: 3rem;
+  button {
+    flex: 1;
+    height: 100%;
+    border: 1px solid rgb(199, 199, 199);
+    background-color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+      color: $store-hover-red;
+    }
+    @include mobile {
+      padding: 0.3rem;
+    }
+  }
+}
