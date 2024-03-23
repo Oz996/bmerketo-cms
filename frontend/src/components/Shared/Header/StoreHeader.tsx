@@ -9,11 +9,11 @@ import { AiOutlineMenu } from "react-icons/ai";
 import CartModal from "../CartModal/CartModal";
 import { useCart } from "../../../hooks/useCart";
 import { useAuth } from "../../../hooks/useAuth";
-import SearchBar from "../SearchBar/SearchBar";
+import Searchbar from "../Searchbar/SearchBar";
 
 const StoreHeader = () => {
   const [cartModal, setCartModal] = useState(false);
-  const [searchBar, setSearchBar] = useState(false);
+  const [searchbar, setSearchbar] = useState(false);
   const [hamburgerMenu, setHamburgerMenu] = useState(false);
   const { token } = useAuth();
   const { cart } = useCart();
@@ -33,6 +33,8 @@ const StoreHeader = () => {
       }
     });
   });
+
+  console.log("open", searchbar);
 
   return (
     <>
@@ -75,7 +77,7 @@ const StoreHeader = () => {
             <div onClick={closeMenu} className="store-header-end">
               <BsSearch
                 size={15}
-                onClick={() => setSearchBar(true)}
+                onClick={() => setSearchbar(true)}
                 className="search-icon"
               />
               <span>
@@ -101,7 +103,7 @@ const StoreHeader = () => {
           <CartModal cartRef={cartRef} setCartModal={setCartModal} />
         )}
       </header>
-      {searchBar && <SearchBar setSearchBar={setSearchBar} />}
+      {searchbar && <Searchbar setSearchbar={setSearchbar} />}
       <Outlet />
     </>
   );

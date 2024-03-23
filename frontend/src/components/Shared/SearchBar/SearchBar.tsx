@@ -1,4 +1,4 @@
-import "./SearchBar.scss";
+import "./Searchbar.scss";
 import { IoClose } from "react-icons/io5";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useProduct } from "../../../hooks/useProduct";
@@ -6,10 +6,10 @@ import StoreCard from "../StoreCard/StoreCard";
 import { Product } from "../../../types/types";
 
 interface props {
-  setSearchBar: Dispatch<SetStateAction<boolean>>;
+  setSearchbar: Dispatch<SetStateAction<boolean>>;
 }
 
-const SearchBar = ({ setSearchBar }: props) => {
+const Searchbar = ({ setSearchbar }: props) => {
   const [displayList, setDisplayList] = useState<Product[] | null>(null);
   const { products } = useProduct();
 
@@ -29,7 +29,7 @@ const SearchBar = ({ setSearchBar }: props) => {
       <IoClose
         size={60}
         className="search-close animation-grow"
-        onClick={() => setSearchBar(false)}
+        onClick={() => setSearchbar(false)}
       />
       <div className="search-overlay animation-fade-in">
         <div className="search-div">
@@ -41,7 +41,11 @@ const SearchBar = ({ setSearchBar }: props) => {
           />
           <div className="product-card-list">
             {displayList?.map((product) => (
-              <StoreCard product={product} style={"text-white"} />
+              <StoreCard
+                setSearchbar={setSearchbar}
+                product={product}
+                style={"text-white"}
+              />
             ))}
           </div>
         </div>
@@ -50,4 +54,4 @@ const SearchBar = ({ setSearchBar }: props) => {
   );
 };
 
-export default SearchBar;
+export default Searchbar;

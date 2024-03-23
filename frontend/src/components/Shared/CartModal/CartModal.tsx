@@ -28,7 +28,7 @@ const CartModal = ({ cartRef, setCartModal }: props) => {
   console.log(cart);
 
   return (
-    <div ref={cartRef} className="cart-modal animation-slide-up">
+    <div ref={cartRef} className="cart-modal animation-slide-up-fade">
       <div className="content">
         {cart?.length === 0 ? (
           <div className="empty">

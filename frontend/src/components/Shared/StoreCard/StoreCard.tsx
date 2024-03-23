@@ -4,13 +4,15 @@ import { Product } from "../../../types/types";
 import { MdAddShoppingCart } from "react-icons/md";
 import { scrollToTopSmooth } from "../../../utils/scrolls";
 import { useCart } from "../../../hooks/useCart";
+import { Dispatch, SetStateAction } from "react";
 
 interface props {
   product: Product;
   style?: string;
+  setSearchbar?: Dispatch<SetStateAction<boolean>>;
 }
 
-const StoreCard = ({ product, style }: props) => {
+const StoreCard = ({ product, style, setSearchbar }: props) => {
   const { name, price, images, sale } = product;
 
   const { addToCart } = useCart();
@@ -20,8 +22,13 @@ const StoreCard = ({ product, style }: props) => {
     e.stopPropagation();
     addToCart(product, 1);
   };
+
+  const handleClickProduct = () => {
+    if (setSearchbar) setSearchbar(false);
+    scrollToTopSmooth();
+  };
   return (
-    <Link to={`/store/${product?._id}`} onClick={scrollToTopSmooth}>
+    <Link to={`/store/${product?._id}`} onClick={handleClickProduct}>
       <article>
         <div className="product-card">
           {/* displaying second image on hover, if only one image we display it only */}
