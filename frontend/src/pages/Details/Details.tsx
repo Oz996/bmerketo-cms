@@ -7,6 +7,7 @@ import { getBaseUrl } from "../../utils/getBaseUrl";
 import RelatedProducts from "../../components/Features/Details/RelatedProducts/RelatedProducts";
 import InfoContent from "../../components/Features/Details/InfoContent/InfoContent";
 import ProductDetails from "../../components/Features/Details/ProductDetails/ProductDetails";
+import InfoTabs from "../../components/Features/Details/InfoTabs/InfoTabs";
 
 const Details = () => {
   const [product, setProduct] = useState<Product>();
@@ -53,44 +54,11 @@ const Details = () => {
         setDisplayImage={setDisplayImage}
       />
       <div className="details-info">
-        <div className="details-tabs">
-          <button
-            style={{
-              backgroundColor: information === 1 ? "black" : "white",
-              color: information === 1 ? "white" : "black",
-            }}
-            onClick={() => setInformation(1)}
-          >
-            description
-          </button>
-          <button
-            style={{
-              backgroundColor: information === 2 ? "black" : "white",
-              color: information === 2 ? "white" : "black",
-            }}
-            onClick={() => setInformation(2)}
-          >
-            additional info
-          </button>
-          <button
-            style={{
-              backgroundColor: information === 3 ? "black" : "white",
-              color: information === 3 ? "white" : "black",
-            }}
-            onClick={() => setInformation(3)}
-          >
-            reviews ({reviews?.length})
-          </button>
-          <button
-            style={{
-              backgroundColor: information === 4 ? "black" : "white",
-              color: information === 4 ? "white" : "black",
-            }}
-            onClick={() => setInformation(4)}
-          >
-            shipping & delivery
-          </button>
-        </div>
+        <InfoTabs
+          information={information}
+          reviews={reviews!}
+          setInformation={setInformation}
+        />
         <InfoContent information={information} product={product!} />
         {information === 3 && (
           <Reviews
