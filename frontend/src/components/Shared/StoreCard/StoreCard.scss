@@ -1,9 +1,6 @@
 @use "../../../sass" as *;
 
 .product-card-list {
-  a {
-    background-color: red;
-  }
 }
 .product-card {
   display: flex;
@@ -14,10 +11,11 @@
     padding-bottom: 0.5rem;
   }
   .icon {
-    z-index: 1;
     transition: 0.3s;
+    margin-right: 4rem;
     &:hover {
       color: $store-hover-red;
+      scale: 1.1;
     }
   }
   p {
@@ -40,13 +38,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    :nth-child(2) {
-      margin-right: 4rem;
-    }
     div {
       display: flex;
       gap: 2.5rem;
-
       .on-sale {
         text-decoration: line-through;
       }

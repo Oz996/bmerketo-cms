@@ -1,3 +1,5 @@
+@use "../../../sass/" as *;
+
 .product-list {
   display: flex;
   flex-wrap: wrap;
@@ -5,6 +7,10 @@
   width: 70%;
   margin-inline: auto;
   margin-top: 3rem;
+  @include tablet {
+    text-align: center;
+    justify-content: center;
+  }
 
   .product {
     display: flex;
@@ -34,16 +40,5 @@
       transition: transform 0.3s ease;
       margin-block: 0.1rem;
     }
-  }
-}
-
-@media (max-width: 1134px) {
-  .product-list {
-    text-align: center;
-    justify-content: center;
-  }
-}
-@media (max-width: 712px) {
-  .product-list {
   }
 }

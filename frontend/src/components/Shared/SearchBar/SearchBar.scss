@@ -10,33 +10,37 @@
     bottom: 0;
     width: 100vw;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     z-index: 2;
     overflow-y: scroll;
-    @include tablet {
-      width: 100%;
-      height: 100%;
-    }
+    padding-top: 10rem;
+
     @include mobile {
-      justify-content: start;
       padding-top: 15rem;
+      justify-content: start;
     }
     div {
       max-height: 80rem;
     }
   }
+  .search-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+  }
   .search-close {
     color: $store-hover-red;
     z-index: 3;
+
     cursor: pointer;
     position: fixed;
     right: 10%;
     top: 2%;
     @include mobile {
-      top: 1%;
+      top: 1.5rem;
+      width: 5rem;
+      height: 5rem;
     }
   }
   .search-icon {

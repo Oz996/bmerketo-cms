@@ -14,7 +14,7 @@ const SearchBar = ({ setSearchBar }: props) => {
   const { products } = useProduct();
 
   const searchFunction = (search: string) => {
-    if (search === "") {
+    if (!search) {
       setDisplayList(null);
       return;
     }
@@ -32,16 +32,18 @@ const SearchBar = ({ setSearchBar }: props) => {
         onClick={() => setSearchBar(false)}
       />
       <div className="search-overlay animation-fade-in">
-        <input
-          className="animation-grow-x"
-          type="text"
-          placeholder="Search for product..."
-          onChange={(e) => searchFunction(e.target.value)}
-        />
-        <div className="product-card-list">
-          {displayList?.map((product) => (
-            <StoreCard product={product} style={"text-white"} />
-          ))}
+        <div className="search-div">
+          <input
+            className="animation-grow-x"
+            type="text"
+            placeholder="Search for product..."
+            onChange={(e) => searchFunction(e.target.value)}
+          />
+          <div className="product-card-list">
+            {displayList?.map((product) => (
+              <StoreCard product={product} style={"text-white"} />
+            ))}
+          </div>
         </div>
       </div>
     </div>
