@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useCart } from "../../../hooks/useCart";
 import "./CartModal.scss";
-import { FaTrash } from "react-icons/fa";
 import { BsFillCartXFill } from "react-icons/bs";
 import { Dispatch, RefObject, SetStateAction, useEffect } from "react";
 import { CartItem } from "../../../types/types";
@@ -49,7 +48,7 @@ const CartModal = ({ cartRef, setCartModal }: props) => {
                 Remove all
               </p>
             </div>
-            <ul>
+            <ul className="cart-modal-items">
               {cart?.map((product: CartItem) => (
                 <CartModalItem
                   key={product._id}

@@ -1,0 +1,30 @@
+@use "../../../sass/" as *;
+
+.cart-modal-items {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  li {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-bottom: 1px solid rgb(225, 225, 225);
+    padding-bottom: 1rem;
+  }
+}
+.checkout-button {
+  padding-top: 1rem;
+  button {
+    width: 100%;
+    font-size: 1.7rem;
+    padding: 0.8rem;
+    border: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+      @include hover-bg;
+    }
+  }
+}

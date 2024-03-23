@@ -10,7 +10,9 @@
   border: 1px solid rgb(226, 226, 226);
   padding: 3rem;
   max-height: 100vh;
+  width: 60rem;
   overflow-y: auto;
+
   @include mobile {
     width: 100%;
     left: 0;
@@ -37,6 +39,7 @@
       h2 {
         font-weight: 600;
         font-size: 1.7rem;
+        letter-spacing: 0.2rem;
       }
       p {
         text-decoration: underline;
@@ -45,22 +48,7 @@
         @include hover-color;
       }
     }
-    .checkout-button {
-      padding-top: 1rem;
-      button {
-        width: 100%;
-        font-size: 1.7rem;
-        padding: 0.8rem;
-        border: none;
-        background-color: black;
-        color: white;
-        cursor: pointer;
-        transition: 0.3s;
-        &:hover {
-          @include hover-bg;
-        }
-      }
-    }
+
     p {
       font-size: 1.7rem;
       font-weight: 300;
@@ -104,17 +92,7 @@
         display: flex;
       }
     }
-    ul {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      li {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        border-bottom: 1px solid rgb(225, 225, 225);
-        padding-bottom: 1rem;
-      }
-    }
+
     img {
       width: 10rem;
     }
