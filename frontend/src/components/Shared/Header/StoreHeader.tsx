@@ -73,7 +73,11 @@ const StoreHeader = () => {
             </ul>
 
             <div onClick={closeMenu} className="store-header-end">
-              <BsSearch size={15} onClick={() => setSearchBar(true)} />
+              <BsSearch
+                size={15}
+                onClick={() => setSearchBar(true)}
+                className="search-icon"
+              />
               <span>
                 {!token ? (
                   <Link to="/store/login">Login</Link>
@@ -89,9 +93,7 @@ const StoreHeader = () => {
                 onClick={() => setCartModal(true)}
                 className="cart-icon"
               />
-              <div className={cart?.length > 0 ? "red" : ""}>
-                {cart?.length}
-              </div>
+              <div className="red">{cart?.length > 0 && cart.length}</div>
             </div>
           </div>
         </nav>

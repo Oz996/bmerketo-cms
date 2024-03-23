@@ -27,6 +27,29 @@
   }
 }
 
+// @keyframes up-down-spring {
+//   0% {
+//     opacity: 0;
+//   }
+//   100% {
+//     transform: translateY(0);
+//     opacity: 1;
+//   }
+//   50% {
+//     transform: translateY(-80px);
+//   }
+// }
+@keyframes up-down-spring {
+  from {
+    transform: translateY(80px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 // animation classes
 
 .animation-grow {
@@ -37,4 +60,7 @@
 }
 .animation-fade-in {
   animation: fade-in 0.4s ease-in-out;
+}
+.animation-slide-up {
+  animation: up-down-spring 0.4s ease-in-out;
 }
