@@ -228,23 +228,6 @@
     background: #555;
   }
 
-  .details-list {
-    display: flex;
-    justify-content: center;
-  }
-  .details-description {
-    display: flex;
-    justify-content: space-between;
-    @include tablet {
-      flex-direction: column;
-    }
-    img {
-      width: 40rem;
-      @include tablet {
-        width: 30rem;
-      }
-    }
-  }
   .details-tabs {
     display: flex;
     height: 5rem;
@@ -268,17 +251,6 @@
   }
 }
 
-.details-related {
-  hr {
-    border: 1px solid rgb(228, 228, 228);
-    margin-block: 5rem;
-  }
-  h2 {
-    font-size: 2.5rem;
-    font-weight: 500;
-    margin-bottom: 1rem;
-  }
-}
 .error-border {
   outline: 1px solid red;
   background-color: rgb(252, 212, 212) !important;
