@@ -5,7 +5,7 @@ import NotFound from "./pages/NotFound";
 import Products from "./pages/Products/Products";
 import EditDetails from "./pages/Products/EditDetails";
 import Orders from "./pages/Orders/Orders";
-import Order from "./pages/Orders/Order";
+import Order from "./pages/Order/Order";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";

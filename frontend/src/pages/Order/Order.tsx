@@ -37,7 +37,7 @@ const Order = () => {
   const products = order?.products?.map((product) => product?.product);
 
   return (
-    <section>
+    <section className="order-page cms-bg-color">
       <OrderDetails
         order={order!}
         status={status}
