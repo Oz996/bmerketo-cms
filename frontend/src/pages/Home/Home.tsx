@@ -5,8 +5,9 @@ import { Product } from "../../types/types";
 import { Link } from "react-router-dom";
 import "flickity/css/flickity.css";
 import "./Home.scss";
-import StoreCard from "../../components/StoreCard/StoreCard";
+import StoreCard from "../../components/Shared/StoreCard/StoreCard";
 import StoreLoader from "../../utils/Loader/StoreLoader";
+import Carousel from "../../components/Features/Home/Carousel/Carousel";
 
 const Home = () => {
   const [chairs, setChairs] = useState<Product[] | undefined>([]);
@@ -23,12 +24,6 @@ const Home = () => {
     setBest(bestFilter);
   }, [products]);
 
-  const flickityOptions = {
-    wrapAround: true,
-    autoPlay: 4000,
-    draggable: false,
-  };
-
   return (
     <section className="home poppins">
       {isLoading && (
@@ -36,22 +31,7 @@ const Home = () => {
           <StoreLoader /> <p>Loading please be patient</p>
         </div>
       )}
-      <Flickity options={flickityOptions}>
-        {chairs?.map((chair) => (
-          <article key={chair?._id} className="carousel-content">
-            <div>
-              <h2>Welcome to bmerketo shop</h2>
-              <p>{chair?.name}</p>
-              <Link to="/store">
-                <button>shop now</button>
-              </Link>
-            </div>
-            <div>
-              <img src={chair?.images[0]?.image} alt="image of product" />
-            </div>
-          </article>
-        ))}
-      </Flickity>
+      <Carousel chairs={chairs!} />
       <section className="collection store-container">
         <h1>Best Collection</h1>
         <ul>

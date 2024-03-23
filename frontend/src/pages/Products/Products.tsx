@@ -1,5 +1,5 @@
 import "./Products.scss";
-import ProductCard from "../../components/ProductCard/ProductCard.tsx";
+import ProductCard from "../../components/Shared/ProductCard/ProductCard.tsx";
 import LoaderDark from "../../utils/Loader/LoaderDark.tsx";
 import { useProduct } from "../../hooks/useProduct.ts";
 import AddProductForm from "../../components/Features/Products/AddProductForm/AddProductForm.tsx";

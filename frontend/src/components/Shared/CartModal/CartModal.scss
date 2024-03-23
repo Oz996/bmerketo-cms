@@ -1,4 +1,4 @@
-@use "../../sass/" as *;
+@use "../../../sass/" as *;
 
 .cart-modal {
   position: fixed;
@@ -83,7 +83,7 @@
       justify-content: end;
       align-items: center;
       gap: 1rem;
-      @include mobile{
+      @include mobile {
         gap: 0;
       }
       :nth-child(4) {

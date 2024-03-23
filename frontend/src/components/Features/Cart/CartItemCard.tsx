@@ -1,7 +1,8 @@
 import { useCart } from "../../../hooks/useCart";
-import { CartItem } from "@/src/types/types";
+import { CartItem } from "../../../types/types";
 import { FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import "./CartItemCard.scss";
 
 interface props {
   product: CartItem;

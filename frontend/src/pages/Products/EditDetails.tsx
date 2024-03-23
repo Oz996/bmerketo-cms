@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { BsLockFill } from "react-icons/bs";
-import DeleteModal from "../../components/DeleteModal/DeleteModal";
+import DeleteModal from "../../components/Features/Products/DeleteModal/DeleteModal";
 import "./EditDetails.scss";
 import { toast } from "react-toastify";
 import { Product } from "../../types/types";

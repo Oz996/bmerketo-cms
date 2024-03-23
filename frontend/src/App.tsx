@@ -10,7 +10,7 @@ import PrivateRoutes from "./utils/PrivateRoutes";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import Home from "./pages/Home/Home";
-import StoreHeader from "./components/Header/StoreHeader";
+import StoreHeader from "./components/Shared/Header/StoreHeader";
 import Details from "./pages/Details/Details";
 import Store from "./pages/Store/Store";
 import Cart from "./pages/Cart/Cart";

@@ -1,16 +1,16 @@
 import "./Header.scss";
 import Logo from "/Logo.svg";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import Loader from "../../utils/Loader/Loader";
+import Loader from "../../../utils/Loader/Loader";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { CgClose } from "react-icons/cg";
 import { useEffect, useRef, useState } from "react";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../../hooks/useAuth";
 
 const Header = () => {
   const [hamburgerMenu, setHamburgerMenu] = useState(false);
   console.log(hamburgerMenu);
-  const { handleLogout, isAuthenticated } = useAuth();
+  const { handleLogout, token } = useAuth();
   const navigate = useNavigate();
   const navRef = useRef<HTMLUListElement>(null);
 
@@ -39,7 +39,7 @@ const Header = () => {
     };
   }, []);
 
-  if (isAuthenticated === null) {
+  if (token === null) {
     return (
       <span className="loader">
         <Loader />
@@ -73,7 +73,7 @@ const Header = () => {
 
           <ul className={hamburgerMenu ? "show" : ""} ref={navRef}>
             {/* Display navbar with content if admin is logged in */}
-            {isAuthenticated ? (
+            {token ? (
               <>
                 <NavLink to="/overview">
                   <li> Overview </li>

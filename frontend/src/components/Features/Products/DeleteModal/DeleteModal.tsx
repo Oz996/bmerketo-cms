@@ -2,9 +2,9 @@ import { RefObject, useEffect, useRef, useState } from "react";
 import "./DeleteModal.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useProduct } from "../../hooks/useProduct";
-import { useAuth } from "../../hooks/useAuth";
-import { getBaseUrl } from "../../utils/getBaseUrl";
+import { useProduct } from "../../../../hooks/useProduct";
+import { useAuth } from "../../../../hooks/useAuth";
+import { getBaseUrl } from "../../../../utils/getBaseUrl";
 import { BiError } from "react-icons/bi";
 
 interface props {

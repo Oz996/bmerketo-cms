@@ -10,15 +10,15 @@ import { getBaseUrl } from "../../utils/getBaseUrl";
 
 const Cart = () => {
   const { cart, emptyCart } = useCart();
-  const { token, isAuthenticated } = useAuth();
+  const { token } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (!token) {
       navigate("/store/login");
       toast.error("Please sign in to place order");
     }
-  }, [isAuthenticated, navigate]);
+  }, [token, navigate]);
 
   const subtotal = (product: CartItem) => {
     return product?.quantity * product?.price;

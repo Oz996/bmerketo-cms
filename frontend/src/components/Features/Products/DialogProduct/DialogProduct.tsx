@@ -3,7 +3,7 @@ import "./DialogProduct.scss";
 import { useProduct } from "../../../../hooks/useProduct";
 import { GrClose } from "react-icons/gr";
 import { Product } from "../../../../types/types";
-import DeleteModal from "../../../DeleteModal/DeleteModal";
+import DeleteModal from "../DeleteModal/DeleteModal";
 
 interface props {
   dialogRef: RefObject<HTMLDialogElement>;

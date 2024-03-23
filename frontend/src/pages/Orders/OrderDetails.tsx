@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { Order } from "../../types/types";
 import { useAuth } from "../../hooks/useAuth";
 import { getBaseUrl } from "../../utils/getBaseUrl";
-import ProductCard from "../../components/ProductCard/ProductCard";
+import ProductCard from "../../components/Shared/ProductCard/ProductCard";
 
 const OrderDetails = () => {
   const [order, setOrder] = useState<Order | null>(null);

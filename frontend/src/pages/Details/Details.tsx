@@ -3,7 +3,7 @@ import "./Details.scss";
 import { useParams } from "react-router-dom";
 import { Product, Review } from "../../types/types";
 import { FaShoppingBasket } from "react-icons/fa";
-import StoreCard from "../../components/StoreCard/StoreCard";
+import StoreCard from "../../components/Shared/StoreCard/StoreCard";
 import Reviews from "./Reviews";
 import { useCart } from "../../hooks/useCart";
 import { getBaseUrl } from "../../utils/getBaseUrl";

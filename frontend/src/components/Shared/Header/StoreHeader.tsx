@@ -7,15 +7,15 @@ import { useState, useRef, useEffect } from "react";
 import { GrClose } from "react-icons/gr";
 import { AiOutlineMenu } from "react-icons/ai";
 import CartModal from "../CartModal/CartModal";
-import { useCart } from "../../hooks/useCart";
-import { useAuth } from "../../hooks/useAuth";
-import SearchBar from "../SearchBar/SearchBar";
+import { useCart } from "../../../hooks/useCart";
+import { useAuth } from "../../../hooks/useAuth";
+import SearchBar from "../../SearchBar/SearchBar";
 
 const StoreHeader = () => {
   const [cartModal, setCartModal] = useState(false);
   const [searchBar, setSearchBar] = useState(false);
   const [hamburgerMenu, setHamburgerMenu] = useState(false);
-  const { isAuthenticated } = useAuth();
+  const { token } = useAuth();
   const { cart } = useCart();
   console.log(cart);
 
@@ -75,7 +75,7 @@ const StoreHeader = () => {
             <div onClick={closeMenu} className="store-header-end">
               <BsSearch size={15} onClick={() => setSearchBar(true)} />
               <span>
-                {!isAuthenticated ? (
+                {!token ? (
                   <Link to="/store/login">Login</Link>
                 ) : (
                   <Link to="/store/profile">

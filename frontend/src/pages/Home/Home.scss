@@ -3,61 +3,7 @@
 .home {
   width: 90%;
   margin: 0 auto;
-  .carousel-content {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: center;
-    @include tablet {
-      flex-direction: column-reverse;
-      margin-top: 12rem;
-    }
 
-    div {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      @include tablet {
-        text-align: center;
-      }
-    }
-
-    h2 {
-      font-size: 2.2rem;
-      font-weight: lighter;
-      @include tablet {
-        padding-top: 2rem;
-      }
-    }
-    p {
-      font-size: 4rem;
-      @include mobile {
-        font-size: 3rem;
-      }
-    }
-    button {
-      text-transform: uppercase;
-      color: white;
-      background-color: black;
-      padding: 2rem;
-      padding-inline: 5rem;
-      border: none;
-      cursor: pointer;
-      transition: 0.3s;
-      @include tablet {
-        margin-bottom: 4rem;
-      }
-      @include hover-bg;
-    }
-    img {
-      width: 60rem;
-      height: 60rem;
-      @include mobile {
-        width: 42rem;
-        height: 42rem;
-      }
-    }
-  }
   .collection {
     padding-top: 15rem;
 

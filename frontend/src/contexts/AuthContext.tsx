@@ -1,7 +1,6 @@
 import { createContext, useState, useEffect, ReactElement } from "react";
 
 interface AuthContextType {
-  isAuthenticated: boolean;
   isAdmin: boolean;
   token: string | null;
   email: string | null;
@@ -19,22 +18,21 @@ export const AuthContextProvider = ({
   children: ReactElement;
 }) => {
   const [isAdmin, setIsAdmin] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
     const email = localStorage.getItem("email");
-    setIsAuthenticated(!!token || false);
-    setToken(token);
-    setEmail(email);
+    const token = localStorage.getItem("token");
+    if (token) {
+      setToken(token);
+      setEmail(email);
+    }
   }, []);
 
   const handleLogin = (token: string, email: string) => {
     localStorage.setItem("token", token);
     localStorage.setItem("email", email!);
-    setIsAuthenticated(true);
     email && setEmail(email);
     setToken(token);
   };
@@ -42,7 +40,6 @@ export const AuthContextProvider = ({
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("email");
-    setIsAuthenticated(false);
     setEmail(null);
     setToken(null);
   };
@@ -62,7 +59,6 @@ export const AuthContextProvider = ({
   return (
     <AuthContext.Provider
       value={{
-        isAuthenticated,
         isAdmin,
         token,
         email,

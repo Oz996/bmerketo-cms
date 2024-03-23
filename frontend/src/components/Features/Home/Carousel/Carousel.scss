@@ -1,0 +1,63 @@
+@use "../../../../sass/" as *;
+
+.carousel-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  @include tablet {
+    flex-direction: column-reverse;
+  }
+  @include mobile {
+    margin-top: 15rem;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    @include tablet {
+      text-align: center;
+    }
+  }
+
+  h2 {
+    font-size: 2.2rem;
+    font-weight: lighter;
+    @include tablet {
+      padding-top: 2rem;
+    }
+  }
+  p {
+    font-size: 4rem;
+    @include mobile {
+      font-size: 3rem;
+    }
+  }
+  button {
+    text-transform: uppercase;
+    color: white;
+    background-color: black;
+    padding: 2rem;
+    padding-inline: 5rem;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    @include hover-bg;
+    @include tablet {
+      margin-bottom: 4rem;
+    }
+  }
+  img {
+    width: 60rem;
+    height: 60rem;
+    @include mobile {
+      width: 42rem;
+      height: 42rem;
+    }
+    @include xs-mobile {
+      width: 30rem;
+      height: 30rem;
+    }
+  }
+}

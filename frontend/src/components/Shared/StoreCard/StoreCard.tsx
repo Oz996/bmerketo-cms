@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import "./StoreCard.scss";
-import { Product } from "../../types/types";
+import { Product } from "../../../types/types";
 import { MdAddShoppingCart } from "react-icons/md";
-import { scrollToTopSmooth } from "../../utils/scrolls";
+import { scrollToTopSmooth } from "../../../utils/scrolls";
 
 interface props {
   product: Product;

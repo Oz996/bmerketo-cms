@@ -8,7 +8,7 @@ import Loader from "../../../../utils/Loader/Loader";
 import { emptyFields } from "../../../../utils/validateFields";
 import { GrClose } from "react-icons/gr";
 import { Object, Product } from "../../../../types/types";
-import DeleteModal from "../../../DeleteModal/DeleteModal";
+import DeleteModal from "../DeleteModal/DeleteModal";
 import DialogProduct from "../DialogProduct/DialogProduct";
 
 interface Images {

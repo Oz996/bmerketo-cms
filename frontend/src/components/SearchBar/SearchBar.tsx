@@ -3,7 +3,7 @@ import { IoClose } from "react-icons/io5";
 import { motion, AnimatePresence } from "framer-motion";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useProduct } from "../../hooks/useProduct";
-import StoreCard from "../StoreCard/StoreCard";
+import StoreCard from "../Shared/StoreCard/StoreCard";
 import { Product } from "../../types/types";
 
 interface props {

@@ -1,4 +1,4 @@
-@use "../../sass/" as *;
+@use "../../../sass" as *;
 
 .product-card-list {
   a {
@@ -11,7 +11,7 @@
   img {
     width: 25rem;
     align-self: center;
-    padding-bottom: .5rem;
+    padding-bottom: 0.5rem;
   }
   .icon {
     z-index: 1;
@@ -53,6 +53,6 @@
     }
   }
 }
-.text-white{
+.text-white {
   color: white !important;
 }

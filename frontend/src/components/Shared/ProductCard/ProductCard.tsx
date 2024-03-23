@@ -1,13 +1,13 @@
 import "./ProductCard.scss";
 import { Link, useLocation } from "react-router-dom";
 import { AiOutlineArrowRight } from "react-icons/ai";
-import { Product } from "../../types/types";
+import { Product } from "../../../types/types";
 import React, { RefObject } from "react";
-import { useProduct } from "../../hooks/useProduct";
+import { useProduct } from "../../../hooks/useProduct";
 
 interface props {
   product: Product;
-  dialogRef: RefObject<HTMLDialogElement>;
+  dialogRef?: RefObject<HTMLDialogElement>;
 }
 
 const ProductCard = ({ product, dialogRef }: props) => {
@@ -18,7 +18,7 @@ const ProductCard = ({ product, dialogRef }: props) => {
 
   const handleClick = (id: string) => {
     handleAddProductId(id);
-    dialogRef.current?.showModal();
+    dialogRef?.current?.showModal();
   };
 
   return (

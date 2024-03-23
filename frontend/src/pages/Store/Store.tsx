@@ -1,5 +1,5 @@
 import "./Store.scss";
-import StoreCard from "../../components/StoreCard/StoreCard";
+import StoreCard from "../../components/Shared/StoreCard/StoreCard";
 import { useProduct } from "../../hooks/useProduct";
 import { useState, useEffect } from "react";
 import { Product } from "../../types/types";
