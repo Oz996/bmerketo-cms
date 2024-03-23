@@ -5,37 +5,41 @@ import { Link } from "react-router-dom";
 import "./CartItemCard.scss";
 
 interface props {
-  product: CartItem;
+  cart: CartItem[];
   subtotal: (product: CartItem) => number;
 }
 
-const CartItemCard = ({ product, subtotal }: props) => {
+const CartItemCard = ({ cart, subtotal }: props) => {
   const { decrementCartItem, incrementCartItem, removeCartItem } = useCart();
 
   return (
-    <li>
-      <div className="first">
-        <Link to={`/store/${product?._id}`}>
-          <img src={product?.images[0]?.image} alt={product?.name} />
-        </Link>
-        <Link to={`/store/${product?._id}`}>
-          <div>
-            <p>{product?.name}</p>
-            <p>£{product?.price}</p>
+    <ul className="cart-list">
+      {cart?.map((product: CartItem) => (
+        <li>
+          <div className="first">
+            <Link to={`/store/${product?._id}`}>
+              <img src={product?.images[0]?.image} alt={product?.name} />
+            </Link>
+            <Link to={`/store/${product?._id}`}>
+              <div>
+                <p>{product?.name}</p>
+                <p>£{product?.price}</p>
+              </div>
+            </Link>
           </div>
-        </Link>
-      </div>
-      <div className="buttons">
-        <button onClick={() => decrementCartItem(product)}>-</button>
-        <p>{product?.quantity}</p>
-        <button onClick={() => incrementCartItem(product)}>+</button>
-        <FaTrash size={15} onClick={() => removeCartItem(product)} />
-      </div>
-      <div className="subtotal">
-        <p>Subtotal:</p>
-        <p> £{subtotal(product)}</p>
-      </div>
-    </li>
+          <div className="buttons">
+            <button onClick={() => decrementCartItem(product)}>-</button>
+            <p>{product?.quantity}</p>
+            <button onClick={() => incrementCartItem(product)}>+</button>
+            <FaTrash size={15} onClick={() => removeCartItem(product)} />
+          </div>
+          <div className="subtotal">
+            <p>Subtotal:</p>
+            <p> £{subtotal(product)}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
   );
 };
 

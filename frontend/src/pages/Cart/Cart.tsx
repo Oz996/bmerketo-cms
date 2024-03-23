@@ -55,15 +55,7 @@ const Cart = () => {
 
   return (
     <section className="store-container cart-page">
-      <ul>
-        {cart?.map((product: CartItem) => (
-          <CartItemCard
-            key={product._id}
-            product={product}
-            subtotal={subtotal}
-          />
-        ))}
-      </ul>
+      <CartItemCard cart={cart} subtotal={subtotal} />
       <div className="checkout">
         <h2>Total: £{total()}</h2>
         <button disabled={cart?.length === 0} onClick={handleOrder}>

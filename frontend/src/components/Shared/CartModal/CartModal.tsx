@@ -48,15 +48,7 @@ const CartModal = ({ cartRef, setCartModal }: props) => {
                 Remove all
               </p>
             </div>
-            <ul className="cart-modal-items">
-              {cart?.map((product: CartItem) => (
-                <CartModalItem
-                  key={product._id}
-                  product={product}
-                  setCartModal={setCartModal}
-                />
-              ))}
-            </ul>
+            <CartModalItem cart={cart} setCartModal={setCartModal} />
             <div className="checkout-button">
               <Link to="/cart">
                 <button onClick={() => setCartModal(false)}>Checkout</button>
