@@ -1,4 +1,3 @@
-import Flickity from "react-flickity-component";
 import { useEffect, useState } from "react";
 import { useProduct } from "../../hooks/useProduct";
 import { Product } from "../../types/types";
@@ -54,9 +53,9 @@ const Home = () => {
           ))}
         </div>
         <div className="browse-button-div">
-          <button>
-            <Link to="/store">Browse</Link>
-          </button>
+          <Link to="/store">
+            <button>Browse</button>
+          </Link>
         </div>
       </section>
       <section className="collection store-container deals">
