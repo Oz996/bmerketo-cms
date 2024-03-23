@@ -4,6 +4,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import StoreLoader from "../../utils/Loader/StoreLoader";
 import { useAuth } from "../../hooks/useAuth";
 import { getBaseUrl } from "../../utils/getBaseUrl";
+import { isValidEmail } from "../../utils/isValidEmail";
 
 const StoreLogin = () => {
   const initalState = {
@@ -24,6 +25,8 @@ const StoreLogin = () => {
       const { email, password } = formData;
       if (!email || !password) {
         return setError("Fill out the required fields");
+      } else if (!isValidEmail(email)) {
+        return setError("Please enter a valid email address");
       }
       const res = await fetch(getBaseUrl() + "/api/login", {
         method: "POST",

@@ -3,6 +3,7 @@ import "./StoreAuth.scss";
 import { ChangeEvent, FormEvent, useState } from "react";
 import StoreLoader from "../../utils/Loader/StoreLoader";
 import { getBaseUrl } from "../../utils/getBaseUrl";
+import { isValidEmail } from "../../utils/isValidEmail";
 
 const StoreRegister = () => {
   const initalState = {
@@ -23,8 +24,9 @@ const StoreRegister = () => {
       const { email, password, Cpassword } = formData;
       if (!email || !password) {
         return setError("Fill out the required fields");
-      }
-      if (password !== Cpassword) {
+      } else if (!isValidEmail(email)) {
+        return setError("Please enter a valid email address");
+      } else if (password !== Cpassword) {
         return setError("Passwords do not match");
       }
       const res = await fetch(getBaseUrl() + "/api/register", {
