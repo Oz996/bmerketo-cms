@@ -7,62 +7,6 @@
   .order-div {
     margin-inline: auto;
   }
-  .orders {
-    display: grid;
-    margin-inline: auto;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    margin-top: 3rem;
-    @include tablet {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    @include mobile {
-      grid-template-columns: repeat(2, 1fr);
-      width: 100%;
-    }
-    @include xs-mobile {
-      grid-template-columns: repeat(1, 1fr);
-    }
-
-    h3 {
-      font-size: 1.8rem;
-    }
-    p {
-      font-size: 1.6rem;
-    }
-    a {
-      text-decoration: none;
-      transition: transform 0.3s ease;
-      &:hover {
-        transform: translateX(1.5px);
-      }
-    }
-    .order {
-      border: 1px solid rgb(229, 229, 229);
-      padding: 1.5rem;
-      border-radius: 0.5rem;
-      min-width: 25rem;
-    }
-    .orange {
-      border-bottom: 5px solid rgb(212, 138, 0);
-    }
-    .yellow {
-      border-bottom: 5px solid rgb(255, 255, 0);
-    }
-    .green {
-      border-bottom: 5px solid rgb(3, 163, 3);
-    }
-    .status-div {
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-      div {
-        height: 1vh;
-        width: 0.6vw;
-        border-radius: 1rem;
-      }
-    }
-  }
 }
 .order-loader {
   position: absolute;

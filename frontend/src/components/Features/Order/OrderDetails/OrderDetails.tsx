@@ -1,38 +1,20 @@
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
+import { Order } from "../../../../types/types";
 import "./OrderDetails.scss";
+import { getBaseUrl } from "../../../../utils/getBaseUrl";
+import { useAuth } from "../../../../hooks/useAuth";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Order } from "../../types/types";
-import { useAuth } from "../../hooks/useAuth";
-import { getBaseUrl } from "../../utils/getBaseUrl";
-import ProductCard from "../../components/Shared/ProductCard/ProductCard";
 
-const OrderDetails = () => {
-  const [order, setOrder] = useState<Order | null>(null);
-  const [status, setStatus] = useState("");
-
-  console.log(order);
+interface props {
+  order: Order;
+  status: string;
+  setStatus: Dispatch<SetStateAction<string>>;
+  setOrder: Dispatch<SetStateAction<Order | null>>;
+}
+const OrderDetails = ({ order, status, setStatus, setOrder }: props) => {
   const { token } = useAuth();
   const { _id } = useParams();
-
-  const getOrders = async () => {
-    try {
-      const res = await fetch(getBaseUrl() + `/api/orders/${_id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const data = await res.json();
-      setOrder(data);
-      setStatus(data.status);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    getOrders();
-  }, []);
 
   const handleUpdateStatus = async () => {
     try {
@@ -46,7 +28,7 @@ const OrderDetails = () => {
       });
       const data = await res.json();
       if (res.ok) {
-        toast.info("Status has been changed");
+        toast.success("Status has been changed");
         setOrder(data);
       } else {
         console.error(data);
@@ -55,8 +37,6 @@ const OrderDetails = () => {
       console.error(error);
     }
   };
-
-  console.log("order", order);
 
   return (
     <div className="order-details">
@@ -97,11 +77,6 @@ const OrderDetails = () => {
           >
             Update
           </button>
-        </div>
-        <div className="product-orders">
-          {order?.products?.map((product) => (
-            <ProductCard key={product?._id} product={product?.product!} />
-          ))}
         </div>
       </div>
     </div>

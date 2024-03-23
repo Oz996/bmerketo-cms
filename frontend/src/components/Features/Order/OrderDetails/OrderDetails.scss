@@ -2,10 +2,7 @@
   width: 60%;
   margin: 0 auto;
   margin-top: 8rem;
-  .product-orders {
-    display: flex;
-    flex-wrap: wrap;
-  }
+
   .order-card {
     display: flex;
     flex-direction: column;
@@ -40,12 +37,3 @@
     }
   }
 }
-// .orange {
-//   background-color: rgb(212, 138, 0);
-// }
-// .yellow {
-//   background-color: rgb(230, 230, 20);
-// }
-// .green {
-//   background-color: rgb(3, 163, 3);
-// }

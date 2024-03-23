@@ -12,16 +12,7 @@ const Products = () => {
   return (
     <section className="product-container cms-bg-color">
       <AddProductForm dialogRef={dialogRef} />
-      <div className="product-list">
-        {isLoading && <LoaderDark />}
-        {products?.map((product) => (
-          <ProductCard
-            key={product._id}
-            dialogRef={dialogRef}
-            product={product}
-          />
-        ))}
-      </div>
+      <ProductCard products={products} dialogRef={dialogRef} />
     </section>
   );
 };

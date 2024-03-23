@@ -5,7 +5,7 @@ import NotFound from "./pages/NotFound";
 import Products from "./pages/Products/Products";
 import EditDetails from "./pages/Products/EditDetails";
 import Orders from "./pages/Orders/Orders";
-import OrderDetails from "./pages/Orders/OrderDetails";
+import Order from "./pages/Orders/Order";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
@@ -28,7 +28,7 @@ const App = () => {
           <Route path="/products" element={<Products />} />
           <Route path="/products/:_id" element={<EditDetails />} />
           <Route path="/orders" element={<Orders />} />
-          <Route path="/orders/:_id" element={<OrderDetails />} />
+          <Route path="/order/:_id" element={<Order />} />
         </Route>
         <Route element={<StoreHeader />}>
           <Route path="/home" element={<Home />} />
