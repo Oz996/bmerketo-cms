@@ -10,8 +10,6 @@
     padding-top: 1rem;
     padding-bottom: 5rem;
     gap: 5rem;
-    @include tablet {
-    }
     @include mobile {
       flex-direction: column;
       gap: 1rem;

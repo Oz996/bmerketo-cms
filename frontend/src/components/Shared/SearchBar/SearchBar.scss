@@ -10,7 +10,7 @@
     bottom: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 2;
+    z-index: 3;
     overflow-y: scroll;
     padding-top: 10rem;
 
@@ -27,11 +27,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 2;
+    z-index: 3;
   }
   .search-close {
     color: $store-hover-red;
-    z-index: 3;
+    z-index: 4;
 
     cursor: pointer;
     position: fixed;
