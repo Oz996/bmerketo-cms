@@ -6,8 +6,8 @@ import Reviews from "./Reviews";
 import { getBaseUrl } from "../../utils/getBaseUrl";
 import RelatedProducts from "../../components/Features/Details/RelatedProducts/RelatedProducts";
 import InfoContent from "../../components/Features/Details/InfoContent/InfoContent";
-import InfoTabs from "../../components/Features/Details/InfoTabs/InfoTabs";
 import ProductDetails from "../../components/Features/Details/ProductDetails/ProductDetails";
+import InfoTabs from "../../components/Features/Details/InfoTabs/InfoTabs";
 
 const Details = () => {
   const [product, setProduct] = useState<Product>();
