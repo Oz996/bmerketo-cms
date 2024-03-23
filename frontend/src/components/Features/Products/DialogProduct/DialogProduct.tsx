@@ -5,6 +5,7 @@ import { GrClose } from "react-icons/gr";
 import { Product } from "../../../../types/types";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import { FaLock } from "react-icons/fa";
+import { scrollToTopSmooth } from "../../../../utils/scrolls";
 
 interface props {
   dialogRef: RefObject<HTMLDialogElement>;
@@ -30,6 +31,12 @@ const DialogProduct = ({ dialogRef, currentProduct }: props) => {
       dialogRef.current?.close();
       handleRemoveProductId();
     }
+  };
+
+  const handleEditProduct = (id: string) => {
+    handleAddProductId(id);
+    dialogRef!.current?.close();
+    scrollToTopSmooth();
   };
 
   console.log("current modal", currentProduct);
@@ -67,10 +74,7 @@ const DialogProduct = ({ dialogRef, currentProduct }: props) => {
               locked ? "Cannot edit base product for showcase reasons" : ""
             }
             disabled={locked}
-            onClick={() => {
-              handleAddProductId(_id!);
-              dialogRef!.current?.close();
-            }}
+            onClick={() => handleEditProduct(_id)}
             className="btn btn-primary"
           >
             {locked && <FaLock size={12} className="dialog-icon" />}

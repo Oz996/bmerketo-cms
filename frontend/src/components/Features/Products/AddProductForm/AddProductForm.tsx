@@ -1,14 +1,12 @@
 import "./AddProductForm.scss";
-import React, { RefObject, useEffect, useRef, useState } from "react";
+import React, { RefObject, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useAuth } from "../../../../hooks/useAuth";
 import { useProduct } from "../../../../hooks/useProduct";
 import { getBaseUrl } from "../../../../utils/getBaseUrl";
 import Loader from "../../../../utils/Loader/Loader";
 import { emptyFields } from "../../../../utils/validateFields";
-import { GrClose } from "react-icons/gr";
 import { Object, Product } from "../../../../types/types";
-import DeleteModal from "../DeleteModal/DeleteModal";
 import DialogProduct from "../DialogProduct/DialogProduct";
 
 interface Images {
@@ -74,7 +72,7 @@ const AddProductForm = ({ dialogRef }: props) => {
     } else {
       setFormData(initState);
     }
-  }, [productId, dialogOpen]);
+  }, [productId]);
 
   useEffect(() => {
     if (productId && dialogOpen) {
