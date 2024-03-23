@@ -5,8 +5,8 @@ import { FaTrash } from "react-icons/fa";
 import { BsFillCartXFill } from "react-icons/bs";
 import { Dispatch, RefObject, SetStateAction, useEffect } from "react";
 import { CartItem } from "../../../types/types";
-import { motion, AnimatePresence } from "framer-motion";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
+import CartModalItem from "../CartModalItem/CartModalItem";
 
 interface props {
   cartRef: RefObject<HTMLDivElement>;
@@ -14,13 +14,7 @@ interface props {
 }
 
 const CartModal = ({ cartRef, setCartModal }: props) => {
-  const {
-    cart,
-    removeCartItem,
-    incrementCartItem,
-    decrementCartItem,
-    emptyCart,
-  } = useCart();
+  const { cart, emptyCart } = useCart();
 
   const { removeItem } = useLocalStorage("cart");
 
@@ -57,38 +51,11 @@ const CartModal = ({ cartRef, setCartModal }: props) => {
             </div>
             <ul>
               {cart?.map((product: CartItem) => (
-                <li key={product?._id}>
-                  <Link
-                    to={`/store/${product._id}`}
-                    onClick={() => setCartModal(false)}
-                  >
-                    <div className="details">
-                      <img src={product?.images[0]?.image} alt="" />
-                      <div className="text">
-                        <p>{product?.name}</p>
-                        <p>£{product?.price}</p>
-                      </div>
-                    </div>
-                  </Link>
-                  <div className="buttons">
-                    <button onClick={() => decrementCartItem(product)}>
-                      -
-                    </button>
-                    <p>{product?.quantity}</p>
-                    <button onClick={() => incrementCartItem(product)}>
-                      +
-                    </button>
-                    <div>
-                      <FaTrash
-                        size={15}
-                        onClick={() => {
-                          removeCartItem(product);
-                          removeItem();
-                        }}
-                      />
-                    </div>
-                  </div>
-                </li>
+                <CartModalItem
+                  key={product._id}
+                  product={product}
+                  setCartModal={setCartModal}
+                />
               ))}
             </ul>
             <div className="checkout-button">

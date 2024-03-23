@@ -10,7 +10,7 @@
   border: 1px solid rgb(226, 226, 226);
   padding: 3rem;
   max-height: 100vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   @include mobile {
     width: 100%;
     left: 0;
