@@ -13,7 +13,7 @@ import Searchbar from "../Searchbar/Searchbar";
 
 const StoreHeader = () => {
   const [cartModal, setCartModal] = useState(false);
-  const [searchbar, setSearchbar] = useState(false);
+  const [searchbarOpen, setSearchbarOpen] = useState(false);
   const [hamburgerMenu, setHamburgerMenu] = useState(false);
   const { token } = useAuth();
   const { cart } = useCart();
@@ -34,7 +34,7 @@ const StoreHeader = () => {
     });
   });
 
-  console.log("open", searchbar);
+  console.log("open", searchbarOpen);
 
   return (
     <>
@@ -77,7 +77,7 @@ const StoreHeader = () => {
             <div onClick={closeMenu} className="store-header-end">
               <BsSearch
                 size={15}
-                onClick={() => setSearchbar(true)}
+                onClick={() => setSearchbarOpen(true)}
                 className="search-icon"
               />
               <span>
@@ -103,7 +103,7 @@ const StoreHeader = () => {
           <CartModal cartRef={cartRef} setCartModal={setCartModal} />
         )}
       </header>
-      {searchbar && <Searchbar setSearchbar={setSearchbar} />}
+      {searchbarOpen && <Searchbar setSearchbarOpen={setSearchbarOpen} />}
       <Outlet />
     </>
   );

@@ -9,10 +9,10 @@ import { Dispatch, SetStateAction } from "react";
 interface props {
   product: Product;
   style?: string;
-  setSearchbar?: Dispatch<SetStateAction<boolean>>;
+  setSearchbarOpen?: Dispatch<SetStateAction<boolean>>;
 }
 
-const StoreCard = ({ product, style, setSearchbar }: props) => {
+const StoreCard = ({ product, style, setSearchbarOpen }: props) => {
   const { name, price, images, sale } = product;
 
   const { addToCart } = useCart();
@@ -24,7 +24,7 @@ const StoreCard = ({ product, style, setSearchbar }: props) => {
   };
 
   const handleClickProduct = () => {
-    if (setSearchbar) setSearchbar(false);
+    if (setSearchbarOpen) setSearchbarOpen(false);
     scrollToTopSmooth();
   };
   return (

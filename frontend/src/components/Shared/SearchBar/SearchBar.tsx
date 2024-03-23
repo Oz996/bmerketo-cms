@@ -6,10 +6,10 @@ import StoreCard from "../StoreCard/StoreCard";
 import { Product } from "../../../types/types";
 
 interface props {
-  setSearchbar: Dispatch<SetStateAction<boolean>>;
+  setSearchbarOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-const Searchbar = ({ setSearchbar }: props) => {
+const Searchbar = ({ setSearchbarOpen }: props) => {
   const [displayList, setDisplayList] = useState<Product[] | null>(null);
   const { products } = useProduct();
 
@@ -29,7 +29,7 @@ const Searchbar = ({ setSearchbar }: props) => {
       <IoClose
         size={60}
         className="search-close animation-grow"
-        onClick={() => setSearchbar(false)}
+        onClick={() => setSearchbarOpen(false)}
       />
       <div className="search-overlay animation-fade-in">
         <div className="search-div">
@@ -42,7 +42,7 @@ const Searchbar = ({ setSearchbar }: props) => {
           <div className="product-card-list">
             {displayList?.map((product) => (
               <StoreCard
-                setSearchbar={setSearchbar}
+                setSearchbarOpen={setSearchbarOpen}
                 product={product}
                 style={"text-white"}
               />
