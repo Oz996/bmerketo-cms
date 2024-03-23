@@ -9,7 +9,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import CartModal from "../CartModal/CartModal";
 import { useCart } from "../../../hooks/useCart";
 import { useAuth } from "../../../hooks/useAuth";
-import Searchbar from "../Searchbar/SearchBar";
+import Searchbar from "../Searchbar/Searchbar";
 
 const StoreHeader = () => {
   const [cartModal, setCartModal] = useState(false);
