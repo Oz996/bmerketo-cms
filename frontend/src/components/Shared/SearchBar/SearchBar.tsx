@@ -1,4 +1,4 @@
-import "./Searchbar.scss";
+import "./SearchBar.scss";
 import { IoClose } from "react-icons/io5";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useProduct } from "../../../hooks/useProduct";
@@ -9,7 +9,7 @@ interface props {
   setSearchbarOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-const Searchbar = ({ setSearchbarOpen }: props) => {
+const SearchBar = ({ setSearchbarOpen }: props) => {
   const [displayList, setDisplayList] = useState<Product[] | null>(null);
   const { products } = useProduct();
 
@@ -54,4 +54,4 @@ const Searchbar = ({ setSearchbarOpen }: props) => {
   );
 };
 
-export default Searchbar;
+export default SearchBar;
