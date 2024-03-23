@@ -1,0 +1,19 @@
+@use "../../../../sass/" as *;
+
+.details-description {
+  display: flex;
+  justify-content: space-between;
+  @include tablet {
+    flex-direction: column;
+  }
+  img {
+    width: 40rem;
+    @include tablet {
+      width: 30rem;
+    }
+  }
+}
+.details-list {
+  display: flex;
+  justify-content: center;
+}

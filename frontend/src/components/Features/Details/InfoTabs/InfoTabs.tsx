@@ -1,78 +1,53 @@
-import { Product } from "../../../../types/types";
-import "./infoTabs.scss";
+import { Dispatch, SetStateAction } from "react";
+import "./InfoTabs.scss";
+import { Review } from "../../../../types/types";
 
 interface props {
   information: number;
-  product: Product;
+  reviews: Review[];
+  setInformation: Dispatch<SetStateAction<number>>;
 }
-const InfoTabs = ({ information, product }: props) => {
+
+const InfoTabs = ({ information, reviews, setInformation }: props) => {
   return (
-    <>
-      {information === 1 && (
-        <>
-          <h2>
-            Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
-            molestie.
-          </h2>
-          <div className="details-description">
-            <div>
-              <p>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                aliquyam erat, sed diam voluptua. At vero eos et cusam et justo
-                duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-                takimata santus est Lorem ipsum dolor sit amet. Lorem ipsum
-                dolor.
-                <br />
-                <br />
-                accusantium laborum pretium hic excepturi harum repellat
-                facilisis convallis potenti, adipiscing lectus aliqua.
-                Asperiores repudiandae ipsam error erat, accusamus, cum taciti
-                unde?
-                <br />
-                <br />
-                Praesentium, pariatur, tempora consequuntur purus sapiente,
-                iaculis vitae consequatur, rhoncus earum eleifend, hendrerit
-                ipsum rhoncus ex error, impedit! Alias laboris sequi curae
-                aptent? Eu sagittis eu, distinctio tortor? Dapibus delectus!
-                Consequuntur luctus.
-                <br />
-                <br />
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                aliquyam erat, sed diam voluptua. At vero eos et cusam et justo
-                duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-                takimata santus est Lorem ipsum dolor sit amet. Lorem ipsum
-                dolor.
-              </p>
-            </div>
-            <div>
-              <img src={product?.images[0]?.image} alt="Image of product" />
-            </div>
-          </div>
-        </>
-      )}
-      {information === 2 && (
-        <div className="details-list">
-          <ul>
-            <li> Lorem ipsum dolor sit amet, consetetur sadipscing elitr.</li>
-            <li>
-              Alias laboris sequi curae aptent? Eu sagittis eu, distinctio
-              tortor?
-            </li>
-            <li>At vero eos et cusam et justo duo dolores et ea rebum.</li>
-            <li>
-              Stet clita kasd gubergren, no sea takimata santus est Lorem ipsum
-              dolor sit amet.
-            </li>
-            <li>
-              Asperiores repudiandae ipsam error erat, accusamus, cum taciti
-              unde?
-            </li>
-          </ul>
-        </div>
-      )}
-    </>
+    <div className="details-tabs">
+      <button
+        style={{
+          backgroundColor: information === 1 ? "black" : "white",
+          color: information === 1 ? "white" : "black",
+        }}
+        onClick={() => setInformation(1)}
+      >
+        description
+      </button>
+      <button
+        style={{
+          backgroundColor: information === 2 ? "black" : "white",
+          color: information === 2 ? "white" : "black",
+        }}
+        onClick={() => setInformation(2)}
+      >
+        additional info
+      </button>
+      <button
+        style={{
+          backgroundColor: information === 3 ? "black" : "white",
+          color: information === 3 ? "white" : "black",
+        }}
+        onClick={() => setInformation(3)}
+      >
+        reviews ({reviews?.length})
+      </button>
+      <button
+        style={{
+          backgroundColor: information === 4 ? "black" : "white",
+          color: information === 4 ? "white" : "black",
+        }}
+        onClick={() => setInformation(4)}
+      >
+        shipping & delivery
+      </button>
+    </div>
   );
 };
 

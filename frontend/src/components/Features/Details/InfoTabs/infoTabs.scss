@@ -1,19 +1,23 @@
 @use "../../../../sass/" as *;
 
-.details-description {
+.details-tabs {
   display: flex;
-  justify-content: space-between;
-  @include tablet {
-    flex-direction: column;
-  }
-  img {
-    width: 40rem;
-    @include tablet {
-      width: 30rem;
+  height: 5rem;
+
+  margin-bottom: 3rem;
+  button {
+    flex: 1;
+    height: 100%;
+    border: 1px solid rgb(199, 199, 199);
+    background-color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+      color: $store-hover-red;
+    }
+    @include mobile {
+      padding: 0.3rem;
     }
   }
-}
-.details-list {
-  display: flex;
-  justify-content: center;
 }
