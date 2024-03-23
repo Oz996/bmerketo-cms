@@ -1,9 +1,10 @@
-@use "../../sass/" as *;
+@use "../../../sass" as *;
 
 .search-bar {
   position: relative;
   .search-overlay {
     background-color: black;
+    opacity: 0.95;
     position: fixed;
     left: 0;
     bottom: 0;
