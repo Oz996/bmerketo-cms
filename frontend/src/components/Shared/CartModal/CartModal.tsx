@@ -3,7 +3,6 @@ import { useCart } from "../../../hooks/useCart";
 import "./CartModal.scss";
 import { BsFillCartXFill } from "react-icons/bs";
 import { Dispatch, RefObject, SetStateAction, useEffect } from "react";
-import { CartItem } from "../../../types/types";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import CartModalItem from "../CartModalItem/CartModalItem";
 

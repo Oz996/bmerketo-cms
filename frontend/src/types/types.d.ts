@@ -15,6 +15,7 @@ export interface Product {
   review?: Review[];
   best?: boolean;
   sale?: string;
+  locked?: boolean;
 }
 
 export interface Order {

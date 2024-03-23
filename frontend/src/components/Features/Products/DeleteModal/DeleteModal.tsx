@@ -1,21 +1,22 @@
 import { RefObject, useEffect, useRef, useState } from "react";
 import "./DeleteModal.scss";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useProduct } from "../../../../hooks/useProduct";
 import { useAuth } from "../../../../hooks/useAuth";
 import { getBaseUrl } from "../../../../utils/getBaseUrl";
 import { BiError } from "react-icons/bi";
+import { FaLock } from "react-icons/fa";
 
 interface props {
   dialogRef: RefObject<HTMLDialogElement>;
+  locked?: boolean;
 }
 
-const DeleteModal = ({ dialogRef }: props) => {
+const DeleteModal = ({ dialogRef, locked }: props) => {
   const [modal, setModal] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const { _id } = useParams();
   const { token } = useAuth();
   const { setProducts, products, productId } = useProduct();
 
@@ -67,7 +68,13 @@ const DeleteModal = ({ dialogRef }: props) => {
 
   return (
     <>
-      <button onClick={toggleModal} className="btn btn-danger">
+      <button
+        disabled={locked}
+        title={locked ? "Cannot delete base product for showcase reasons" : ""}
+        onClick={toggleModal}
+        className="btn btn-danger"
+      >
+        {locked && <FaLock size={12} className="dialog-icon" />}
         Delete
       </button>
       <div className="modal-delete">
