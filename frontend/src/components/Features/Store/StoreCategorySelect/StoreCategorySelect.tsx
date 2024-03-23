@@ -31,15 +31,15 @@ const StoreCategorySelect = ({ setDisplayList, products }: StoreProps) => {
   };
 
   const style = {
-    control: (base) => ({
+    control: (base: any) => ({
       ...base,
       border: 0,
-      // This line disable the blue border
       boxShadow: "none",
     }),
   };
   return (
     <Select
+      isMulti
       styles={style}
       placeholder="Category"
       className="react-select-container"
