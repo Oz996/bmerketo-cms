@@ -9,13 +9,9 @@ interface props extends StoreProps {
   sortedProducts: (sortBy: string | null) => Product[];
 }
 
-const StoreSortSelect = ({
-  products,
-  sortedProducts,
-  setDisplayList,
-}: props) => {
+const StoreSortSelect = ({ sortedProducts, setDisplayList }: props) => {
   const handleSortBy = (selected: any) => {
-    if (!selected) return setDisplayList(products);
+    if (!selected) return setDisplayList(sortedProducts(null));
     const sortedList = sortedProducts(selected.value);
     setDisplayList(sortedList);
   };

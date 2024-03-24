@@ -32,6 +32,7 @@ const Store = () => {
     if (sortBy === "reviews") {
       return productList.sort((a, b) => b.review!.length - a.review!.length);
     }
+
     return productList.sort((a, b) => {
       const catA = a.category.toLowerCase();
       const catB = b.category.toLowerCase();
@@ -49,13 +50,14 @@ const Store = () => {
           <StoreSearchInput
             products={products}
             setDisplayList={setDisplayList}
+            sortedProducts={sortedProducts}
           />
           <StoreCategorySelect
             products={products}
             setDisplayList={setDisplayList}
+            sortedProducts={sortedProducts}
           />
           <StoreSortSelect
-            products={products}
             setDisplayList={setDisplayList}
             sortedProducts={sortedProducts}
           />

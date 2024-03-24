@@ -7,7 +7,11 @@ interface Category {
   value: string;
 }
 
-const StoreCategorySelect = ({ setDisplayList, products }: StoreProps) => {
+const StoreCategorySelect = ({
+  sortedProducts,
+  setDisplayList,
+  products,
+}: StoreProps) => {
   const categories: Category[] = [
     { label: "Office Chairs", value: "chair" },
     { label: "Armchairs", value: "armchair" },
@@ -15,10 +19,8 @@ const StoreCategorySelect = ({ setDisplayList, products }: StoreProps) => {
   ];
 
   const filterProducts = (categories: any[]) => {
-    if (categories.length === 0) {
-      setDisplayList(products);
-      return;
-    }
+    if (categories.length === 0) return setDisplayList(sortedProducts(null));
+
     const filteredProducts = products?.filter((product) =>
       categories.includes(product.category)
     );
