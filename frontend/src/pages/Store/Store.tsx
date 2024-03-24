@@ -6,7 +6,7 @@ import { Product } from "../../types/types";
 import StoreSearchInput from "../../components/Features/Store/StoreSearchInput/StoreSearchInput";
 import StoreCategorySelect from "../../components/Features/Store/StoreCategorySelect/StoreCategorySelect";
 import Title from "../../components/Shared/Title/Title";
-import Select from "react-select";
+import StoreSortSelect from "../../components/Features/Store/StoreSortSelect/StoreSortSelect";
 
 const Store = () => {
   const { products } = useProduct();
@@ -15,14 +15,6 @@ const Store = () => {
   useEffect(() => {
     setDisplayList(sortedProducts(null));
   }, [products]);
-
-  // const sortedProducts = products.sort((a, b) => {
-  //   const catA = a.category.toLowerCase();
-  //   const catB = b.category.toLowerCase();
-  //   if (catA < catB) return -1;
-  //   if (catA > catB) return 1;
-  //   return 0;
-  // });
 
   const sortedProducts = (sortBy: string | null) => {
     const productList = [...products];
@@ -49,50 +41,24 @@ const Store = () => {
     });
   };
 
-  const handleSortBy = (selected: any) => {
-    const sortedList = sortedProducts(selected.value);
-    setDisplayList(sortedList);
-  };
-
-  interface Category {
-    label: string;
-    value: string;
-  }
-  const style = {
-    control: (base: any) => ({
-      ...base,
-      border: 0,
-      boxShadow: "none",
-    }),
-  };
-  const categories: Category[] = [
-    { label: "Name", value: "name" },
-    { label: "Reviews", value: "reviews" },
-    { label: "Price: High - Low", value: "price_high" },
-    { label: "Price: Low - High", value: "price_low" },
-  ];
-
   return (
     <>
       <Title>Bmerketo Products</Title>
       <section className="store-container store">
         <div className="store-filter">
           <StoreSearchInput
-            products={products!}
+            products={products}
             setDisplayList={setDisplayList}
           />
           <StoreCategorySelect
-            products={products!}
+            products={products}
             setDisplayList={setDisplayList}
           />
-          <Select
-            styles={style}
-            placeholder="Sort by..."
-            className="react-select-container"
-            classNamePrefix="react-select"
-            onChange={handleSortBy}
-            options={categories}
-          ></Select>
+          <StoreSortSelect
+            products={products}
+            setDisplayList={setDisplayList}
+            sortedProducts={sortedProducts}
+          />
         </div>
         <div className="product-card-list">
           {displayList?.length === 0 && <p>No results</p>}

@@ -15,15 +15,20 @@ const StoreSearchInput = ({ setDisplayList, products }: StoreProps) => {
   };
 
   return (
-    <input
-      className="search-input"
-      type="text"
-      id="search"
-      placeholder="Search for product..."
-      onChange={(e) => {
-        searchFunction(e.target.value);
-      }}
-    />
+    <>
+      <label htmlFor="search" className="visually-hidden">
+        Search for product name
+      </label>
+      <input
+        className="search-input"
+        type="text"
+        id="search"
+        placeholder="Search for product..."
+        onChange={(e) => {
+          searchFunction(e.target.value);
+        }}
+      />
+    </>
   );
 };
 export default StoreSearchInput;

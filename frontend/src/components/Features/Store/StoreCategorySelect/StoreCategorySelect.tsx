@@ -38,15 +38,22 @@ const StoreCategorySelect = ({ setDisplayList, products }: StoreProps) => {
     }),
   };
   return (
-    <Select
-      isMulti
-      styles={style}
-      placeholder="Category"
-      className="react-select-container"
-      classNamePrefix="react-select"
-      onChange={handleCategoryChange}
-      options={categories}
-    ></Select>
+    <>
+      <label htmlFor="category" className="visually-hidden">
+        Filter by category
+      </label>
+      <Select
+        id="category"
+        isMulti
+        styles={style}
+        placeholder="Category"
+        className="react-select-container"
+        classNamePrefix="react-select"
+        onChange={handleCategoryChange}
+        options={categories}
+        isSearchable={false}
+      ></Select>
+    </>
   );
 };
 
