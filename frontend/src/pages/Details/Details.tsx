@@ -45,7 +45,6 @@ const Details = () => {
   }, [product]);
 
   const imagesTodisplay = product?.images?.map((image) => image.image);
-  console.log("imagesTodisplay", imagesTodisplay);
 
   return (
     <>

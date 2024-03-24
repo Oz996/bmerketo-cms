@@ -50,19 +50,46 @@
   .second-image {
     position: absolute;
   }
-  div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    div {
-      display: flex;
-      gap: 2.5rem;
-      .on-sale {
-        text-decoration: line-through;
-      }
-    }
-  }
 }
 .text-white {
   color: white !important;
+}
+.product-price-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  div {
+    display: flex;
+    gap: 2.5rem;
+    .on-sale {
+      text-decoration: line-through;
+    }
+  }
+}
+.product-name-div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  p {
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 23rem;
+    text-overflow: ellipsis;
+    margin: 0;
+    padding: 0;
+    line-height: 1.2em;
+    max-height: 1.2em;
+  }
+  div {
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    gap: 0.3rem;
+    margin-top: 0.5rem;
+    color: #888; /* Example color */
+  }
+}
+.star {
+  color: orange;
+  cursor: pointer;
 }
