@@ -16,6 +16,8 @@ const Store = () => {
     setDisplayList(sortedProducts(null));
   }, [products]);
 
+  // sorting by category by default and handling other sorting. this function is sent to input/select
+  // components to reset the sorting to default whenever the filtering is cleared (null)
   const sortedProducts = (sortBy: string | null) => {
     const productList = [...products];
     if (sortBy === "name") {
@@ -24,10 +26,10 @@ const Store = () => {
       );
     }
     if (sortBy === "price_high") {
-      return productList.sort((a, b) => Number(a.price) - Number(b.price));
+      return productList.sort((a, b) => Number(b.price) - Number(a.price));
     }
     if (sortBy === "price_low") {
-      return productList.sort((a, b) => Number(b.price) - Number(a.price));
+      return productList.sort((a, b) => Number(a.price) - Number(b.price));
     }
     if (sortBy === "reviews") {
       return productList.sort((a, b) => b.review!.length - a.review!.length);
