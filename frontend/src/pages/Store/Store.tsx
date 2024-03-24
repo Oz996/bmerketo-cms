@@ -12,8 +12,16 @@ const Store = () => {
   const [displayList, setDisplayList] = useState<Product[] | null>(null);
 
   useEffect(() => {
-    setDisplayList(products);
+    setDisplayList(sortedProducts);
   }, [products]);
+
+  const sortedProducts = products.sort((a, b) => {
+    const catA = a.category.toLowerCase();
+    const catB = b.category.toLowerCase();
+    if (catA < catB) return -1;
+    if (catA > catB) return 1;
+    return 0;
+  });
 
   return (
     <>
@@ -35,7 +43,7 @@ const Store = () => {
             <StoreCard key={product._id} product={product} />
           ))}
         </div>
-      </section>{" "}
+      </section>
     </>
   );
 };
