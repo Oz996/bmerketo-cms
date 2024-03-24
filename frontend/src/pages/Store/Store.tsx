@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { Product } from "../../types/types";
 import StoreSearchInput from "../../components/Features/Store/StoreSearchInput/StoreSearchInput";
 import StoreCategorySelect from "../../components/Features/Store/StoreCategorySelect/StoreCategorySelect";
+import Title from "../../components/Shared/Title/Title";
 
 const Store = () => {
   const { products } = useProduct();
@@ -15,24 +16,27 @@ const Store = () => {
   }, [products]);
 
   return (
-    <section className="store-container store">
-      <div className="store-filter">
-        <StoreSearchInput
-          products={products!}
-          setDisplayList={setDisplayList}
-        />
-        <StoreCategorySelect
-          products={products!}
-          setDisplayList={setDisplayList}
-        />
-      </div>
-      <div className="product-card-list">
-        {displayList?.length === 0 && <p>No results</p>}
-        {displayList?.map((product) => (
-          <StoreCard key={product._id} product={product} />
-        ))}
-      </div>
-    </section>
+    <>
+      <Title>Bmerketo Products</Title>
+      <section className="store-container store">
+        <div className="store-filter">
+          <StoreSearchInput
+            products={products!}
+            setDisplayList={setDisplayList}
+          />
+          <StoreCategorySelect
+            products={products!}
+            setDisplayList={setDisplayList}
+          />
+        </div>
+        <div className="product-card-list">
+          {displayList?.length === 0 && <p>No results</p>}
+          {displayList?.map((product) => (
+            <StoreCard key={product._id} product={product} />
+          ))}
+        </div>
+      </section>{" "}
+    </>
   );
 };
 

@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import "./Details.scss";
 import { useParams } from "react-router-dom";
 import { Product, Review } from "../../types/types";
-import Reviews from "./Reviews";
+import Reviews from "../../components/Features/Details/Reviews/Reviews";
 import { getBaseUrl } from "../../utils/getBaseUrl";
 import RelatedProducts from "../../components/Features/Details/RelatedProducts/RelatedProducts";
 import InfoContent from "../../components/Features/Details/InfoContent/InfoContent";
 import ProductDetails from "../../components/Features/Details/ProductDetails/ProductDetails";
 import InfoTabs from "../../components/Features/Details/InfoTabs/InfoTabs";
+import Title from "../../components/Shared/Title/Title";
 
 const Details = () => {
   const [product, setProduct] = useState<Product>();
@@ -47,30 +48,33 @@ const Details = () => {
   console.log("imagesTodisplay", imagesTodisplay);
 
   return (
-    <section className="store-container">
-      <ProductDetails
-        product={product!}
-        displayImage={displayImage!}
-        setDisplayImage={setDisplayImage}
-      />
-      <div className="details-info">
-        <InfoTabs
-          information={information}
-          reviews={reviews!}
-          setInformation={setInformation}
+    <>
+      <Title>{product?.name}</Title>
+      <section className="store-container">
+        <ProductDetails
+          product={product!}
+          displayImage={displayImage!}
+          setDisplayImage={setDisplayImage}
         />
-        <InfoContent information={information} product={product!} />
-        {information === 3 && (
-          <Reviews
-            rating={rating}
-            setRating={setRating}
+        <div className="details-info">
+          <InfoTabs
+            information={information}
             reviews={reviews!}
-            setReviews={setReviews}
+            setInformation={setInformation}
           />
-        )}
-      </div>
-      <RelatedProducts product={product!} />
-    </section>
+          <InfoContent information={information} product={product!} />
+          {information === 3 && (
+            <Reviews
+              rating={rating}
+              setRating={setRating}
+              reviews={reviews!}
+              setReviews={setReviews}
+            />
+          )}
+        </div>
+        <RelatedProducts product={product!} />
+      </section>
+    </>
   );
 };
 

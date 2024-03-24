@@ -6,6 +6,7 @@ import { getBaseUrl } from "../../utils/getBaseUrl";
 import ProductCard from "../../components/Shared/ProductCard/ProductCard";
 import { Order as OrderType } from "../../types/types";
 import OrderDetails from "../../components/Features/Order/OrderDetails/OrderDetails";
+import Title from "../../components/Shared/Title/Title";
 
 const Order = () => {
   const [order, setOrder] = useState<OrderType | null>(null);
@@ -37,15 +38,18 @@ const Order = () => {
   const products = order?.products?.map((product) => product?.product);
 
   return (
-    <section className="order-page cms-bg-color">
-      <OrderDetails
-        order={order!}
-        status={status}
-        setOrder={setOrder}
-        setStatus={setStatus}
-      />
-      <ProductCard products={products!} />
-    </section>
+    <>
+      <Title>{`Bmerketo CMS Order ${order?._id}`}</Title>
+      <section className="order-page cms-bg-color">
+        <OrderDetails
+          order={order!}
+          status={status}
+          setOrder={setOrder}
+          setStatus={setStatus}
+        />
+        <ProductCard products={products!} />
+      </section>
+    </>
   );
 };
 

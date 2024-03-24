@@ -6,6 +6,7 @@ import { Order } from "../../types/types";
 import { useAuth } from "../../hooks/useAuth";
 import { getBaseUrl } from "../../utils/getBaseUrl";
 import OrderCard from "../../components/Features/Orders/OrderCard/OrderCard";
+import Title from "../../components/Shared/Title/Title";
 
 const Orders = () => {
   const [orders, setOrders] = useState<Order[] | null>(null);
@@ -45,11 +46,14 @@ const Orders = () => {
   }, []);
 
   return (
-    <section className="order-list cms-bg-color">
-      <div className="order-div">
-        <OrderCard orders={orders!} isLoading={isLoading} />
-      </div>
-    </section>
+    <>
+      <Title>Bmerketo CMS Orders</Title>
+      <section className="order-list cms-bg-color">
+        <div className="order-div">
+          <OrderCard orders={orders!} isLoading={isLoading} />
+        </div>
+      </section>
+    </>
   );
 };
 

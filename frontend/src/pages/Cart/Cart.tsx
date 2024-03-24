@@ -7,6 +7,8 @@ import { useAuth } from "../../hooks/useAuth";
 import { toast } from "react-toastify";
 import CartItemCard from "../../components/Features/Cart/CartItemCard";
 import { getBaseUrl } from "../../utils/getBaseUrl";
+import { Helmet } from "react-helmet-async";
+import Title from "../../components/Shared/Title/Title";
 
 const Cart = () => {
   const { cart, emptyCart } = useCart();
@@ -54,15 +56,18 @@ const Cart = () => {
   };
 
   return (
-    <section className="store-container cart-page">
-      <CartItemCard cart={cart} subtotal={subtotal} />
-      <div className="checkout">
-        <h2>Total: £{total()}</h2>
-        <button disabled={cart?.length === 0} onClick={handleOrder}>
-          Complete Purchase
-        </button>
-      </div>
-    </section>
+    <>
+      <Title>Bmerketo Cart</Title>
+      <section className="store-container cart-page">
+        <CartItemCard cart={cart} subtotal={subtotal} />
+        <div className="checkout">
+          <h2>Total: £{total()}</h2>
+          <button disabled={cart?.length === 0} onClick={handleOrder}>
+            Complete Purchase
+          </button>
+        </div>
+      </section>
+    </>
   );
 };
 

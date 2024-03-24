@@ -4,6 +4,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import StoreLoader from "../../utils/Loader/StoreLoader";
 import { getBaseUrl } from "../../utils/getBaseUrl";
 import { isValidEmail } from "../../utils/isValidEmail";
+import Title from "../../components/Shared/Title/Title";
 
 const StoreRegister = () => {
   const initalState = {
@@ -56,42 +57,45 @@ const StoreRegister = () => {
   };
 
   return (
-    <section className="store-container">
-      <div className=" store-auth">
-        <h1>Sign up</h1>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="email">Email</label>
-          <input
-            type="text"
-            id="email"
-            onChange={handleChange}
-            value={formData.email}
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            onChange={handleChange}
-            value={formData.password}
-          />
-          <label htmlFor="Cpassword">Confirm Password</label>
-          <input
-            type="password"
-            id="Cpassword"
-            onChange={handleChange}
-            value={formData.Cpassword}
-          />
-          <p className="error">{error}</p>
-          <button disabled={loading}>
-            {loading && <StoreLoader />}
-            Register
-          </button>
-        </form>
-        <p>
-          Already a user yet? <Link to="/store/login">Sign in here</Link>
-        </p>
-      </div>
-    </section>
+    <>
+      <Title>Bmerketo Register</Title>
+      <section className="store-container">
+        <div className=" store-auth">
+          <h1>Sign up</h1>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="email">Email</label>
+            <input
+              type="text"
+              id="email"
+              onChange={handleChange}
+              value={formData.email}
+            />
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              onChange={handleChange}
+              value={formData.password}
+            />
+            <label htmlFor="Cpassword">Confirm Password</label>
+            <input
+              type="password"
+              id="Cpassword"
+              onChange={handleChange}
+              value={formData.Cpassword}
+            />
+            <p className="error">{error}</p>
+            <button disabled={loading}>
+              {loading && <StoreLoader />}
+              Register
+            </button>
+          </form>
+          <p>
+            Already a user yet? <Link to="/store/login">Sign in here</Link>
+          </p>
+        </div>
+      </section>
+    </>
   );
 };
 

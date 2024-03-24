@@ -7,6 +7,7 @@ import "./Home.scss";
 import StoreCard from "../../components/Shared/StoreCard/StoreCard";
 import StoreLoader from "../../utils/Loader/StoreLoader";
 import Carousel from "../../components/Features/Home/Carousel/Carousel";
+import Title from "../../components/Shared/Title/Title";
 
 const Home = () => {
   const [chairs, setChairs] = useState<Product[] | undefined>([]);
@@ -24,49 +25,52 @@ const Home = () => {
   }, [products]);
 
   return (
-    <section className="home poppins">
-      {isLoading && (
-        <div className="loading">
-          <StoreLoader /> <p>Loading please be patient</p>
-        </div>
-      )}
-      <Carousel chairs={chairs!} />
-      <section className="collection store-container">
-        <h1>Best Collection</h1>
-        <ul>
-          <li>
-            <Link to="/store">All</Link>
-          </li>
-          /
-          <li>
-            <Link to="/store">Chairs</Link>
-          </li>
-          /
-          <li>
-            <Link to="/store">Furniture</Link>
-          </li>
-          /
-        </ul>
-        <div className="product-card-list">
-          {best?.map((product) => (
-            <StoreCard key={product._id} product={product} />
-          ))}
-        </div>
-        <div className="browse-button-div">
-          <Link to="/store">
-            <button>Browse</button>
-          </Link>
-        </div>
-      </section>
-      <section className="collection store-container deals">
-        <h2>Deals of the week</h2>
-        <div className="product-card-list">
-          {sale?.map((product) => (
-            <StoreCard key={product._id} product={product} />
-          ))}
-        </div>
-      </section>
-    </section>
+    <>
+      <Title>Bmerketo Store</Title>
+      <section className="home poppins">
+        {isLoading && (
+          <div className="loading">
+            <StoreLoader /> <p>Loading please be patient</p>
+          </div>
+        )}
+        <Carousel chairs={chairs!} />
+        <section className="collection store-container">
+          <h1>Best Collection</h1>
+          <ul>
+            <li>
+              <Link to="/store">All</Link>
+            </li>
+            /
+            <li>
+              <Link to="/store">Chairs</Link>
+            </li>
+            /
+            <li>
+              <Link to="/store">Furniture</Link>
+            </li>
+            /
+          </ul>
+          <div className="product-card-list">
+            {best?.map((product) => (
+              <StoreCard key={product._id} product={product} />
+            ))}
+          </div>
+          <div className="browse-button-div">
+            <Link to="/store">
+              <button>Browse</button>
+            </Link>
+          </div>
+        </section>
+        <section className="collection store-container deals">
+          <h2>Deals of the week</h2>
+          <div className="product-card-list">
+            {sale?.map((product) => (
+              <StoreCard key={product._id} product={product} />
+            ))}
+          </div>
+        </section>
+      </section>{" "}
+    </>
   );
 };
 

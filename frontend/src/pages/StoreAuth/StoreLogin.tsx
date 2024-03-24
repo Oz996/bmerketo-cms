@@ -5,6 +5,7 @@ import StoreLoader from "../../utils/Loader/StoreLoader";
 import { useAuth } from "../../hooks/useAuth";
 import { getBaseUrl } from "../../utils/getBaseUrl";
 import { isValidEmail } from "../../utils/isValidEmail";
+import Title from "../../components/Shared/Title/Title";
 
 const StoreLogin = () => {
   const initalState = {
@@ -60,35 +61,38 @@ const StoreLogin = () => {
   };
 
   return (
-    <section className="store-container">
-      <div className=" store-auth">
-        <h1>Sign in</h1>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="email">Email</label>
-          <input
-            type="text"
-            id="email"
-            onChange={handleChange}
-            value={formData.email}
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            onChange={handleChange}
-            value={formData.password}
-          />
-          <p className="error">{error}</p>
-          <button disabled={loading}>
-            {loading && <StoreLoader />}
-            Login
-          </button>
-        </form>
-        <p>
-          Not a user yet? <Link to="/store/register">Sign up here</Link>
-        </p>
-      </div>
-    </section>
+    <>
+      <Title>Bmerketo Sign In</Title>
+      <section className="store-container">
+        <div className=" store-auth">
+          <h1>Sign in</h1>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="email">Email</label>
+            <input
+              type="text"
+              id="email"
+              onChange={handleChange}
+              value={formData.email}
+            />
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              onChange={handleChange}
+              value={formData.password}
+            />
+            <p className="error">{error}</p>
+            <button disabled={loading}>
+              {loading && <StoreLoader />}
+              Login
+            </button>
+          </form>
+          <p>
+            Not a user yet? <Link to="/store/register">Sign up here</Link>
+          </p>
+        </div>
+      </section>{" "}
+    </>
   );
 };
 

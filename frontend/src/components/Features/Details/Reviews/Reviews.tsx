@@ -1,10 +1,10 @@
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import "./Details.scss";
+import "./Reviews.scss";
 import { useState, ChangeEvent, FormEvent } from "react";
-import { Review } from "../../types/types";
+import { Review } from "../../../../types/types";
 import { useParams } from "react-router-dom";
-import StoreLoader from "../../utils/Loader/StoreLoader";
-import { getBaseUrl } from "../../utils/getBaseUrl";
+import StoreLoader from "../../../../utils/Loader/StoreLoader";
+import { getBaseUrl } from "../../../../utils/getBaseUrl";
 
 interface props {
   rating: number;
