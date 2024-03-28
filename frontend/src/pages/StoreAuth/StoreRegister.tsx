@@ -48,12 +48,10 @@ const StoreRegister = () => {
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setFormData((data) => {
-      return {
-        ...data,
-        [e.target.id]: e.target.value,
-      };
-    });
+    setFormData((data) => ({
+      ...data,
+      [e.target.id]: e.target.value,
+    }));
   };
 
   return (

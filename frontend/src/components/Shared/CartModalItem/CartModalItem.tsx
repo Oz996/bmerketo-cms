@@ -5,6 +5,7 @@ import { FaTrash } from "react-icons/fa";
 import { useCart } from "../../../hooks/useCart";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import { Dispatch, SetStateAction } from "react";
+import { scrollToTop } from "../../../utils/scrolls";
 
 interface props {
   cart: CartItem[];
@@ -12,16 +13,17 @@ interface props {
 }
 const CartModalItem = ({ cart, setCartModal }: props) => {
   const { removeCartItem, incrementCartItem, decrementCartItem } = useCart();
-
   const { removeItem } = useLocalStorage("cart");
+
+  const handleItemClick = () => {
+    scrollToTop();
+    setCartModal(false);
+  };
   return (
     <ul className="cart-modal-items">
       {cart?.map((product: CartItem) => (
         <li key={product?._id}>
-          <Link
-            to={`/store/${product._id}`}
-            onClick={() => setCartModal(false)}
-          >
+          <Link to={`/store/${product._id}`} onClick={handleItemClick}>
             <div className="details">
               <img src={product?.images[0]?.image} alt="" />
               <div className="text">

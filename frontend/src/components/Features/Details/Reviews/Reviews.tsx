@@ -30,12 +30,10 @@ const Reviews = ({ rating, setRating, reviews, setReviews }: props) => {
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData((data) => {
-      return {
-        ...data,
-        [e.target.id]: e.target.value,
-      };
-    });
+    setFormData((data) => ({
+      ...data,
+      [e.target.id]: e.target.value,
+    }));
   };
 
   const handleSubmit = async (e: FormEvent) => {

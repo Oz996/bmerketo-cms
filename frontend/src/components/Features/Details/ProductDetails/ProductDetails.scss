@@ -39,6 +39,10 @@
     }
   }
 
+  .details-sale-div {
+    display: flex;
+    gap: 1rem;
+  }
   .details-details {
     display: flex;
     flex-direction: column;
@@ -53,9 +57,14 @@
     .details-p {
       @include paragraph;
     }
-    .details-price {
+    .details-price,
+    .details-price-sale {
       font-size: 2rem;
       font-weight: 600;
+    }
+    .details-price-sale {
+      opacity: 0.4;
+      text-decoration: line-through;
     }
     hr {
       border: 1px solid rgb(228, 228, 228);
@@ -81,7 +90,7 @@
       }
       p {
         text-align: center;
-        width: 5rem;
+        width: 3rem;
         font-size: 1.3rem;
       }
     }

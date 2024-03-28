@@ -5,6 +5,7 @@ import { BsFillCartXFill } from "react-icons/bs";
 import { Dispatch, RefObject, SetStateAction, useEffect } from "react";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import CartModalItem from "../CartModalItem/CartModalItem";
+import { scrollToTop } from "../../../utils/scrolls";
 
 interface props {
   cartRef: RefObject<HTMLDivElement>;
@@ -24,6 +25,11 @@ const CartModal = ({ cartRef, setCartModal }: props) => {
     });
   });
 
+  const handleEmptyCart = () => {
+    emptyCart();
+    removeItem();
+  };
+
   console.log(cart);
 
   return (
@@ -38,14 +44,7 @@ const CartModal = ({ cartRef, setCartModal }: props) => {
           <>
             <div className="cart">
               <h2>Cart ({cart?.length})</h2>
-              <p
-                onClick={() => {
-                  emptyCart();
-                  removeItem();
-                }}
-              >
-                Remove all
-              </p>
+              <p onClick={handleEmptyCart}>Remove all</p>
             </div>
             <CartModalItem cart={cart} setCartModal={setCartModal} />
             <div className="checkout-button">

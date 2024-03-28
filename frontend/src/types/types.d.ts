@@ -59,7 +59,7 @@ export interface CartItem extends Product {
 }
 
 export interface StoreProps {
-  setDisplayList: React.Dispatch<SetStateAction<Product[] | null>>;
   products?: Product[];
+  setDisplayList: React.Dispatch<SetStateAction<Product[] | null>>;
   sortedProducts: (sortBy: string | null) => Product[];
 }

@@ -38,7 +38,14 @@ const ProductDetails = ({ displayImage, product, setDisplayImage }: props) => {
         <h1>{product?.name}</h1>
         <p className="details-p">{product?.description}</p>
         <hr />
-        <p className="details-price">£{product?.price}</p>
+        {product?.sale ? (
+          <div className="details-sale-div">
+            <p className="details-price-sale">£{product.sale}</p>
+            <p className="details-price">£{product.price}</p>
+          </div>
+        ) : (
+          <p className="details-price">£{product?.price}</p>
+        )}
         <div className="details-options">
           <div className="buttons">
             <button onClick={decrementQuantity}>-</button>
