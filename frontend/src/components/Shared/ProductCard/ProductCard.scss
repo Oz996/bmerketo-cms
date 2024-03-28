@@ -4,10 +4,11 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  width: 70%;
+  width: 120rem;
   margin-inline: auto;
   margin-top: 3rem;
   @include tablet {
+    width: 100%;
     text-align: center;
     justify-content: center;
   }
@@ -31,7 +32,7 @@
       text-transform: capitalize;
     }
     img {
-      height: 30vh;
+      width: 26rem;
     }
     a {
       color: black;
