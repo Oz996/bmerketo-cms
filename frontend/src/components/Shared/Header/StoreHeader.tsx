@@ -85,17 +85,18 @@ const StoreHeader = () => {
                   <Link to="/store/login">Login</Link>
                 ) : (
                   <Link to="/store/profile">
-                    <FaUser size={17} />
+                    <FaUser size={16} />
                   </Link>
                   // <p onClick={() => handleLogout()}>Logout</p>
                 )}
               </span>
-              <IoMdCart
-                size={21}
-                onClick={() => setCartModal(true)}
-                className="cart-icon"
-              />
-              <div className="red">{cart?.length > 0 && cart.length}</div>
+
+              <div className="cart-icon">
+                <IoMdCart size={21} onClick={() => setCartModal(true)} />
+                <span className="cart-icon-length">
+                  {cart?.length > 0 && cart.length}
+                </span>
+              </div>
             </div>
           </div>
         </nav>

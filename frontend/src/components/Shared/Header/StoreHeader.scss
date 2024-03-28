@@ -81,14 +81,19 @@
       cursor: pointer;
     }
     .cart-icon {
+      cursor: pointer;
       position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    div {
+    .cart-icon-length {
       position: absolute;
-      right: -7%;
-      top: 10%;
+      right: -2.9rem;
+      top: -0.5rem;
       font-size: 1.5rem;
       border-radius: 10rem;
+      color: $store-hover-red;
       @include mobile {
         top: 65%;
         right: 46%;
@@ -132,9 +137,6 @@
       }
     }
   }
-}
-.red {
-  color: $store-hover-red;
 }
 .show-nav {
   display: block !important;
