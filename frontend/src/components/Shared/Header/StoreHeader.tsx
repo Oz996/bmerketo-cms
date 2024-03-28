@@ -91,8 +91,8 @@ const StoreHeader = () => {
                 )}
               </span>
 
-              <div className="cart-icon">
-                <IoMdCart size={21} onClick={() => setCartModal(true)} />
+              <div className="cart-icon" onClick={() => setCartModal(true)}>
+                <IoMdCart size={21} />
                 <span className="cart-icon-length">
                   {cart?.length > 0 && cart.length}
                 </span>
