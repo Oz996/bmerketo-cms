@@ -21,6 +21,8 @@
 .product-card {
   display: flex;
   flex-direction: column;
+  transition: 0.3s;
+  @include hover-color;
 
   img {
     width: 25rem;
