@@ -15,9 +15,7 @@
   :nth-child(4) {
     cursor: pointer;
     transition: 0.3s;
-    &:hover {
-      color: $store-hover-red;
-    }
+    @include hover-color;
   }
   p {
     width: 2rem;

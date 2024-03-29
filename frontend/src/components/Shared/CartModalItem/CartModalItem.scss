@@ -23,8 +23,6 @@
     color: white;
     cursor: pointer;
     transition: 0.3s;
-    &:hover {
-      @include hover-bg;
-    }
+    @include hover-color;
   }
 }

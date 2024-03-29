@@ -38,13 +38,6 @@ const Store = () => {
     return productList.sort((a, b) =>
       a.category.toLowerCase().localeCompare(b.category.toLowerCase())
     );
-    // {
-    //   const catA = a.category.toLowerCase();
-    //   const catB = b.category.toLowerCase();
-    //   if (catA < catB) return -1;
-    //   if (catA > catB) return 1;
-    //   return 0;
-    // });
   };
 
   return (

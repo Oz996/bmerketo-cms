@@ -13,9 +13,7 @@
     text-transform: uppercase;
     cursor: pointer;
     transition: 0.3s;
-    &:hover {
-      color: $store-hover-red;
-    }
+    @include hover-color;
     @include mobile {
       padding: 0.3rem;
     }

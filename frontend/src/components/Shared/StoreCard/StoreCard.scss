@@ -21,6 +21,7 @@
 .product-card {
   display: flex;
   flex-direction: column;
+
   img {
     width: 25rem;
     align-self: center;
@@ -29,13 +30,14 @@
   .icon {
     transition: 0.3s;
     margin-right: 4rem;
+    @include hover-color;
+
     &:hover {
-      color: $store-hover-red;
       scale: 1.1;
     }
   }
   p {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
   }
   :nth-child(4) {
     @include paragraph;
