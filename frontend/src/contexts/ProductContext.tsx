@@ -33,9 +33,12 @@ export const ProductContextProvider = ({
     try {
       setIsLoading(true);
       const res = await fetch(getBaseUrl() + `/api/products`);
-      const data = await res.json();
-      console.log(data);
-      setProducts(data);
+      const data = (await res.json()) as Product[];
+      // sorting by category by default
+      const sortedProducts = data.sort((a, b) =>
+        a.category.localeCompare(b.category)
+      );
+      setProducts(sortedProducts);
     } catch (error) {
       console.error(error);
     } finally {

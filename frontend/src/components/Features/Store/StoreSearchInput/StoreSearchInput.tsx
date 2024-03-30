@@ -1,13 +1,9 @@
 import { StoreProps } from "../../../../types/types";
 import "./StoreSearchInput.scss";
 
-const StoreSearchInput = ({
-  sortedProducts,
-  setDisplayList,
-  products,
-}: StoreProps) => {
+const StoreSearchInput = ({ setDisplayList, products }: StoreProps) => {
   const searchFunction = (search: string) => {
-    if (!search) return setDisplayList(sortedProducts(null));
+    if (!search) return setDisplayList(products);
 
     const searchProducts = products?.filter((product) =>
       product.name.toLowerCase().includes(search.toLowerCase())

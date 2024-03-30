@@ -10,14 +10,16 @@ import StoreSortSelect from "../../components/Features/Store/StoreSortSelect/Sto
 
 const Store = () => {
   const { products } = useProduct();
-  const [displayList, setDisplayList] = useState<Product[] | null>(null);
+  const [displayList, setDisplayList] = useState<Product[]>([]);
+
+  console.log("display", displayList);
 
   useEffect(() => {
-    setDisplayList(sortedProducts(null));
+    if (products) setDisplayList(products);
   }, [products]);
 
-  // sorting by category by default and handling other sorting. this function is sent to input/select
-  // components to reset the sorting to default whenever the filtering is cleared (null)
+  // handling sorting, sorted by category by default inside context. this function is sent to
+  // input/select components to reset the sorting to default whenever the filtering is cleared (null)
   const sortedProducts = (sortBy: string | null) => {
     const productList = [...products];
     if (sortBy === "name") {
@@ -34,10 +36,6 @@ const Store = () => {
     if (sortBy === "reviews") {
       return productList.sort((a, b) => b.review!.length - a.review!.length);
     }
-
-    return productList.sort((a, b) =>
-      a.category.toLowerCase().localeCompare(b.category.toLowerCase())
-    );
   };
 
   return (
@@ -48,16 +46,15 @@ const Store = () => {
           <StoreSearchInput
             products={products}
             setDisplayList={setDisplayList}
-            sortedProducts={sortedProducts}
           />
           <StoreCategorySelect
             products={products}
             setDisplayList={setDisplayList}
-            sortedProducts={sortedProducts}
           />
           <StoreSortSelect
-            setDisplayList={setDisplayList}
+            products={products}
             sortedProducts={sortedProducts}
+            setDisplayList={setDisplayList}
           />
         </div>
         <div className="product-card-list">

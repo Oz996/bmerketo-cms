@@ -5,6 +5,9 @@
   gap: 2rem;
   grid-template-columns: repeat(4, 1fr);
   margin-top: 5rem;
+  :nth-child(1) {
+    font-size: 1.7rem;
+  }
   @include tablet {
     grid-template-columns: repeat(3, 1fr);
   }

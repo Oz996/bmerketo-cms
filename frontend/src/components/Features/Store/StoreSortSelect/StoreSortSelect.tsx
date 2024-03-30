@@ -6,12 +6,16 @@ interface Category {
   value: string;
 }
 interface props extends StoreProps {
-  sortedProducts: (sortBy: string | null) => Product[];
+  sortedProducts: (sortBy: string | null) => Product[] | undefined;
 }
 
-const StoreSortSelect = ({ sortedProducts, setDisplayList }: props) => {
+const StoreSortSelect = ({
+  products,
+  sortedProducts,
+  setDisplayList,
+}: props) => {
   const handleSortBy = (selected: any) => {
-    if (!selected) return setDisplayList(sortedProducts(null));
+    if (!selected) return setDisplayList(products);
     const sortedList = sortedProducts(selected.value);
     setDisplayList(sortedList);
   };
