@@ -78,8 +78,8 @@ const DeleteModal = ({ dialogRef, locked }: props) => {
       </button>
       <div className="modal-delete">
         {modal && (
-          <div className="modal">
-            <div className="overlay"></div>
+          <>
+            <div className="overlay" />
             <div className="modal-content" ref={modalRef}>
               <div className="modal-delete-title">
                 <BiError size={20} style={{ color: "red" }} />
@@ -98,7 +98,7 @@ const DeleteModal = ({ dialogRef, locked }: props) => {
                 </button>
               </div>
             </div>
-          </div>
+          </>
         )}
       </div>
     </>

@@ -30,7 +30,7 @@ const ProductCard = ({ products, dialogRef }: props) => {
       {products?.map((product) => (
         <article
           key={product?._id}
-          className="product"
+          className={`product ${!orderPage && "pointer"}`}
           onClick={() => handleClick(product?._id)}
         >
           <div className="product-info">

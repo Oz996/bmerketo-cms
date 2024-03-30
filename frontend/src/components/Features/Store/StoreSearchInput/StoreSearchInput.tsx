@@ -8,8 +8,7 @@ const StoreSearchInput = ({ setDisplayList, products }: StoreProps) => {
     const searchProducts = products?.filter((product) =>
       product.name.toLowerCase().includes(search.toLowerCase())
     );
-    console.log("search");
-    setDisplayList(searchProducts!);
+    setDisplayList(searchProducts);
   };
 
   return (

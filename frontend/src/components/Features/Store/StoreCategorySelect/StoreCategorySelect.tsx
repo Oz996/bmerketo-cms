@@ -19,11 +19,11 @@ const StoreCategorySelect = ({ setDisplayList, products }: StoreProps) => {
     const filteredProducts = products?.filter((product) =>
       categories.includes(product.category)
     );
-    setDisplayList(filteredProducts!);
+    setDisplayList(filteredProducts);
   };
 
   const handleCategoryChange = (selected: any) => {
-    const selectedValues = selected.map((category: any) => category.value);
+    const selectedValues = selected.map((category: Category) => category.value);
     filterProducts(selectedValues);
   };
 
