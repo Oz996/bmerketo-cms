@@ -1,6 +1,5 @@
 import { RefObject, useEffect, useRef, useState } from "react";
 import "./DeleteModal.scss";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useProduct } from "../../../../hooks/useProduct";
 import { useAuth } from "../../../../hooks/useAuth";
@@ -18,9 +17,8 @@ const DeleteModal = ({ dialogRef, locked }: props) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
   const { token } = useAuth();
-  const { setProducts, products, productId } = useProduct();
-
-  const navigate = useNavigate();
+  const { setProducts, products, productId, handleRemoveProductId } =
+    useProduct();
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -50,6 +48,7 @@ const DeleteModal = ({ dialogRef, locked }: props) => {
         },
       });
       if (res.status === 410) {
+        handleRemoveProductId();
         toast.success("Product has been removed");
         toggleModal();
         dialogRef.current?.close();
