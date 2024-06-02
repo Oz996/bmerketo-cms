@@ -5,7 +5,7 @@ import {
   useReducer,
   useCallback,
 } from "react";
-import { Actions, cartReducer } from "./CartReducer";
+import { cartReducer } from "./CartReducer";
 import { CartItem, Product } from "../../types/types";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 
